@@ -12,12 +12,12 @@ import yaml
 from metamapper.inspection_types import DatasetInspection, LayerInfo
 
 
-TODO_ABSTRACT = "TODO: user must provide abstract"
-TODO_PURPOSE = "TODO: user must provide purpose"
-TODO_SUPPL = "TODO: describe geologic interpretation, processing notes, and supplemental information"
-TODO_LINEAGE = "TODO: describe lineage and processing steps"
+TODO_ABSTRACT = "TODO: USER INPUT NEEDED. REVISE THIS ABSTRACT."
+TODO_PURPOSE = "TODO: USER INPUT NEEDED. REVISE THIS PURPOSE STATEMENT."
+TODO_SUPPL = "TODO: USER INPUT NEEDED. ADD GEOLOGIC INTERPRETATION, PROCESSING NOTES, AND SUPPLEMENTAL INFORMATION."
+TODO_LINEAGE = "TODO: USER INPUT NEEDED. DESCRIBE LINEAGE AND PROCESSING STEPS."
 TODO_ATTR_DEF = "TODO: define this attribute beyond the raw field name and type"
-TODO_USE_LIMIT = "TODO: describe use constraints and data limitations"
+TODO_USE_LIMIT = "TODO: USER INPUT NEEDED. REVISE USE CONSTRAINTS AND DATA LIMITATIONS."
 TODO_PUB_DATE = "TODO: set publication or release date"
 TODO_ORIGINATOR = "TODO: add originator/author name"
 TODO_PROGRESS = "TODO: set publication status progress"
@@ -78,9 +78,9 @@ def build_prefill_document(inspection: DatasetInspection) -> dict[str, Any]:
             "online_links": [],
         },
         "description": {
-            "abstract": TODO_ABSTRACT,
-            "purpose": TODO_PURPOSE,
-            "supplemental_information": TODO_SUPPL,
+            "abstract": _abstract_scaffold(inspection, layer_info),
+            "purpose": _purpose_scaffold(inspection, layer_info),
+            "supplemental_information": _supplemental_scaffold(inspection),
         },
         "time_period": {
             "current": TODO_CURRENTNESS,
@@ -122,13 +122,13 @@ def build_prefill_document(inspection: DatasetInspection) -> dict[str, Any]:
             "email": "TODO: provide email address",
         },
         "data_quality": {
-            "attribute_accuracy": "TODO: describe attribute accuracy and limitations",
-            "logical_consistency": "TODO: describe logical consistency checks",
-            "completeness": "TODO: describe dataset completeness",
+            "attribute_accuracy": _attribute_accuracy_scaffold(inspection),
+            "logical_consistency": _logical_consistency_scaffold(inspection),
+            "completeness": _completeness_scaffold(inspection),
             "lineage": {
                 "process_steps": [
                     {
-                        "description": TODO_LINEAGE,
+                        "description": _lineage_scaffold(inspection),
                         "date": datetime.now().strftime("%Y"),
                     }
                 ]
@@ -217,6 +217,119 @@ def _infer_geoform(inspection: DatasetInspection, layer_info: LayerInfo | None) 
     if inspection.data_format.lower() in {"csv", "xlsx", "xls"}:
         return "spreadsheet"
     return "vector digital data"
+
+
+def _abstract_scaffold(inspection: DatasetInspection, layer_info: LayerInfo | None) -> str:
+    dataset_name = inspection.dataset_name.replace("_", " ")
+    format_name = inspection.data_format
+    extent_text = _extent_summary(layer_info)
+    layer_text = _layer_summary(inspection)
+    feature_text = _feature_summary(layer_info)
+    return (
+        f"{TODO_ABSTRACT}\n"
+        f"This metadata record describes the {dataset_name} dataset in {format_name} format. "
+        f"{layer_text} {feature_text} {extent_text} "
+        "USER INPUT NEEDED: add the scientific context, map purpose, publication framing, "
+        "and any important geologic interpretation that cannot be derived from the dataset structure alone."
+    ).strip()
+
+
+def _purpose_scaffold(inspection: DatasetInspection, layer_info: LayerInfo | None) -> str:
+    dataset_name = inspection.dataset_name.replace("_", " ")
+    layer_text = _layer_summary(inspection)
+    return (
+        f"{TODO_PURPOSE}\n"
+        f"The {dataset_name} dataset appears to support geospatial analysis, visualization, and distribution of mapped data. "
+        f"{layer_text} USER INPUT NEEDED: explain why these data were created, the intended scientific or mapping use, "
+        "and any limits on how the dataset should be interpreted."
+    ).strip()
+
+
+def _supplemental_scaffold(inspection: DatasetInspection) -> str:
+    selected = inspection.selected_layer or "the dataset as a whole"
+    return (
+        f"{TODO_SUPPL}\n"
+        f"MetaMapper auto-populated structural details for {selected} from the source dataset. "
+        "USER INPUT NEEDED: add processing notes, related products, geologic interpretation, companion report references, "
+        "and any dataset-specific caveats that users should read before reuse."
+    ).strip()
+
+
+def _attribute_accuracy_scaffold(inspection: DatasetInspection) -> str:
+    return (
+        "TODO: USER INPUT NEEDED. REVISE THIS ATTRIBUTE ACCURACY STATEMENT.\n"
+        f"MetaMapper identified {len(inspection.layer_details) or (1 if inspection.layer_info else 0)} entity or layer definitions from the dataset. "
+        "USER INPUT NEEDED: describe how attribute values were checked, whether values were interpreted from source mapping or measurements, "
+        "and any known attribute limitations or uncertainty."
+    )
+
+
+def _logical_consistency_scaffold(inspection: DatasetInspection) -> str:
+    return (
+        "TODO: USER INPUT NEEDED. REVISE THIS LOGICAL CONSISTENCY STATEMENT.\n"
+        f"The inspected dataset includes {len(inspection.layer_names)} discovered layer(s) or table(s). "
+        "USER INPUT NEEDED: describe topology checks, schema consistency checks, identifier validation, "
+        "or other quality-control steps that were applied before release."
+    )
+
+
+def _completeness_scaffold(inspection: DatasetInspection) -> str:
+    extent_text = _extent_summary(_preferred_layer_info(inspection))
+    return (
+        "TODO: USER INPUT NEEDED. REVISE THIS COMPLETENESS STATEMENT.\n"
+        f"The dataset extent currently corresponds to {extent_text.lower()} "
+        "USER INPUT NEEDED: describe what is included, what is excluded, the mapping or observation limits, "
+        "and any known geographic or thematic omissions."
+    )
+
+
+def _lineage_scaffold(inspection: DatasetInspection) -> str:
+    return (
+        f"{TODO_LINEAGE}\n"
+        f"MetaMapper inspected the source dataset at {inspection.dataset_path}. "
+        "USER INPUT NEEDED: replace this with a real process step describing compilation, interpretation, editing, "
+        "or publication preparation work performed by the data producer."
+    )
+
+
+def _extent_summary(layer_info: LayerInfo | None) -> str:
+    if not layer_info or not layer_info.extent:
+        return "Spatial extent was not derived automatically."
+    bounds = _bounding_coordinates(layer_info)
+    west = bounds.get("west")
+    east = bounds.get("east")
+    north = bounds.get("north")
+    south = bounds.get("south")
+    return f"Approximate bounds are west {west}, east {east}, south {south}, and north {north}."
+
+
+def _layer_summary(inspection: DatasetInspection) -> str:
+    if inspection.selected_layer:
+        return f"The selected layer is {inspection.selected_layer}."
+    if inspection.layer_names:
+        if len(inspection.layer_names) == 1:
+            return f"The dataset contains 1 discovered layer: {inspection.layer_names[0]}."
+        preview = ", ".join(inspection.layer_names[:5])
+        extra = len(inspection.layer_names) - 5
+        if extra > 0:
+            preview += f", and {extra} more"
+        return f"The dataset contains {len(inspection.layer_names)} discovered layers or tables, including {preview}."
+    return "No layers were identified automatically."
+
+
+def _feature_summary(layer_info: LayerInfo | None) -> str:
+    if not layer_info:
+        return ""
+    parts: list[str] = []
+    if layer_info.data_kind:
+        parts.append(f"It is a {layer_info.data_kind} dataset")
+    if layer_info.geometry_type and layer_info.geometry_type != "None":
+        parts.append(f"with {layer_info.geometry_type} geometry")
+    if layer_info.feature_count is not None:
+        parts.append(f"and approximately {layer_info.feature_count} features or records")
+    if not parts:
+        return ""
+    return " ".join(parts) + "."
 
 
 def _bounding_coordinates(layer_info: LayerInfo | None) -> dict[str, float | str | None]:

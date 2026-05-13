@@ -6,14 +6,21 @@ import typer
 from rich.console import Console
 from rich.table import Table
 
-from metamapper.config import MissingRequiredFieldsError
+from metamapper.completion import (
+    current_display_value,
+    get_missing_field_prompts,
+    is_placeholder_display,
+    parse_user_value,
+    update_document_value,
+)
+from metamapper.config import MissingRequiredFieldsError, find_missing_required_fields
 from metamapper.inspection_backends import InspectionError
 from metamapper.inspector import DatasetInspector
 from metamapper.prefill import build_prefill_document, write_prefill_yaml
 from metamapper.reports import write_validation_report
 from metamapper.validators import run_validation
 from metamapper.xml_builder import build_metadata_xml, write_metadata_xml
-from metamapper.yaml_reader import load_metadata_config
+from metamapper.yaml_reader import load_metadata_config, load_yaml_document, write_yaml_document
 
 app = typer.Typer(help="Build and validate FGDC/USGS-style geologic metadata XML from YAML.")
 console = Console()
@@ -92,6 +99,87 @@ def inspect(
 
 
 @app.command()
+def missing(yaml_path: Path) -> None:
+    """List unresolved required metadata fields in a YAML file."""
+    document = load_yaml_document(yaml_path)
+    missing_fields = find_missing_required_fields(document)
+    if not missing_fields:
+        console.print("No required metadata fields are missing.")
+        raise typer.Exit(code=0)
+
+    table = Table(title=f"Missing Required Fields: {yaml_path}")
+    table.add_column("Field")
+    for field in missing_fields:
+        table.add_row(field)
+    console.print(table)
+    raise typer.Exit(code=1)
+
+
+@app.command()
+def fill(
+    yaml_path: Path,
+    out: Path | None = typer.Option(None, "--out", "-o", help="Optional alternate output YAML path."),
+    only_missing: bool = typer.Option(True, help="Only prompt for currently missing required fields."),
+    include_long_form: bool = typer.Option(
+        False,
+        help="Also prompt for longer narrative fields such as abstract, purpose, and data-quality text.",
+    ),
+) -> None:
+    """Interactively fill required metadata fields in a YAML document."""
+    document = load_yaml_document(yaml_path)
+    prompts = get_missing_field_prompts(
+        document,
+        only_missing=only_missing,
+        include_long_form=include_long_form,
+    )
+
+    if not prompts:
+        console.print("No prompted fields need completion.")
+        output_path = write_yaml_document(out or yaml_path, document)
+        console.print(f"YAML written to {output_path}")
+        raise typer.Exit(code=0)
+
+    console.print(f"Filling {len(prompts)} quick metadata field(s).")
+    if not include_long_form:
+        console.print("Long narrative fields will stay in the YAML for manual editing.")
+
+    for prompt in prompts:
+        current_value = current_display_value(document, prompt.path)
+        prompt_label = prompt.prompt
+        if prompt.list_mode:
+            prompt_label += " (comma-separated)"
+        if prompt.help_text:
+            prompt_label += f" [{prompt.help_text}]"
+
+        if prompt.multiline:
+            lines = _prompt_multiline()
+            if lines:
+                update_document_value(document, prompt.path, "\n".join(lines).strip())
+            continue
+
+        show_default = bool(current_value) and not is_placeholder_display(current_value)
+        response = typer.prompt(
+            prompt_label,
+            default=current_value if show_default else "",
+            show_default=show_default,
+        )
+        if response.strip():
+            update_document_value(document, prompt.path, parse_user_value(prompt, response))
+
+    output_path = write_yaml_document(out or yaml_path, document)
+    remaining = find_missing_required_fields(document)
+    console.print(f"YAML written to {output_path}")
+    if remaining:
+        console.print("Still missing required fields:")
+        for field in remaining:
+            console.print(f"- {field}")
+        if not include_long_form:
+            console.print("Tip: edit the YAML directly for the longer narrative fields, or rerun with `--include-long-form`.")
+        raise typer.Exit(code=1)
+    console.print("Prompted fields completed.")
+
+
+@app.command()
 def validate(
     xml_path: Path,
     external_command: str | None = typer.Option(None, help="Optional external validation command."),
@@ -148,6 +236,21 @@ def build_validate(
     if result.passed:
         console.print("Metadata validation passed.")
     raise typer.Exit(code=0 if result.passed else 1)
+
+
+def _prompt_multiline() -> list[str]:
+    """Prompt for multiline text, ending on a single '.' line or blank first line to skip."""
+
+    console.print("Enter text, finish with a single '.' on its own line, or press Enter immediately to skip.")
+    lines: list[str] = []
+    while True:
+        line = typer.prompt("", prompt_suffix="", show_default=False, default="")
+        if not lines and not line:
+            return []
+        if line.strip() == ".":
+            break
+        lines.append(line)
+    return lines
 
 
 if __name__ == "__main__":

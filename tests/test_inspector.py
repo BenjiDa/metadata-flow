@@ -85,6 +85,7 @@ def test_prefill_yaml_contains_auto_populated_and_todo_sections(tmp_path: Path) 
     assert loaded["inspection"]["backend"] == "fake-backend"
     assert loaded["inspection"]["auto_populated"]["selected_layer"] == "MapUnitPolys"
     assert loaded["description"]["abstract"].startswith("TODO:")
+    assert "USER INPUT NEEDED" in loaded["description"]["abstract"]
     assert loaded["entity_attribute_information"]["entities"][0]["attributes"][0]["alias"] == "Map Unit"
     assert loaded["spatial_domain"]["bounding_coordinates"]["west"] < -120
     assert loaded["spatial_reference"]["type"] == "utm"
@@ -129,6 +130,8 @@ def test_prefill_document_for_raster_includes_raster_info(tmp_path: Path) -> Non
     assert document["citation"]["geoform"] == "raster digital data"
     assert document["spatial_data_organization"]["direct_spatial_reference_method"] == "Raster"
     assert entity["raster"]["band_count"] == 1
+    assert "USER INPUT NEEDED" in document["description"]["purpose"]
+    assert "USER INPUT NEEDED" in document["data_quality"]["attribute_accuracy"]
 
 
 @pytest.mark.skipif(importlib.util.find_spec("pyogrio") is None, reason="pyogrio not installed")

@@ -26,3 +26,13 @@ def load_yaml_document(path: str | Path) -> dict[str, Any]:
     if not isinstance(data, dict):
         raise ValueError(f"YAML document must contain a top-level mapping: {config_path}")
     return data
+
+
+def write_yaml_document(path: str | Path, document: dict[str, Any]) -> Path:
+    """Write a generic YAML document to disk."""
+
+    output_path = Path(path)
+    output_path.parent.mkdir(parents=True, exist_ok=True)
+    with output_path.open("w", encoding="utf-8") as handle:
+        yaml.safe_dump(document, handle, sort_keys=False, allow_unicode=False, default_flow_style=False)
+    return output_path

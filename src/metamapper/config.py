@@ -65,19 +65,51 @@ class MetadataConfig:
         return value
 
     def validate_required_fields(self) -> None:
-        missing: list[str] = []
-        for path in REQUIRED_YAML_FIELDS:
-            value = self.get(path)
-            if value is None:
-                missing.append(path)
-                continue
-            if isinstance(value, str) and not value.strip():
-                missing.append(path)
-                continue
-            if _is_placeholder(value):
-                missing.append(path)
-                continue
-            if isinstance(value, list) and not value:
-                missing.append(path)
+        missing = find_missing_required_fields(self.data)
         if missing:
             raise MissingRequiredFieldsError(missing)
+
+
+def get_path(data: dict[str, Any], path: str, default: Any = None) -> Any:
+    """Return a nested value from a mapping using dotted-path syntax."""
+
+    value: Any = data
+    for part in path.split("."):
+        if not isinstance(value, dict) or part not in value:
+            return default
+        value = value[part]
+    return value
+
+
+def set_path(data: dict[str, Any], path: str, value: Any) -> None:
+    """Set a nested value in a mapping using dotted-path syntax."""
+
+    parts = path.split(".")
+    target = data
+    for part in parts[:-1]:
+        existing = target.get(part)
+        if not isinstance(existing, dict):
+            existing = {}
+            target[part] = existing
+        target = existing
+    target[parts[-1]] = value
+
+
+def find_missing_required_fields(data: dict[str, Any]) -> list[str]:
+    """Return required metadata fields that are missing or still placeholders."""
+
+    missing: list[str] = []
+    for path in REQUIRED_YAML_FIELDS:
+        value = get_path(data, path)
+        if value is None:
+            missing.append(path)
+            continue
+        if isinstance(value, str) and not value.strip():
+            missing.append(path)
+            continue
+        if _is_placeholder(value):
+            missing.append(path)
+            continue
+        if isinstance(value, list) and not value:
+            missing.append(path)
+    return missing
