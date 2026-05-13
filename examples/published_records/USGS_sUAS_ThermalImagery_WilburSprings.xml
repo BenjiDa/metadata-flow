@@ -1,0 +1,791 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<metadata>
+  <idinfo>
+    <citation>
+      <citeinfo>
+        <origin>Benjamin L. Melosh</origin>
+        <origin>Owen Callahan</origin>
+        <pubdate>20260421</pubdate>
+        <title>Processed sUAS products from Sulphur Creek near Wilbur Hot Springs, northern California Coast Ranges</title>
+        <geoform>remote-sensing image</geoform>
+        <pubinfo>
+          <pubplace>Science Base</pubplace>
+          <publish>Science Base</publish>
+        </pubinfo>
+        <onlink>https://doi.org/10.5066/P1E4XWLQ</onlink>
+        <lworkcit>
+          <citeinfo>
+            <origin>Benjamin L. Melosh</origin>
+            <origin>Owen Callahan</origin>
+            <pubdate>2026</pubdate>
+            <title>Structural control of fluid circulation and permeability in active transpression along and adjacent to the Bartlett Springs fault, Northern California Coast Ranges</title>
+            <geoform>publication</geoform>
+            <pubinfo>
+              <pubplace>Tektonika</pubplace>
+              <publish>Tektonika</publish>
+            </pubinfo>
+          </citeinfo>
+        </lworkcit>
+      </citeinfo>
+    </citation>
+    <descript>
+      <abstract>This data release contains small uncrewed aircraft system (sUAS) products acquired from Sulphur Creek near Wilbur Hot Springs in Colusa County, California. The dataset includes: (1) high-resolution visible light orthomosaics, (2) a digital surface model (DSM) derived from structure-from-motion photogrammetry using visible imagery, (3) a raw thermal orthomosaic, (4) a calibrated thermal orthomosaic, (5) shapefile datasets with flight boundaries and control points. Thermal data were calibrated using in-field temperature control points acquired concurrently with flight operations. These datasets support characterization of geothermal surface expressions, stream-temperature anomalies, and associated landscape features. Products are provided in GeoTIFF format with associated metadata. This data release enables spatial analysis of surface temperature variations and topographic context, and may be useful for hydrologic, geothermal, and ecological studies in the region.</abstract>
+      <purpose>The sUAS surveys at Sulphur Creek near Wilbur Hot Springs were conducted to identify and characterize zones of elevated surface temperature associated with geothermal fluid discharge. This area is known for active hydrothermal activity along a fault-controlled drainage, and the data support efforts to better understand the spatial distribution of thermal anomalies, their relationship to geologic structures, and their potential implications for geothermal resource assessment here, and by analogy, other areas experiencing active transpression. The combined visible and thermal datasets also provide baseline information for ongoing monitoring of geothermal features and may aid in the detection of changes in thermal expression over time.</purpose>
+    </descript>
+    <timeperd>
+      <timeinfo>
+        <sngdate>
+          <caldate>20250220</caldate>
+        </sngdate>
+      </timeinfo>
+      <current>observed</current>
+    </timeperd>
+    <status>
+      <progress>Complete</progress>
+      <update>None planned</update>
+    </status>
+    <spdom>
+      <bounding>
+        <westbc>-122.440161</westbc>
+        <eastbc>-122.424385</eastbc>
+        <northbc>39.038714</northbc>
+        <southbc>39.030400</southbc>
+      </bounding>
+    </spdom>
+    <keywords>
+      <theme>
+        <themekt>ISO 19115 Topic Category</themekt>
+        <themekey>geoscientificInformation</themekey>
+        <themekey>imageryBaseMapsEarthCover</themekey>
+        <themekey>environment</themekey>
+      </theme>
+      <theme>
+        <themekt>USGS Thesaurus</themekt>
+        <themekey>Geothermal</themekey>
+        <themekey>Faults</themekey>
+        <themekey>Transpression</themekey>
+        <themekey>Anticline</themekey>
+        <themekey>Fluids</themekey>
+        <themekey>Permeability</themekey>
+      </theme>
+      <theme>
+        <themekt>USGS Metadata Identifier</themekt>
+        <themekey>USGS:6877f66ad4be025a4923e5c4</themekey>
+      </theme>
+      <place>
+        <placekt>USGS Thesaurus</placekt>
+        <placekey>California</placekey>
+        <placekey>Coast Ranges</placekey>
+        <placekey>Wilbur Springs</placekey>
+        <placekey>Clear Lake</placekey>
+      </place>
+    </keywords>
+    <accconst>No access constraints. Please see 'Distribution Information' for details.</accconst>
+    <useconst>These data are marked with a Creative Common CC0 1.0 Universal License. These data are in the public domain and do not have any use constraints. Users are advised to read the dataset's metadata thoroughly to understand appropriate use and data limitations.</useconst>
+    <ptcontac>
+      <cntinfo>
+        <cntperp>
+          <cntper>Benjamin L. Melosh</cntper>
+        </cntperp>
+        <cntaddr>
+          <addrtype>mailing and physical</addrtype>
+          <address>P.O. Box 158</address>
+          <address>350 N Akron Rd</address>
+          <city>Moffett Field</city>
+          <state>CA</state>
+          <postal>94035</postal>
+          <country>USA</country>
+        </cntaddr>
+        <cntvoice>650-439-2361</cntvoice>
+      </cntinfo>
+    </ptcontac>
+    <crossref>
+      <citeinfo>
+        <origin>Benjamin L. Melosh</origin>
+        <origin>Owen Callahan</origin>
+        <pubdate>2026</pubdate>
+        <title>Structural control of fluid circulation and permeability in active transpression along and adjacent to the Bartlett Springs fault, Northern California Coast Ranges</title>
+        <geoform>publication</geoform>
+        <pubinfo>
+          <pubplace>Tektonika</pubplace>
+          <publish>Tektonika</publish>
+        </pubinfo>
+      </citeinfo>
+    </crossref>
+  </idinfo>
+  <dataqual>
+    <attracc>
+      <attraccr>The attribute values in this dataset are considered accurate relative to true values based on direct field observation, standardized data collection protocols, and expert interpretation. 
+No formal statistical tests were performed to quantify attribute accuracy. However, internal quality control procedures were implemented throughout the data collection and compilation process.</attraccr>
+    </attracc>
+    <logic>The dataset has been reviewed to ensure that the actual data aligns with the descriptive metadata provided. All attribute values fall within expected ranges based on domain definitions and field validation. A review was conducted to identify and resolve any instances of data duplication or omission.</logic>
+    <complete>The dataset represents selected instances of a specific geologic phenomenon. The data are geographically bounded and represent occurrences only within a fixed area.</complete>
+    <lineage>
+      <procstep>
+        <procdesc>Thermal and visible imagery were collected using a small uncrewed aircraft system (sUAS), processed using structure-from-motion photogrammetry, and calibrated using in-field temperature control points.</procdesc>
+        <procdate>2025</procdate>
+      </procstep>
+    </lineage>
+  </dataqual>
+  <spdoinfo>
+    <direct>Raster</direct>
+    <rastinfo>
+      <rasttype>Grid Cell</rasttype>
+      <rowcount>12239</rowcount>
+      <colcount>18113</colcount>
+      <vrtcount>1</vrtcount>
+    </rastinfo>
+  </spdoinfo>
+  <spref>
+    <horizsys>
+      <geograph>
+        <latres>8.709640000000636e-07</latres>
+        <longres>6.79286999999983e-07</longres>
+        <geogunit>Decimal seconds</geogunit>
+      </geograph>
+      <geodetic>
+        <horizdn>World Geodetic System 1984 (WGS 84)</horizdn>
+        <ellips>WGS_1984</ellips>
+        <semiaxis>6378137.000000</semiaxis>
+        <denflat>298.257224</denflat>
+      </geodetic>
+    </horizsys>
+  </spref>
+  <eainfo>
+    <detailed>
+      <enttyp>
+        <enttypl>BadElf_TGCP_survey.shp</enttypl>
+        <enttypd>Ground control points surveyed with a BadElf Flex Mini Extreme without RTK or PPK corrections.</enttypd>
+        <enttypds>Producer Defined</enttypds>
+      </enttyp>
+      <attr>
+        <attrlabl>AREA</attrlabl>
+        <attrdef>Name of project area.</attrdef>
+        <attrdefs>Producer Defined</attrdefs>
+        <attrdomv>
+          <edom>
+            <edomv>Wilbur HS</edomv>
+            <edomvd>Wilbur hot spring is the area of the project</edomvd>
+            <edomvds>Producer defined</edomvds>
+          </edom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>POINT_NAME</attrlabl>
+        <attrdef>Name of survey station. Correlates with temperature data loggers. TGCP is temperature ground control point.</attrdef>
+        <attrdefs>Producer Defined</attrdefs>
+        <attrdomv>
+          <edom>
+            <edomv>tgcp1</edomv>
+            <edomvd>First temperature ground control point</edomvd>
+            <edomvds>Producer defined</edomvds>
+          </edom>
+        </attrdomv>
+        <attrdomv>
+          <edom>
+            <edomv>tgcp2</edomv>
+            <edomvd>Second temperature ground control point</edomvd>
+            <edomvds>Producer defined</edomvds>
+          </edom>
+        </attrdomv>
+        <attrdomv>
+          <edom>
+            <edomv>tgcp3</edomv>
+            <edomvd>Third temperature ground control point</edomvd>
+            <edomvds>Producer defined</edomvds>
+          </edom>
+        </attrdomv>
+        <attrdomv>
+          <edom>
+            <edomv>tgcp4</edomv>
+            <edomvd>Fourth temperature ground control point</edomvd>
+            <edomvds>Producer defined</edomvds>
+          </edom>
+        </attrdomv>
+        <attrdomv>
+          <edom>
+            <edomv>tgcp5</edomv>
+            <edomvd>Fifth temperature ground control point</edomvd>
+            <edomvds>Producer defined</edomvds>
+          </edom>
+        </attrdomv>
+        <attrdomv>
+          <edom>
+            <edomv>tgcp6</edomv>
+            <edomvd>Sixth temperature ground control point</edomvd>
+            <edomvds>Producer defined</edomvds>
+          </edom>
+        </attrdomv>
+        <attrdomv>
+          <edom>
+            <edomv>tgcp7</edomv>
+            <edomvd>Seventh temperature ground control point</edomvd>
+            <edomvds>Producer defined</edomvds>
+          </edom>
+        </attrdomv>
+        <attrdomv>
+          <edom>
+            <edomv>tgcp8</edomv>
+            <edomvd>Eighth temperature ground control point</edomvd>
+            <edomvds>Producer defined</edomvds>
+          </edom>
+        </attrdomv>
+        <attrdomv>
+          <edom>
+            <edomv>Wilbur HS Launch</edomv>
+            <edomvd>Launch location</edomvd>
+            <edomvds>Producer defined</edomvds>
+          </edom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>DATE_TIME</attrlabl>
+        <attrdef>Date and time as YEAR-MON_DAY HH:MM:SS GMT. Note California is GMT-8 in February.</attrdef>
+        <attrdefs>Producer Defined</attrdefs>
+        <attrdomv>
+          <edom>
+            <edomv>2025-02-19T21:11:59Z</edomv>
+            <edomvd>Date and time as YEAR-MON_DAY HH:MM:SS GMT. Note California is GMT-8 in February.</edomvd>
+            <edomvds>Producer defined</edomvds>
+          </edom>
+        </attrdomv>
+        <attrdomv>
+          <edom>
+            <edomv>2025-02-19T21:26:02Z</edomv>
+            <edomvd>Date and time as YEAR-MON_DAY HH:MM:SS GMT. Note California is GMT-8 in February.</edomvd>
+            <edomvds>Producer defined</edomvds>
+          </edom>
+        </attrdomv>
+        <attrdomv>
+          <edom>
+            <edomv>2025-02-19T21:44:19Z</edomv>
+            <edomvd>Date and time as YEAR-MON_DAY HH:MM:SS GMT. Note California is GMT-8 in February.</edomvd>
+            <edomvds>Producer defined</edomvds>
+          </edom>
+        </attrdomv>
+        <attrdomv>
+          <edom>
+            <edomv>2025-02-19T22:05:32Z</edomv>
+            <edomvd>Date and time as YEAR-MON_DAY HH:MM:SS GMT. Note California is GMT-8 in February.</edomvd>
+            <edomvds>Producer defined</edomvds>
+          </edom>
+        </attrdomv>
+        <attrdomv>
+          <edom>
+            <edomv>2025-02-19T22:22:33Z</edomv>
+            <edomvd>Date and time as YEAR-MON_DAY HH:MM:SS GMT. Note California is GMT-8 in February.</edomvd>
+            <edomvds>Producer defined</edomvds>
+          </edom>
+        </attrdomv>
+        <attrdomv>
+          <edom>
+            <edomv>2025-02-19T22:39:19Z</edomv>
+            <edomvd>Date and time as YEAR-MON_DAY HH:MM:SS GMT. Note California is GMT-8 in February.</edomvd>
+            <edomvds>Producer defined</edomvds>
+          </edom>
+        </attrdomv>
+        <attrdomv>
+          <edom>
+            <edomv>2025-02-19T22:48:32Z</edomv>
+            <edomvd>Date and time as YEAR-MON_DAY HH:MM:SS GMT. Note California is GMT-8 in February.</edomvd>
+            <edomvds>Producer defined</edomvds>
+          </edom>
+        </attrdomv>
+        <attrdomv>
+          <edom>
+            <edomv>2025-02-19T23:01:01Z</edomv>
+            <edomvd>Date and time as YEAR-MON_DAY HH:MM:SS GMT. Note California is GMT-8 in February.</edomvd>
+            <edomvds>Producer defined</edomvds>
+          </edom>
+        </attrdomv>
+        <attrdomv>
+          <edom>
+            <edomv>2025-02-19T18:26:19Z</edomv>
+            <edomvd>Date and time as YEAR-MON_DAY HH:MM:SS GMT. Note California is GMT-8 in February.</edomvd>
+            <edomvds>Producer defined</edomvds>
+          </edom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>LAT</attrlabl>
+        <attrdef>Latitude in decimal degrees.</attrdef>
+        <attrdefs>Producer Defined</attrdefs>
+        <attrdomv>
+          <rdom>
+            <rdommin>39.0312314</rdommin>
+            <rdommax>39.0374924</rdommax>
+          </rdom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>LONG</attrlabl>
+        <attrdef>Longitude in decimal degrees.</attrdef>
+        <attrdefs>Producer Defined</attrdefs>
+        <attrdomv>
+          <rdom>
+            <rdommin>-122.4388652</rdommin>
+            <rdommax>-122.4255627</rdommax>
+          </rdom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>REC_ELEV_m</attrlabl>
+        <attrdef>Orthometric height in meters NADV88 of GPS receiver.</attrdef>
+        <attrdefs>Producer Defined</attrdefs>
+        <attrdomv>
+          <rdom>
+            <rdommin>412.98</rdommin>
+            <rdommax>445.41</rdommax>
+          </rdom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>GRD_ELEV_m</attrlabl>
+        <attrdef>Elevation in meters of the target surface in the ellipsoidal reference frame used by drones, derived from REC_ELEV_m by adding the ellipsoidal correction and subtracting pole height.</attrdef>
+        <attrdefs>Producer Defined</attrdefs>
+        <attrdomv>
+          <rdom>
+            <rdommin>387.56</rdommin>
+            <rdommax>419.99</rdommax>
+          </rdom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>HDOP</attrlabl>
+        <attrdef>Horizontal dilution of precision. Unitless value indicating the quality of the satellite geometry with lower values indicating better relative geometry and higher accuracy.</attrdef>
+        <attrdefs>Producer Defined</attrdefs>
+        <attrdomv>
+          <rdom>
+            <rdommin>0.41</rdommin>
+            <rdommax>0.6</rdommax>
+          </rdom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>VDOP</attrlabl>
+        <attrdef>Vertical dilution of precision. Unitless value indicating the quality of the satellite geometry with lower values indicating better relative geometry and higher accuracy.</attrdef>
+        <attrdefs>Producer Defined</attrdefs>
+        <attrdomv>
+          <rdom>
+            <rdommin>0.54</rdommin>
+            <rdommax>0.9</rdommax>
+          </rdom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>PDOP</attrlabl>
+        <attrdef>Position dilution of precision. Unitless value indicating the quality of the satellite geometry with lower values indicating better relative geometry and higher accuracy.</attrdef>
+        <attrdefs>Producer Defined</attrdefs>
+        <attrdomv>
+          <rdom>
+            <rdommin>0.7</rdommin>
+            <rdommax>1.09</rdommax>
+          </rdom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>QUALITY</attrlabl>
+        <attrdef>Quality of GPS fix 0 = invalid 1 = GPS fix (SPS) 2 = DGPS fix 3 = PPS fix 4 = Real-Time Kinematic (RTK) 5 = Float RTK 6 = estimated (dead reckoning).</attrdef>
+        <attrdefs>Producer Defined</attrdefs>
+        <attrdomv>
+          <rdom>
+            <rdommin>2</rdommin>
+            <rdommax>2</rdommax>
+          </rdom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>H_CEP</attrlabl>
+        <attrdef>Horizontal circular error probable representing the radius of a circle in meters containing 50% of position fixes.</attrdef>
+        <attrdefs>Producer Defined</attrdefs>
+        <attrdomv>
+          <rdom>
+            <rdommin>1.01</rdommin>
+            <rdommax>2.28</rdommax>
+          </rdom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>V_CEP</attrlabl>
+        <attrdef>Vertical circular error probable representing the radius of a circle in meters containing 50% of position fixes.</attrdef>
+        <attrdefs>Producer Defined</attrdefs>
+        <attrdomv>
+          <rdom>
+            <rdommin>1.39</rdommin>
+            <rdommax>3.51</rdommax>
+          </rdom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>DATUM</attrlabl>
+        <attrdef>Mathematical model of the earth that is used in mapping, consists of a series of parameters that define the shape and size of the ellipsoid and its orientation in space.</attrdef>
+        <attrdefs>Producer Defined</attrdefs>
+        <attrdomv>
+          <edom>
+            <edomv>ITRF2000_8997</edomv>
+            <edomvd>Datum</edomvd>
+            <edomvds>Producer defined</edomvds>
+          </edom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>CORR_TYPE</attrlabl>
+        <attrdef>Correction type, ex. SBAS, RTCM3, L-BAND. SBAS is Satellite-Based Augmentation System.</attrdef>
+        <attrdefs>Producer Defined</attrdefs>
+        <attrdomv>
+          <edom>
+            <edomv>SBAS</edomv>
+            <edomvd>SBAS</edomvd>
+            <edomvds>Producer defined</edomvds>
+          </edom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>CORR_FIX</attrlabl>
+        <attrdef>Correction fix type, ex. DIF, FIX, FLOAT. DIF = differential.</attrdef>
+        <attrdefs>Producer Defined</attrdefs>
+        <attrdomv>
+          <edom>
+            <edomv>DIF</edomv>
+            <edomvd>DIF</edomvd>
+            <edomvds>Producer defined</edomvds>
+          </edom>
+        </attrdomv>
+      </attr>
+    </detailed>
+    <detailed>
+      <enttyp>
+        <enttypl>TGCP_TIR_sampled.shp</enttypl>
+        <enttypd>Temperatures obtained from calibrated orthomosaics (GeoTIFF) versus measured at the TGCP with temperature data loggers. Points were moved in GIS from locations surveyed with a BadElf Flex Mini Extreme to match targets in the thermal raster. Recorded temperatures were extracted from temperature data logger files for the period corresponding with sUAS image capture.</enttypd>
+        <enttypds>Producer Defined</enttypds>
+      </enttyp>
+      <attr>
+        <attrlabl>Name</attrlabl>
+        <attrdef>Name of point. Corresponds with POINT_NAME in the file BadElf_TGCP_survey.shp. TGCP is temperature ground control point. “Blank” is a check point sampled on the ground within a square constructed from PVC or metal tubes that contains unknown emissivity properties.</attrdef>
+        <attrdefs>Producer Defined</attrdefs>
+        <attrdomv>
+          <edom>
+            <edomv>TGCP5</edomv>
+            <edomvd>Name of point.</edomvd>
+            <edomvds>Producer defined</edomvds>
+          </edom>
+        </attrdomv>
+        <attrdomv>
+          <edom>
+            <edomv>TGCP6</edomv>
+            <edomvd>Name of point.</edomvd>
+            <edomvds>Producer defined</edomvds>
+          </edom>
+        </attrdomv>
+        <attrdomv>
+          <edom>
+            <edomv>TGCP7</edomv>
+            <edomvd>Name of point.</edomvd>
+            <edomvds>Producer defined</edomvds>
+          </edom>
+        </attrdomv>
+        <attrdomv>
+          <edom>
+            <edomv>TGCP4</edomv>
+            <edomvd>Name of point.</edomvd>
+            <edomvds>Producer defined</edomvds>
+          </edom>
+        </attrdomv>
+        <attrdomv>
+          <edom>
+            <edomv>TGCP8</edomv>
+            <edomvd>Name of point.</edomvd>
+            <edomvds>Producer defined</edomvds>
+          </edom>
+        </attrdomv>
+        <attrdomv>
+          <edom>
+            <edomv>TGCP2</edomv>
+            <edomvd>Name of point.</edomvd>
+            <edomvds>Producer defined</edomvds>
+          </edom>
+        </attrdomv>
+        <attrdomv>
+          <edom>
+            <edomv>TGCP3</edomv>
+            <edomvd>Name of point.</edomvd>
+            <edomvds>Producer defined</edomvds>
+          </edom>
+        </attrdomv>
+        <attrdomv>
+          <edom>
+            <edomv>TGCP1</edomv>
+            <edomvd>Name of point.</edomvd>
+            <edomvds>Producer defined</edomvds>
+          </edom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>T_C_Sample</attrlabl>
+        <attrdef>Temperature in degrees C sampled from the TGCP target in the calibrated raster “Wilbur_TIR_ortho_clp.”</attrdef>
+        <attrdefs>Producer Defined</attrdefs>
+        <attrdomv>
+          <rdom>
+            <rdommin>-4.27</rdommin>
+            <rdommax>7.36</rdommax>
+          </rdom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>T_C_Record</attrlabl>
+        <attrdef>Temperature in degrees C recorded by the temperature data logger at the TGCP at the time of image capture.</attrdef>
+        <attrdefs>Producer Defined</attrdefs>
+        <attrdomv>
+          <rdom>
+            <rdommin>-3.9</rdommin>
+            <rdommax>6.5</rdommax>
+          </rdom>
+        </attrdomv>
+      </attr>
+    </detailed>
+    <detailed>
+      <enttyp>
+        <enttypl>TGCP_VIS_sampled.shp</enttypl>
+        <enttypd>Elevations obtained at points of interest from GPS and from digital surface model (DSM) “Wilbur_VIS_DSM_clp.” Points were moved in GIS from locations surveyed with a BadElf Flex Mini Extreme to match targets in the orthorectified photomosaic “Wilbur_VIS_ortho_clp.”</enttypd>
+        <enttypds>Producer Defined</enttypds>
+      </enttyp>
+      <attr>
+        <attrlabl>Name</attrlabl>
+        <attrdef>Name of point. Corresponds with POINT_NAME in the file “BadElf_TGCP_survey.shp.” TGCP is temperature ground control point.</attrdef>
+        <attrdefs>Producer Defined</attrdefs>
+        <attrdomv>
+          <edom>
+            <edomv>TGCP5</edomv>
+            <edomvd>Name of point.</edomvd>
+            <edomvds>Producer defined</edomvds>
+          </edom>
+        </attrdomv>
+        <attrdomv>
+          <edom>
+            <edomv>TGCP6</edomv>
+            <edomvd>Name of point.</edomvd>
+            <edomvds>Producer defined</edomvds>
+          </edom>
+        </attrdomv>
+        <attrdomv>
+          <edom>
+            <edomv>TGCP7</edomv>
+            <edomvd>Name of point.</edomvd>
+            <edomvds>Producer defined</edomvds>
+          </edom>
+        </attrdomv>
+        <attrdomv>
+          <edom>
+            <edomv>TGCP4</edomv>
+            <edomvd>Name of point.</edomvd>
+            <edomvds>Producer defined</edomvds>
+          </edom>
+        </attrdomv>
+        <attrdomv>
+          <edom>
+            <edomv>TGCP8</edomv>
+            <edomvd>Name of point.</edomvd>
+            <edomvds>Producer defined</edomvds>
+          </edom>
+        </attrdomv>
+        <attrdomv>
+          <edom>
+            <edomv>Launch</edomv>
+            <edomvd>Name of point.</edomvd>
+            <edomvds>Producer defined</edomvds>
+          </edom>
+        </attrdomv>
+        <attrdomv>
+          <edom>
+            <edomv>TGCP2</edomv>
+            <edomvd>Name of point.</edomvd>
+            <edomvds>Producer defined</edomvds>
+          </edom>
+        </attrdomv>
+        <attrdomv>
+          <edom>
+            <edomv>TGCP3</edomv>
+            <edomvd>Name of point.</edomvd>
+            <edomvds>Producer defined</edomvds>
+          </edom>
+        </attrdomv>
+        <attrdomv>
+          <edom>
+            <edomv>TGCP1</edomv>
+            <edomvd>Name of point.</edomvd>
+            <edomvds>Producer defined</edomvds>
+          </edom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>Elev_GPS_m</attrlabl>
+        <attrdef>Corresponds to GRD_ELEV_m in “BadElf_TGCP_survey.shp.” Elevation in meters of the target surface in the ellipsoidal reference frame used by drones.</attrdef>
+        <attrdefs>Producer Defined</attrdefs>
+        <attrdomv>
+          <rdom>
+            <rdommin>387.563</rdommin>
+            <rdommax>419.992</rdommax>
+          </rdom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>Elev_DSM_m</attrlabl>
+        <attrdef>Elevation in meters extracted from the DSM “Wilbur_VIS_DSM_clp.”</attrdef>
+        <attrdefs>Producer Defined</attrdefs>
+        <attrdomv>
+          <rdom>
+            <rdommin>398.899</rdommin>
+            <rdommax>425.921</rdommax>
+          </rdom>
+        </attrdomv>
+      </attr>
+    </detailed>
+    <detailed>
+      <enttyp>
+        <enttypl>TIR_boundary_WGS.shp</enttypl>
+        <enttypd>Thermal image boundary.</enttypd>
+        <enttypds>Producer Defined</enttypds>
+      </enttyp>
+    </detailed>
+    <detailed>
+      <enttyp>
+        <enttypl>VIS_Boundary_WGS.shp</enttypl>
+        <enttypd>Visible light image boundary.</enttypd>
+        <enttypds>Producer Defined</enttypds>
+      </enttyp>
+    </detailed>
+    <detailed>
+      <enttyp>
+        <enttypl>Wilbur_TIR_DSM_clp.tif</enttypl>
+        <enttypd>Raster geospatial data file.</enttypd>
+        <enttypds>Producer Defined</enttypds>
+      </enttyp>
+      <attr>
+        <attrlabl>Value</attrlabl>
+        <attrdef>Unique numeric values contained in each raster cell.</attrdef>
+        <attrdefs>Producer Defined</attrdefs>
+        <attrdomv>
+          <rdom>
+            <rdommin>347.4109802246094</rdommin>
+            <rdommax>427.8529357910156</rdommax>
+          </rdom>
+        </attrdomv>
+      </attr>
+    </detailed>
+    <detailed>
+      <enttyp>
+        <enttypl>Wilbur_TIR_ortho_clp.tif</enttypl>
+        <enttypd>Raster geospatial data file.</enttypd>
+        <enttypds>Producer Defined</enttypds>
+      </enttyp>
+      <attr>
+        <attrlabl>Value</attrlabl>
+        <attrdef>Unique numeric values contained in each raster cell.</attrdef>
+        <attrdefs>Producer Defined</attrdefs>
+        <attrdomv>
+          <rdom>
+            <rdommin>-5.7240447998046875</rdommin>
+            <rdommax>41.6613655090332</rdommax>
+          </rdom>
+        </attrdomv>
+      </attr>
+    </detailed>
+    <detailed>
+      <enttyp>
+        <enttypl>Wilbur_VIS_DSM_clp.tif</enttypl>
+        <enttypd>Raster geospatial data file.</enttypd>
+        <enttypds>Producer Defined</enttypds>
+      </enttyp>
+      <attr>
+        <attrlabl>Value</attrlabl>
+        <attrdef>Unique numeric values contained in each raster cell.</attrdef>
+        <attrdefs>Producer Defined</attrdefs>
+        <attrdomv>
+          <rdom>
+            <rdommin>390.8104248046875</rdommin>
+            <rdommax>448.9229736328125</rdommax>
+          </rdom>
+        </attrdomv>
+      </attr>
+    </detailed>
+    <detailed>
+      <enttyp>
+        <enttypl>Wilbur_VIS_ortho_clp.tif</enttypl>
+        <enttypd>3 band raster geospatial data file.</enttypd>
+        <enttypds>Producer Defined</enttypds>
+      </enttyp>
+      <attr>
+        <attrlabl>Value</attrlabl>
+        <attrdef>Unique numeric values contained in each raster cell.</attrdef>
+        <attrdefs>Producer Defined</attrdefs>
+        <attrdomv>
+          <rdom>
+            <rdommin>0.0</rdommin>
+            <rdommax>255.0</rdommax>
+          </rdom>
+        </attrdomv>
+      </attr>
+    </detailed>
+  </eainfo>
+  <distinfo>
+    <distrib>
+      <cntinfo>
+        <cntorgp>
+          <cntorg>U.S. Geological Survey - ScienceBase</cntorg>
+        </cntorgp>
+        <cntaddr>
+          <addrtype>mailing address</addrtype>
+          <address>Denver Federal Center</address>
+          <address>Building 810</address>
+          <address>Mail Stop 302</address>
+          <city>Denver</city>
+          <state>CO</state>
+          <postal>80225</postal>
+        </cntaddr>
+        <cntvoice>1-888-275-8747</cntvoice>
+        <cntemail>sciencebase@usgs.gov</cntemail>
+      </cntinfo>
+    </distrib>
+    <distliab>Unless otherwise stated, all data, metadata and related materials are considered to satisfy the quality standards relative to the purpose for which the data were collected. Although these data and associated metadata have been reviewed for accuracy and completeness and approved for release by the U.S. Geological Survey (USGS), no warranty expressed or implied is made regarding the display or utility of the data for other purposes, nor on all computer systems, nor shall the act of distribution constitute any such warranty.</distliab>
+    <stdorder>
+      <digform>
+        <digtinfo>
+          <formname>Digital Data</formname>
+        </digtinfo>
+        <digtopt>
+          <onlinopt>
+            <computer>
+              <networka>
+                <networkr>https://doi.org/10.5066/P1E4XWLQ</networkr>
+              </networka>
+            </computer>
+          </onlinopt>
+        </digtopt>
+      </digform>
+      <fees>None</fees>
+    </stdorder>
+  </distinfo>
+  <metainfo>
+    <metd>20260421</metd>
+    <metc>
+      <cntinfo>
+        <cntperp>
+          <cntper>Benjamin L. Melosh</cntper>
+          <cntorg>U.S. Geological Survey</cntorg>
+        </cntperp>
+        <cntpos>Research Geologist</cntpos>
+        <cntaddr>
+          <addrtype>mailing and physical</addrtype>
+          <address>350 N. Akron Rd.</address>
+          <city>Moffett Field</city>
+          <state>CA</state>
+          <postal>94035</postal>
+        </cntaddr>
+        <cntvoice>650-439-2361</cntvoice>
+        <cntemail>bmelosh@usgs.gov</cntemail>
+      </cntinfo>
+    </metc>
+    <metstdn>FGDC Content Standard for Digital Geospatial Metadata</metstdn>
+    <metstdv>FGDC-STD-001-1998</metstdv>
+  </metainfo>
+</metadata>

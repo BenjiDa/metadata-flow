@@ -1,0 +1,667 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<metadata>
+  <idinfo>
+    <citation>
+      <citeinfo>
+        <origin>Benjamin L. Melosh</origin>
+        <pubdate>20250813</pubdate>
+        <title>Dilation and slip tendency for a portion of the Southern Bartlett Springs fault and surrounding fault zones in the Wilbur Springs area, Northern California Coast Ranges</title>
+        <geoform>spreadsheet</geoform>
+        <pubinfo>
+          <pubplace>U.S. Geological Survey</pubplace>
+          <publish>Science Base</publish>
+        </pubinfo>
+        <othercit>Melosh, B.L., 2025, Dilation and slip tendency for a portion of the Southern Bartlett Springs fault and surrounding fault zones in the Wilbur Springs area, Northern California Coast Ranges: U.S. Geological Survey data release, https://doi.org/10.5066/P1MPP8EL.</othercit>
+        <onlink>https://doi.org/10.5066/P1MPP8EL</onlink>
+        <lworkcit>
+          <citeinfo>
+            <origin>Benjamin L. Melosh</origin>
+            <origin>Owen Callahan</origin>
+            <pubdate>2025</pubdate>
+            <title>Structural control of fluid circulation and permeability in active transpression along and adjacent to the Bartlett Springs fault, Northern California Coast Ranges</title>
+            <geoform>publication</geoform>
+            <pubinfo>
+              <pubplace>Tektonika</pubplace>
+              <publish>Tektonika</publish>
+            </pubinfo>
+            <othercit>Melosh, B.L., Callahan, O., 2025, Structural control of fluid circulation and permeability in active transpression along and adjacent to the Bartlett Springs fault, Northern California Coast Ranges, Tektonika, (in review)</othercit>
+          </citeinfo>
+        </lworkcit>
+      </citeinfo>
+    </citation>
+    <descript>
+      <abstract>This dataset presents modeled values of dilation tendency and slip tendency for faults within and surrounding the Wilbur Springs region of northern California, including the Bartlett Springs Fault, Cross Springs Fault, Little Indian Valley Fault Zone, and a network of secondary structures. The region is actively deforming, as evidenced by ongoing uplift and folding, suggesting it is currently undergoing transpression and right-lateral shear in the larger San Andreas plate boundary.
+
+Dilation and slip tendency describe the relative measure of how favorably oriented a fault is for slip under a given stress field, these are not probabilities although they are represented by values of 0 to 1. Dilation tendency is the tendency for faults to open in response to the regional stress field, while slip tendency represents the tendency that a fault will experience slip. Together, these measures provide insight into fault mechanics and potential fluid pathways under current stress conditions.
+
+The stress field used in these calculations assumes a maximum horizontal compressive stress oriented N26°E, consistent with regional stress inversion studies (Provost and Houston, 2003). Relative stress magnitudes are derived from stress drop data within the broader San Andreas fault system (Lozos, 2015). These stress-based metrics were applied to detailed fault geometries in 10-meter long segments to assess spatial patterns of slip and dilation potential, which may be relevant to understanding seismic hazard and fluid migration in the area.</abstract>
+      <purpose>This dataset was developed to characterize the mechanical behavior of faults in the Wilbur Springs region of northern California under present-day tectonic stress conditions. By quantifying spatial patterns of dilation tendency and slip tendency, this product supports ongoing research into fault slip behavior, stress-driven fluid migration, and seismic hazard assessment in Northern California. These results are intended for use by geoscientists, land and resource managers, and agencies involved in geothermal exploration, infrastructure planning, and natural hazard mitigation. The fine-scale fault modeling at 10-meter resolution provides a foundation for further investigations into the relationship between fault geometry, stress, and deformation processes in transpressional settings.</purpose>
+    </descript>
+    <timeperd>
+      <timeinfo>
+        <sngdate>
+          <caldate>2025</caldate>
+        </sngdate>
+      </timeinfo>
+      <current>observed</current>
+    </timeperd>
+    <status>
+      <progress>Complete</progress>
+      <update>None planned</update>
+    </status>
+    <spdom>
+      <bounding>
+        <westbc>-122.9023</westbc>
+        <eastbc>-122.3740</eastbc>
+        <northbc>39.3490</northbc>
+        <southbc>38.9290</southbc>
+      </bounding>
+    </spdom>
+    <keywords>
+      <theme>
+        <themekt>ISO 19115 Topic Category</themekt>
+        <themekey>geoscientificInformation</themekey>
+      </theme>
+      <theme>
+        <themekt>USGS Thesaurus</themekt>
+        <themekey>Fault stress</themekey>
+        <themekey>Slip tendency</themekey>
+        <themekey>Dilation tendency</themekey>
+        <themekey>Geothermal</themekey>
+      </theme>
+      <theme>
+        <themekt>USGS Metadata Identifier</themekt>
+        <themekey>USGS:68096363d4be021123518877</themekey>
+      </theme>
+      <place>
+        <placekt>Geographic Names Information System (GNIS)</placekt>
+        <placekey>Wilbur Springs</placekey>
+        <placekey>Northern California Coast Ranges</placekey>
+        <placekey>Clear Lake</placekey>
+      </place>
+    </keywords>
+    <accconst>None.  Please see 'Distribution Info' for details.</accconst>
+    <useconst>None.  Users are advised to read the dataset's metadata thoroughly to understand appropriate use and data limitations.</useconst>
+    <ptcontac>
+      <cntinfo>
+        <cntperp>
+          <cntper>Benjamin Melosh</cntper>
+          <cntorg>U.S. Geological Survey</cntorg>
+        </cntperp>
+        <cntpos>Research Geologist</cntpos>
+        <cntaddr>
+          <addrtype>mailing</addrtype>
+          <address>P.O. Box 158</address>
+          <address>350 N Akron Rd</address>
+          <city>Moffett Field</city>
+          <state>CA</state>
+          <postal>94035</postal>
+        </cntaddr>
+        <cntvoice>650-439-2361</cntvoice>
+      </cntinfo>
+    </ptcontac>
+    <crossref>
+      <citeinfo>
+        <origin>Benjamin L. Melosh</origin>
+        <origin>Owen Callahan</origin>
+        <pubdate>2025</pubdate>
+        <title>Structural control of fluid circulation and permeability in active transpression along and adjacent to the Bartlett Springs fault, Northern California Coast Ranges</title>
+        <geoform>publication</geoform>
+        <pubinfo>
+          <pubplace>Tektonika</pubplace>
+          <publish>Tektonika</publish>
+        </pubinfo>
+        <othercit>Melosh, B.L., Callahan, O., 2025, Structural control of fluid circulation and permeability in active transpression along and adjacent to the Bartlett Springs fault, Northern California Coast Ranges, Tektonika, (in review)</othercit>
+      </citeinfo>
+    </crossref>
+  </idinfo>
+  <dataqual>
+    <attracc>
+      <attraccr>Attribute accuracy is limited by the resolution of the original mapping (approximately 1:24,000 scale), potential digitization artifacts, and assumptions inherent in the stress model used for the calculations. All attributes were reviewed for logical consistency, and calculated values were screened for errors. Overall, the data are suitable for structural analysis and interpretation of fault-controlled fluid pathways or slip behavior under the modeled stress conditions.</attraccr>
+    </attracc>
+    <logic>Fault trace data were reviewed for logical consistency to ensure accurate representation and analysis. All attribute values, including strike, dilation tendency, and slip tendency, fall within expected geologic and computational ranges. The dataset was checked for omission and duplication of features; no unintended gaps or redundant fault segments were identified. Fault traces were segmented at 10-meter intervals or less if the length of the fault did not divide equally by 10.</logic>
+    <complete>This dataset includes fault traces, segment orientations, and modeled values of dilation tendency and slip tendency for faults located within the eastern portion of the northern California Coast Ranges, focused specifically along the southern part of the Bartlett Springs Fault Zone. The spatial extent of the dataset is limited to the area investigated and does not extend beyond the mapped region. No data are included for regions outside the study area, and the dataset should not be interpreted as a comprehensive inventory of all faults in the broader Coast Ranges. The dataset is limited in scope to derived fault segment attributes—strike, dilation tendency, and slip tendency—and does not include additional geologic context, fault names, or structural relationships beyond what was necessary for orientation-based stress modeling. All mapped segments were reviewed to ensure full coverage within the study extent, and no known omissions or gaps in the modeled fault data are present within the defined boundaries.</complete>
+    <lineage>
+      <srcinfo>
+        <srccite>
+          <citeinfo>
+            <origin>Provost, A. S.</origin>
+            <origin>Houston, H.</origin>
+            <pubdate>2003</pubdate>
+            <title>Stress orientations in northern and central California: Evidence for the evolution of frictional strength along the San Andreas plate boundary system</title>
+            <edition>Journal of Geophysical Research: Solid Earth, 108(B3)</edition>
+            <geoform>publication</geoform>
+            <onlink>https://agupubs.onlinelibrary.wiley.com/doi/full/10.1029/2001JB001123</onlink>
+          </citeinfo>
+        </srccite>
+        <typesrc>Digital and/or Hardcopy</typesrc>
+        <srctime>
+          <timeinfo>
+            <sngdate>
+              <caldate>2003</caldate>
+            </sngdate>
+          </timeinfo>
+          <srccurr>publication date</srccurr>
+        </srctime>
+        <srccitea>Provost and Houston, 2003</srccitea>
+        <srccontr>Calculated the maximum horizontal stress in Northern California</srccontr>
+      </srcinfo>
+      <srcinfo>
+        <srccite>
+          <citeinfo>
+            <origin>Lozos, J. C.</origin>
+            <origin>Harris, R. A.,</origin>
+            <origin>Murray, J. R.,</origin>
+            <origin>Lienkaemper, J. J.</origin>
+            <pubdate>2015</pubdate>
+            <title>Dynamic rupture models of earthquakes on the Bartlett Springs Fault, Northern California.</title>
+            <edition>Geophysical Research Letters, 42(11), 4343-4349.</edition>
+            <geoform>publication</geoform>
+            <onlink>https://agupubs.onlinelibrary.wiley.com/doi/full/10.1002/2015GL063802</onlink>
+          </citeinfo>
+        </srccite>
+        <typesrc>Digital and/or Hardcopy</typesrc>
+        <srctime>
+          <timeinfo>
+            <sngdate>
+              <caldate>2015</caldate>
+            </sngdate>
+          </timeinfo>
+          <srccurr>publication date</srccurr>
+        </srctime>
+        <srccitea>Lozos 2015</srccitea>
+        <srccontr>Estimate stress magnitudes on faults in Northern California used in static stress calculation</srccontr>
+      </srcinfo>
+      <srcinfo>
+        <srccite>
+          <citeinfo>
+            <origin>McLaughlin, R.J.</origin>
+            <origin>Moring, B.C.</origin>
+            <origin>Hitchcock, C.S.</origin>
+            <origin>Valin, Z.C.</origin>
+            <pubdate>2018</pubdate>
+            <title>Framework geologic map and structure sections along the Bartlett Springs fault zone and adjacent area from Round Valley to Wilbur Springs, northern Coast Ranges, California (ver. 1.1, September 2018)</title>
+            <edition>U.S. Geological Survey Scientific Investigations Map 3395, 60 p.,</edition>
+            <geoform>vector digital data</geoform>
+            <onlink>https://doi.org/10.3133/sim3395.</onlink>
+          </citeinfo>
+        </srccite>
+        <srcscale>100000</srcscale>
+        <typesrc>Digital and/or Hardcopy</typesrc>
+        <srctime>
+          <timeinfo>
+            <sngdate>
+              <caldate>2018</caldate>
+            </sngdate>
+          </timeinfo>
+          <srccurr>publication date</srccurr>
+        </srctime>
+        <srccitea>McLaughlin and others, 2018</srccitea>
+        <srccontr>Contributed bedrock geology and fault geometry</srccontr>
+      </srcinfo>
+      <srcinfo>
+        <srccite>
+          <citeinfo>
+            <origin>U.S. Geological Survey</origin>
+            <origin>California Geological Survey</origin>
+            <pubdate>2020</pubdate>
+            <title>Quaternary Fault and Fold Database for the Nation, accessed 11/2023</title>
+            <geoform>vector digital data</geoform>
+            <pubinfo>
+              <pubplace>https://www.usgs.gov/programs/earthquake-hazards/faults</pubplace>
+              <publish>USGS</publish>
+            </pubinfo>
+            <othercit>U.S. Geolgocal Survey and California Geological Survey, 2020, Quaternary Fault and Fold Database for the Nation, accessed 11/2023, at: https://www.usgs.gov/programs/earthquake-hazards/faults</othercit>
+            <onlink>https://www.usgs.gov/programs/earthquake-hazards/faults</onlink>
+          </citeinfo>
+        </srccite>
+        <typesrc>Digital and/or Hardcopy</typesrc>
+        <srctime>
+          <timeinfo>
+            <sngdate>
+              <caldate>2020</caldate>
+            </sngdate>
+          </timeinfo>
+          <srccurr>publication date</srccurr>
+        </srctime>
+        <srccitea>Quaternary Fault Database</srccitea>
+        <srccontr>Contributed fault geometry and location of Quaternary faults</srccontr>
+      </srcinfo>
+      <procstep>
+        <procdesc>Fault data from earlier mapping efforts were consolidated into a single geodatabase. Fault traces were segmented at 10-meter intervals in ArcGIS Pro to facilitate analysis. Orientation data from each segment were then input into a program to calculate dilation tendency and slip tendency.</procdesc>
+        <procdate>20240211</procdate>
+      </procstep>
+    </lineage>
+  </dataqual>
+  <spdoinfo>
+    <direct>Vector</direct>
+    <ptvctinf>
+      <sdtsterm>
+        <sdtstype>Point</sdtstype>
+        <ptvctcnt>78846</ptvctcnt>
+      </sdtsterm>
+    </ptvctinf>
+  </spdoinfo>
+  <spref>
+    <horizsys>
+      <planar>
+        <gridsys>
+          <gridsysn>Universal Transverse Mercator</gridsysn>
+          <utm>
+            <utmzone>10</utmzone>
+            <transmer>
+              <sfctrmer>0.9996</sfctrmer>
+              <longcm>-123.0</longcm>
+              <latprjo>0.0</latprjo>
+              <feast>500000.0</feast>
+              <fnorth>0.0</fnorth>
+            </transmer>
+          </utm>
+        </gridsys>
+        <planci>
+          <plance>coordinate pair</plance>
+          <coordrep>
+            <absres>0.6096</absres>
+            <ordres>0.6096</ordres>
+          </coordrep>
+          <plandu>meters</plandu>
+        </planci>
+      </planar>
+      <geodetic>
+        <horizdn>North_American_Datum_1983</horizdn>
+        <ellips>GRS 1980</ellips>
+        <semiaxis>6378137.0</semiaxis>
+        <denflat>298.257222101</denflat>
+      </geodetic>
+    </horizsys>
+  </spref>
+  <eainfo>
+    <detailed>
+      <enttyp>
+        <enttypl>USGS_BSF_FaultOrientations.csv</enttypl>
+        <enttypd>Comma Separated Value (CSV) file containing fault orientation data at different points in UTM 10N NAD 83.</enttypd>
+        <enttypds>Producer Defined</enttypds>
+      </enttyp>
+      <attr>
+        <attrlabl>OBJECTID</attrlabl>
+        <attrdef>Identifier</attrdef>
+        <attrdefs>Producer Defined</attrdefs>
+        <attrdomv>
+          <rdom>
+            <rdommin>1</rdommin>
+            <rdommax>78846</rdommax>
+          </rdom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>CompassA</attrlabl>
+        <attrdef>Compass Angle in degrees</attrdef>
+        <attrdefs>Producer Defined</attrdefs>
+        <attrdomv>
+          <rdom>
+            <rdommin>0.0</rdommin>
+            <rdommax>179.999427</rdommax>
+          </rdom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>AveX</attrlabl>
+        <attrdef>X position of the fault segment (UTM10N NAD 83)</attrdef>
+        <attrdefs>Producer Defined</attrdefs>
+        <attrdomv>
+          <rdom>
+            <rdommin>508470.8781</rdommin>
+            <rdommax>553933.3325</rdommax>
+          </rdom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>AveY</attrlabl>
+        <attrdef>Y position on the fault segment (UTM 10N NAD 83)</attrdef>
+        <attrdefs>Producer Defined</attrdefs>
+        <attrdomv>
+          <rdom>
+            <rdommin>4309080.735</rdommin>
+            <rdommax>4355506.025</rdommax>
+          </rdom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>AveLen</attrlabl>
+        <attrdef>Length of the fault segment (meters)</attrdef>
+        <attrdefs>Producer Defined</attrdefs>
+        <attrdomv>
+          <rdom>
+            <rdommin>0.001923537</rdommin>
+            <rdommax>10.00196389</rdommax>
+          </rdom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>Source</attrlabl>
+        <attrdef>Source of the fault (name value)</attrdef>
+        <attrdefs>Producer Defined</attrdefs>
+        <attrdomv>
+          <edom>
+            <edomv>McLaughlin_and_others_2018</edomv>
+            <edomvd>McLaughlin, R.J., Moring, B.C., Hitchcock, C.S., and Valin, Z.C., 2018, Framework geologic map and structure sections along the Bartlett Springs fault zone and adjacent area from Round Valley to Wilbur Springs, northern Coast Ranges, California (ver. 1.1, September 2018): U.S. Geological Survey Scientific Investigations Map 3395, 60 p., https://doi.org/10.3133/sim3395.</edomvd>
+            <edomvds>Producer defined</edomvds>
+          </edom>
+        </attrdomv>
+        <attrdomv>
+          <edom>
+            <edomv>Quaternary Fault Database</edomv>
+            <edomvd>U.S. Geological Survey and California Geological Survey, Quaternary fault and fold database for the United States, accessed accessed November 2023, at: https://www.usgs.gov/natural-hazards/earthquake-hazards/faults.</edomvd>
+            <edomvds>Producer defined</edomvds>
+          </edom>
+        </attrdomv>
+      </attr>
+    </detailed>
+    <detailed>
+      <enttyp>
+        <enttypl>USGS_BSF_StressTendency.csv</enttypl>
+        <enttypd>Comma Separated Value (CSV) file containing location and slip and dilation tendency data (UTM 10N NAD 83).</enttypd>
+        <enttypds>Producer Defined</enttypds>
+      </enttyp>
+      <attr>
+        <attrlabl>OBJECTID</attrlabl>
+        <attrdef>Identifier</attrdef>
+        <attrdefs>Producer Defined</attrdefs>
+        <attrdomv>
+          <rdom>
+            <rdommin>1</rdommin>
+            <rdommax>78846</rdommax>
+          </rdom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>CompassA</attrlabl>
+        <attrdef>Compass angle (degrees)</attrdef>
+        <attrdefs>Producer Defined</attrdefs>
+        <attrdomv>
+          <rdom>
+            <rdommin>0.0</rdommin>
+            <rdommax>179.999427</rdommax>
+          </rdom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>AveX</attrlabl>
+        <attrdef>X position of the fault segment (UTM10N NAD 83)</attrdef>
+        <attrdefs>Producer Defined</attrdefs>
+        <attrdomv>
+          <rdom>
+            <rdommin>508470.8781</rdommin>
+            <rdommax>553933.3325</rdommax>
+          </rdom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>AveY</attrlabl>
+        <attrdef>Y position of the fault segment (UTM10N NAD 83)</attrdef>
+        <attrdefs>Producer Defined</attrdefs>
+        <attrdomv>
+          <rdom>
+            <rdommin>4309080.735</rdommin>
+            <rdommax>4355506.025</rdommax>
+          </rdom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>AveLen</attrlabl>
+        <attrdef>Length of the fault segment (meters)</attrdef>
+        <attrdefs>Producer Defined</attrdefs>
+        <attrdomv>
+          <rdom>
+            <rdommin>0.001923537</rdommin>
+            <rdommax>10.00196389</rdommax>
+          </rdom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>Source</attrlabl>
+        <attrdef>Source of the fault (name value)</attrdef>
+        <attrdefs>Producer Defined</attrdefs>
+        <attrdomv>
+          <edom>
+            <edomv>McLaughlin_and_others_2018</edomv>
+            <edomvd>McLaughlin, R.J., Moring, B.C., Hitchcock, C.S., and Valin, Z.C., 2018, Framework geologic map and structure sections along the Bartlett Springs fault zone and adjacent area from Round Valley to Wilbur Springs, northern Coast Ranges, California (ver. 1.1, September 2018): U.S. Geological Survey Scientific Investigations Map 3395, 60 p., https://doi.org/10.3133/sim3395.</edomvd>
+            <edomvds>Producer defined</edomvds>
+          </edom>
+        </attrdomv>
+        <attrdomv>
+          <edom>
+            <edomv>Quaternary Fault Database</edomv>
+            <edomvd>U.S. Geological Survey and California Geological Survey, Quaternary fault and fold database for the United States, accessed accessed November 2023, at: https://www.usgs.gov/natural-hazards/earthquake-hazards/faults.</edomvd>
+            <edomvds>Producer defined</edomvds>
+          </edom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>Ts</attrlabl>
+        <attrdef>Slip tendency (dimensionless)</attrdef>
+        <attrdefs>Producer Defined</attrdefs>
+        <attrdomv>
+          <rdom>
+            <rdommin>3.4186022078310654e-06</rdommin>
+            <rdommax>1.0</rdommax>
+          </rdom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>Td</attrlabl>
+        <attrdef>Dilation tendency (dimensionless).</attrdef>
+        <attrdefs>Producer Defined</attrdefs>
+        <attrdomv>
+          <rdom>
+            <rdommin>2.9216885700912425e-11</rdommin>
+            <rdommax>0.9999999990633524</rdommax>
+          </rdom>
+        </attrdomv>
+      </attr>
+    </detailed>
+    <detailed>
+      <enttyp>
+        <enttypl>USGS_BSF_FaultNetwork.shp Attribute Table</enttypl>
+        <enttypd>Table containing attribute information associated with the data set.</enttypd>
+        <enttypds>Producer Defined</enttypds>
+      </enttyp>
+      <attr>
+        <attrlabl>FID</attrlabl>
+        <attrdef>Internal feature number.</attrdef>
+        <attrdefs>ESRI</attrdefs>
+        <attrdomv>
+          <udom>Sequential unique whole numbers that are automatically generated.</udom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>Shape</attrlabl>
+        <attrdef>Feature geometry.</attrdef>
+        <attrdefs>ESRI</attrdefs>
+        <attrdomv>
+          <udom>Shape type.</udom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>CompassA</attrlabl>
+        <attrdef>Compass angle (degrees)</attrdef>
+        <attrdefs>Producer Defined</attrdefs>
+        <attrdomv>
+          <rdom>
+            <rdommin>0.0</rdommin>
+            <rdommax>179.999427043</rdommax>
+          </rdom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>AveX</attrlabl>
+        <attrdef>X position of the fault segment (UTM 10N NAD 83).</attrdef>
+        <attrdefs>Producer Defined</attrdefs>
+        <attrdomv>
+          <rdom>
+            <rdommin>508470.87815</rdommin>
+            <rdommax>553933.332533</rdommax>
+          </rdom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>AveY</attrlabl>
+        <attrdef>Y position of the fault segment (UTM 10N NAD 83).</attrdef>
+        <attrdefs>Producer Defined</attrdefs>
+        <attrdomv>
+          <rdom>
+            <rdommin>4309080.7352</rdommin>
+            <rdommax>4355506.02495</rdommax>
+          </rdom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>AveLen</attrlabl>
+        <attrdef>Length of the fault segment (UTM 10N NAD 83).</attrdef>
+        <attrdefs>Producer Defined</attrdefs>
+        <attrdomv>
+          <rdom>
+            <rdommin>0.00192353722053</rdommin>
+            <rdommax>10.001963887</rdommax>
+          </rdom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>Source</attrlabl>
+        <attrdef>Data source (name).</attrdef>
+        <attrdefs>Producer Defined</attrdefs>
+        <attrdomv>
+          <edom>
+            <edomv>McLaughlin_and_others_2018</edomv>
+            <edomvd>McLaughlin, R.J., Moring, B.C., Hitchcock, C.S., and Valin, Z.C., 2018, Framework geologic map and structure sections along the Bartlett Springs fault zone and adjacent area from Round Valley to Wilbur Springs, northern Coast Ranges, California (ver. 1.1, September 2018): U.S. Geological Survey Scientific Investigations Map 3395, 60 p., https://doi.org/10.3133/sim3395.</edomvd>
+            <edomvds>Producer defined</edomvds>
+          </edom>
+        </attrdomv>
+        <attrdomv>
+          <edom>
+            <edomv>Quaternary Fault Database</edomv>
+            <edomvd>U.S. Geological Survey and California Geological Survey, Quaternary fault and fold database for the United States, accessed accessed November 2023, at: https://www.usgs.gov/natural-hazards/earthquake-hazards/faults.</edomvd>
+            <edomvds>Producer defined</edomvds>
+          </edom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>Ts</attrlabl>
+        <attrdef>Slip tendency (dimensionless).</attrdef>
+        <attrdefs>Producer Defined</attrdefs>
+        <attrdomv>
+          <rdom>
+            <rdommin>0.0</rdommin>
+            <rdommax>1.0</rdommax>
+          </rdom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>Td</attrlabl>
+        <attrdef>Dilation tendency (dimensionless).</attrdef>
+        <attrdefs>Producer Defined</attrdefs>
+        <attrdomv>
+          <rdom>
+            <rdommin>0.0</rdommin>
+            <rdommax>1.0</rdommax>
+          </rdom>
+        </attrdomv>
+      </attr>
+    </detailed>
+    <overview>
+      <eaover>These datasets contain fault segment geometries and associated slip and dilation tendency values for the southern Bartlett Springs Fault and adjacent fault zones in the Wilbur Springs area. Fault traces were segmented at 10-meter intervals to capture local variations in fault orientation for stress analysis. Each segment includes a calculated angle (CompassA) representing fault strike.
+
+Using a simplified stress model, both slip tendency and dilation tendency were computed for each fault segment to evaluate how favorably oriented the faults are for slip or extensional opening under the regional stress field. Slip tendency reflects the ratio of resolved shear stress to normal stress on a fault plane and indicates the likelihood of fault slip, while dilation tendency quantifies the tendency of a fault segment to dilate or open in extension. Both metrics range from 0 (no tendency) to 1 (maximum tendency), and are spatially distributed along the fault network to highlight segments most likely to be critically stressed for slip or statically stressed open.
+
+These data offer a structural framework for evaluating fault-controlled permeability and identifying zones of potential fluid pathways or induced seismicity in geothermal or tectonically active settings.
+
+Slip and Dilation Tendency Calculations
+---------------------------------------
+
+Slip tendency (Ts) and dilation tendency (Td) were calculated for each fault segment 
+using a simplified regional stress tensor.
+
+Slip Tendency (Ts):
+Ts = τ / σₙ
+
+Where:
+τ   = shear stress on the fault plane
+σₙ  = normal stress on the fault plane (positive in compression)
+
+Ts values were normalized by the maximum value in the dataset.
+
+Dilation Tendency (Td):
+Td = (σ₁ - σₙ) / (σ₁ - σ₃)
+
+Where:
+σ₁ = maximum principal stress
+σ₃ = minimum principal stress
+σₙ = normal stress on the fault plane
+
+Both Ts and Td range from 0 (no tendency) to 1 (maximum tendency).</eaover>
+      <eadetcit>Melosh, B.L., 2025, Dilation and slip tendency for a portion of the Southern Bartlett Springs fault and surrounding fault zones in the Wilbur Springs area, Northern California Coast Ranges: U.S. Geological Survey data release, https://doi.org/10.5066/P1MPP8EL.</eadetcit>
+    </overview>
+  </eainfo>
+  <distinfo>
+    <distrib>
+      <cntinfo>
+        <cntperp>
+          <cntper>GS ScienceBase</cntper>
+          <cntorg>U.S. Geological Survey</cntorg>
+        </cntperp>
+        <cntaddr>
+          <addrtype>mailing address</addrtype>
+          <address>Denver Federal Center, Building 810, Mail Stop 302</address>
+          <city>Denver</city>
+          <state>CO</state>
+          <postal>80225</postal>
+          <country>United States</country>
+        </cntaddr>
+        <cntvoice>1-888-275-8747</cntvoice>
+        <cntemail>sciencebase@usgs.gov</cntemail>
+      </cntinfo>
+    </distrib>
+    <distliab>Unless otherwise stated, all data, metadata and related materials are considered to satisfy the quality standards relative to the purpose for which the data were collected. Although these data and associated metadata have been reviewed for accuracy and completeness and approved for release by the U.S. Geological Survey (USGS), no warranty expressed or implied is made regarding the display or utility of the data for other purposes, nor on all computer systems, nor shall the act of distribution constitute any such warranty.</distliab>
+    <stdorder>
+      <digform>
+        <digtinfo>
+          <formname>Digital Data</formname>
+        </digtinfo>
+        <digtopt>
+          <onlinopt>
+            <computer>
+              <networka>
+                <networkr>https://doi.org/10.5066/P1MPP8EL</networkr>
+              </networka>
+            </computer>
+          </onlinopt>
+        </digtopt>
+      </digform>
+      <fees>None</fees>
+    </stdorder>
+  </distinfo>
+  <metainfo>
+    <metd>20250813</metd>
+    <metc>
+      <cntinfo>
+        <cntperp>
+          <cntper>Benjamin L. Melosh</cntper>
+          <cntorg>U.S. Geological Survey</cntorg>
+        </cntperp>
+        <cntpos>Research Geologist</cntpos>
+        <cntaddr>
+          <addrtype>mailing</addrtype>
+          <address>P.O. Box 158</address>
+          <address>350 N. Akron Rd.</address>
+          <city>Moffett Field</city>
+          <state>CA</state>
+          <postal>94035</postal>
+        </cntaddr>
+        <cntvoice>650-439-2361</cntvoice>
+        <cntemail>bmelosh@usgs.gov</cntemail>
+      </cntinfo>
+    </metc>
+    <metstdn>FGDC Content Standard for Digital Geospatial Metadata</metstdn>
+    <metstdv>FGDC-STD-001-1998</metstdv>
+  </metainfo>
+</metadata>
