@@ -6,6 +6,10 @@ import typer
 from rich.console import Console
 from rich.table import Table
 
+from metamapper.config import MissingRequiredFieldsError
+from metamapper.inspection_backends import InspectionError
+from metamapper.inspector import DatasetInspector
+from metamapper.prefill import build_prefill_document, write_prefill_yaml
 from metamapper.reports import write_validation_report
 from metamapper.validators import run_validation
 from metamapper.xml_builder import build_metadata_xml, write_metadata_xml
@@ -13,6 +17,7 @@ from metamapper.yaml_reader import load_metadata_config
 
 app = typer.Typer(help="Build and validate FGDC/USGS-style geologic metadata XML from YAML.")
 console = Console()
+inspector = DatasetInspector()
 
 
 def _render_validation_summary(result_path: Path, report_path: Path, summary_path: Path, passed: bool, error_count: int, warning_count: int) -> None:
@@ -31,13 +36,59 @@ def _render_validation_summary(result_path: Path, report_path: Path, summary_pat
 @app.command()
 def build(
     config_path: Path,
-    output: Path = typer.Option(Path("outputs/metadata.xml"), help="Path for generated XML."),
+    out: Path = typer.Option(Path("outputs/metadata.xml"), "--out", "-o", help="Path for generated XML."),
 ) -> None:
     """Build metadata XML from a YAML file."""
-    config = load_metadata_config(config_path)
+    try:
+        config = load_metadata_config(config_path)
+    except MissingRequiredFieldsError as exc:
+        console.print(f"ERROR: {exc}")
+        raise typer.Exit(code=1) from exc
     tree = build_metadata_xml(config)
-    output_path = write_metadata_xml(tree, output)
+    output_path = write_metadata_xml(tree, out)
     console.print(f"Metadata XML written to {output_path}")
+
+
+@app.command()
+def layers(dataset_path: Path) -> None:
+    """List available layers for a dataset container."""
+    try:
+        layer_names = inspector.list_layers(dataset_path)
+    except InspectionError as exc:
+        console.print(f"ERROR: {exc}")
+        raise typer.Exit(code=1) from exc
+
+    if not layer_names:
+        console.print("No layers discovered.")
+        raise typer.Exit(code=0)
+
+    table = Table(title=f"Layers: {dataset_path}")
+    table.add_column("Layer")
+    for layer_name in layer_names:
+        table.add_row(layer_name)
+    console.print(table)
+
+
+@app.command()
+def inspect(
+    dataset_path: Path,
+    layer: str | None = typer.Option(None, help="Layer name for multi-layer datasets such as File Geodatabases."),
+    out: Path = typer.Option(Path("outputs/prefill.yaml"), "--out", "-o", help="Path for generated YAML prefill."),
+) -> None:
+    """Inspect a dataset and generate an editable metadata YAML draft."""
+    try:
+        inspection = inspector.inspect(dataset_path, layer=layer)
+    except InspectionError as exc:
+        console.print(f"ERROR: {exc}")
+        raise typer.Exit(code=1) from exc
+
+    document = build_prefill_document(inspection)
+    output_path = write_prefill_yaml(document, out)
+    console.print(f"Metadata prefill written to {output_path}")
+    console.print(f"Inspection backend: {inspection.backend_name}")
+    if inspection.warnings:
+        for warning in inspection.warnings:
+            console.print(f"WARNING: {warning}")
 
 
 @app.command()
@@ -67,14 +118,18 @@ def validate(
 @app.command("build-validate")
 def build_validate(
     config_path: Path,
-    output: Path = typer.Option(Path("outputs/metadata.xml"), help="Path for generated XML."),
+    out: Path = typer.Option(Path("outputs/metadata.xml"), "--out", "-o", help="Path for generated XML."),
     report_output: Path = typer.Option(Path("outputs/validation_report.txt"), help="Text validation report path."),
     summary_output: Path = typer.Option(Path("outputs/validation_summary.json"), help="JSON validation summary path."),
 ) -> None:
     """Build XML from YAML and validate it."""
-    config = load_metadata_config(config_path)
+    try:
+        config = load_metadata_config(config_path)
+    except MissingRequiredFieldsError as exc:
+        console.print(f"ERROR: {exc}")
+        raise typer.Exit(code=1) from exc
     tree = build_metadata_xml(config)
-    output_path = write_metadata_xml(tree, output)
+    output_path = write_metadata_xml(tree, out)
     validation_config = config.get("validation", {}) or {}
     result = run_validation(
         output_path,
