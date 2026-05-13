@@ -1,9 +1,10 @@
 from pathlib import Path
 
+import importlib.util
 import pytest
 
 from metamapper.config import MissingRequiredFieldsError
-from metamapper.inspection_backends import InspectionError
+from metamapper.inspection_backends import InspectionError, OpenSourceBackend
 from metamapper.inspection_types import DatasetInspection, ExtentInfo, FieldInfo, LayerInfo, RasterInfo, SpatialReferenceInfo
 from metamapper.inspector import DatasetInspector
 from metamapper.prefill import build_prefill_document, write_prefill_yaml
@@ -85,7 +86,7 @@ def test_prefill_yaml_contains_auto_populated_and_todo_sections(tmp_path: Path) 
     assert loaded["inspection"]["auto_populated"]["selected_layer"] == "MapUnitPolys"
     assert loaded["description"]["abstract"].startswith("TODO:")
     assert loaded["entity_attribute_information"]["entities"][0]["attributes"][0]["alias"] == "Map Unit"
-    assert loaded["spatial_domain"]["bounding_coordinates"]["west"] == -122.5
+    assert loaded["spatial_domain"]["bounding_coordinates"]["west"] < -120
     assert loaded["spatial_reference"]["type"] == "utm"
     assert loaded["spatial_reference"]["utm"]["zone"] == "10"
 
@@ -128,3 +129,33 @@ def test_prefill_document_for_raster_includes_raster_info(tmp_path: Path) -> Non
     assert document["citation"]["geoform"] == "raster digital data"
     assert document["spatial_data_organization"]["direct_spatial_reference_method"] == "Raster"
     assert entity["raster"]["band_count"] == 1
+
+
+@pytest.mark.skipif(importlib.util.find_spec("pyogrio") is None, reason="pyogrio not installed")
+def test_open_source_backend_reads_sample_shapefile() -> None:
+    backend = OpenSourceBackend()
+
+    result = backend.inspect(Path("examples/sample_data/GeMS_shapefiles/ContactsAndFaults.shp"))
+
+    assert result.backend_name == "open-source"
+    assert result.layer_info is not None
+    assert result.layer_info.name == "ContactsAndFaults"
+    assert result.layer_info.feature_count == 2005
+    assert [field.name for field in result.layer_info.fields] == ["OBJECTID", "Type", "Concealed", "Symbol", "Label"]
+    assert result.layer_info.spatial_reference is not None
+    assert result.layer_info.spatial_reference.epsg == 26910
+
+
+@pytest.mark.skipif(importlib.util.find_spec("pyogrio") is None, reason="pyogrio not installed")
+def test_open_source_backend_reads_sample_geodatabase() -> None:
+    backend = OpenSourceBackend()
+
+    result = backend.inspect(Path("examples/sample_data/sim3514.gdb"), layer="MapUnitPolys")
+
+    assert result.layer_info is not None
+    assert result.data_format == "OpenFileGDB"
+    assert "MapUnitPolys" in result.layer_names
+    assert len(result.layer_details) >= 10
+    map_unit_polys = next(layer for layer in result.layer_details if layer.name == "MapUnitPolys")
+    assert map_unit_polys.feature_count == 1089
+    assert any(field.name == "MapUnit" for field in map_unit_polys.fields)

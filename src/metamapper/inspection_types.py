@@ -91,6 +91,7 @@ class DatasetInspection:
     layer_names: list[str] = field(default_factory=list)
     selected_layer: str | None = None
     layer_info: LayerInfo | None = None
+    layer_details: list[LayerInfo] = field(default_factory=list)
     warnings: list[str] = field(default_factory=list)
 
     def to_dict(self) -> dict[str, Any]:

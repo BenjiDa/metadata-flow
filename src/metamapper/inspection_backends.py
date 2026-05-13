@@ -3,6 +3,7 @@ from __future__ import annotations
 from dataclasses import dataclass
 from datetime import datetime
 from pathlib import Path
+import re
 from typing import Protocol
 
 from metamapper.inspection_types import DatasetInspection, ExtentInfo, FieldInfo, LayerInfo, RasterInfo, SpatialReferenceInfo
@@ -153,46 +154,28 @@ class OpenSourceBackend:
         if selected_layer is None:
             if len(layer_names) == 1:
                 selected_layer = layer_names[0]
-            elif len(layer_names) > 1:
-                raise InspectionError(
-                    f"Dataset contains multiple layers. Use `metamapper layers {path}` or specify --layer. "
-                    f"Available layers: {', '.join(layer_names)}"
-                )
 
-        info = pyogrio.read_info(path, layer=selected_layer)
-        crs_info = _coerce_spatial_reference(info.get("crs"))
-        extent = None
-        bounds = info.get("total_bounds")
-        if bounds is not None and len(bounds) == 4:
-            extent = ExtentInfo(west=float(bounds[0]), south=float(bounds[1]), east=float(bounds[2]), north=float(bounds[3]))
+        layer_details = [self._read_vector_layer(path, layer_name) for layer_name in layer_names]
+        if selected_layer is None and len(layer_details) == 1:
+            layer_info = layer_details[0]
+        elif selected_layer is not None:
+            layer_info = next((detail for detail in layer_details if detail.name == selected_layer), None)
+            if layer_info is None:
+                raise InspectionError(f"Layer '{selected_layer}' was not found in dataset: {path}")
+        else:
+            layer_info = None
 
-        field_names = list(info.get("fields") or [])
-        field_types = list(info.get("dtypes") or [])
-        fields: list[FieldInfo] = []
-        for index, field_name in enumerate(field_names):
-            field_type = str(field_types[index]) if index < len(field_types) else "unknown"
-            fields.append(FieldInfo(name=str(field_name), field_type=field_type))
-
-        layer_name = selected_layer or _dataset_name(path)
-        layer_info = LayerInfo(
-            name=layer_name,
-            data_kind="vector",
-            geometry_type=str(info.get("geometry_type") or info.get("geometry") or "Unknown"),
-            feature_count=int(info.get("features")) if info.get("features") is not None else None,
-            fields=fields,
-            spatial_reference=crs_info,
-            extent=extent,
-        )
         return DatasetInspection(
             dataset_path=str(path.resolve()),
             dataset_name=_dataset_name(path, selected_layer),
             backend_name=self.name,
-            data_format=str(info.get("driver") or path.suffix.lower().lstrip(".")),
+            data_format=self._driver_for_vector(path, selected_layer),
             file_size_bytes=_file_size(path),
             modified_date=_modified_date(path),
             layer_names=layer_names,
             selected_layer=selected_layer,
             layer_info=layer_info,
+            layer_details=layer_details,
         )
 
     def _inspect_raster(self, path: Path) -> DatasetInspection:
@@ -235,6 +218,59 @@ class OpenSourceBackend:
             layer_names=[path.stem],
             selected_layer=path.stem,
             layer_info=layer_info,
+            layer_details=[layer_info],
+        )
+
+    def _driver_for_vector(self, path: Path, layer: str | None) -> str:
+        suffix = path.suffix.lower()
+        if suffix == ".gdb":
+            return "OpenFileGDB"
+        if suffix == ".shp":
+            return "ESRI Shapefile"
+        try:
+            import pyogrio
+        except ImportError as exc:
+            raise InspectionError("pyogrio is required for vector dataset inspection.") from exc
+        info = pyogrio.read_info(path, layer=layer)
+        return str(info.get("driver") or suffix.lstrip("."))
+
+    def _read_vector_layer(self, path: Path, layer_name: str | None) -> LayerInfo:
+        try:
+            import pyogrio
+        except ImportError as exc:
+            raise InspectionError("pyogrio is required for vector dataset inspection.") from exc
+
+        info = pyogrio.read_info(path, layer=layer_name)
+        crs_info = _coerce_spatial_reference(info.get("crs"))
+        extent = None
+        bounds = info.get("total_bounds")
+        if bounds is not None and len(bounds) == 4:
+            extent = ExtentInfo(
+                west=float(bounds[0]),
+                south=float(bounds[1]),
+                east=float(bounds[2]),
+                north=float(bounds[3]),
+            )
+
+        field_names = _as_list(info.get("fields"))
+        field_types = _as_list(info.get("dtypes"))
+        fields: list[FieldInfo] = []
+        for index, field_name in enumerate(field_names):
+            field_type = str(field_types[index]) if index < len(field_types) else "unknown"
+            fields.append(FieldInfo(name=str(field_name), field_type=field_type))
+
+        geometry_type = info.get("geometry_type")
+        if geometry_type is None:
+            geometry_type = info.get("geometry")
+
+        return LayerInfo(
+            name=layer_name or _dataset_name(path),
+            data_kind="vector",
+            geometry_type=str(geometry_type or "None"),
+            feature_count=int(info.get("features")) if info.get("features") is not None else None,
+            fields=fields,
+            spatial_reference=crs_info,
+            extent=extent,
         )
 
 
@@ -349,6 +385,7 @@ class ArcPyBackend:
             layer_names=layer_names,
             selected_layer=layer,
             layer_info=layer_info,
+            layer_details=[layer_info],
         )
 
 
@@ -376,7 +413,32 @@ def _coerce_spatial_reference(value: object) -> SpatialReferenceInfo | None:
         except Exception:
             name = None
     if isinstance(value, str):
-        wkt = value
-        name = value.split("[", 1)[0].strip() if "[" in value else None
+        text = value.strip()
+        try:
+            from pyproj import CRS
+
+            crs = CRS.from_user_input(text)
+            epsg = crs.to_epsg()
+            wkt = crs.to_wkt()
+            name = crs.name
+        except Exception:
+            wkt = text
+            name = text.split("[", 1)[0].strip() if "[" in text else text
+            match = re.match(r"EPSG:(\d+)$", text, re.IGNORECASE)
+            if match:
+                epsg = int(match.group(1))
 
     return SpatialReferenceInfo(name=name, epsg=epsg, wkt=wkt)
+
+
+def _as_list(value: object) -> list[object]:
+    if value is None:
+        return []
+    if isinstance(value, list):
+        return value
+    if isinstance(value, tuple):
+        return list(value)
+    try:
+        return list(value)  # type: ignore[arg-type]
+    except TypeError:
+        return [value]

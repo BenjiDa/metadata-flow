@@ -1,6 +1,8 @@
 from __future__ import annotations
 
 from datetime import datetime
+import math
+import os
 from pathlib import Path
 import re
 from typing import Any
@@ -29,10 +31,10 @@ TODO_CURRENTNESS = "TODO: set currentness reference, for example 'publication da
 def build_prefill_document(inspection: DatasetInspection) -> dict[str, Any]:
     """Build an editable YAML-ready document from an inspection result."""
 
-    layer_info = inspection.layer_info
+    layer_info = _preferred_layer_info(inspection)
     coordinates = _bounding_coordinates(layer_info)
     spatial_reference = _spatial_reference_document(layer_info)
-    entity_info = _entity_attribute_document(layer_info)
+    entity_info = _entity_attribute_document(inspection)
     direct_method = "Raster" if layer_info and layer_info.data_kind == "raster" else "Vector"
     geoform = _infer_geoform(inspection, layer_info)
 
@@ -185,6 +187,17 @@ def build_prefill_document(inspection: DatasetInspection) -> dict[str, Any]:
     if inspection.warnings:
         doc["inspection"]["warnings"] = list(inspection.warnings)
 
+    if inspection.layer_names:
+        doc["dataset"] = {
+            "name": inspection.dataset_name,
+            "path": inspection.dataset_path,
+            "format": inspection.data_format,
+            "layers": inspection.layer_names,
+            "selected_layer": inspection.selected_layer,
+            "file_size_bytes": inspection.file_size_bytes,
+            "modified_date": inspection.modified_date,
+        }
+
     return doc
 
 
@@ -214,6 +227,10 @@ def _bounding_coordinates(layer_info: LayerInfo | None) -> dict[str, float | str
             "north": "TODO: provide north bounding coordinate",
             "south": "TODO: provide south bounding coordinate",
         }
+
+    transformed = _transform_extent_to_geographic(layer_info)
+    if transformed is not None:
+        return transformed
     return {
         "west": layer_info.extent.west,
         "east": layer_info.extent.east,
@@ -276,36 +293,47 @@ def _spatial_reference_document(layer_info: LayerInfo | None) -> dict[str, Any]:
     return data
 
 
-def _entity_attribute_document(layer_info: LayerInfo | None) -> dict[str, Any]:
-    if not layer_info:
+def _entity_attribute_document(inspection: DatasetInspection) -> dict[str, Any]:
+    layer_infos = inspection.layer_details or ([inspection.layer_info] if inspection.layer_info else [])
+    if not layer_infos:
         return {"entities": []}
 
-    entity: dict[str, Any] = {
-        "name": layer_info.name,
-        "description": f"Auto-generated draft entity description for {layer_info.name}.",
-        "definition_source": "MetaMapper inspection",
-        "attributes": [],
-    }
-
-    for field in layer_info.fields:
-        attribute: dict[str, Any] = {
-            "label": field.name,
-            "definition": TODO_ATTR_DEF,
-            "definition_source": "TODO: provide attribute definition source",
-            "unrepresentable_domain": f"Raw field type: {field.field_type}",
+    entities: list[dict[str, Any]] = []
+    for layer_info in layer_infos:
+        entity: dict[str, Any] = {
+            "name": layer_info.name,
+            "description": f"Auto-generated draft entity description for {layer_info.name}.",
+            "definition_source": "MetaMapper inspection",
+            "data_kind": layer_info.data_kind,
+            "geometry_type": layer_info.geometry_type,
+            "feature_count": layer_info.feature_count,
+            "attributes": [],
         }
-        if field.alias:
-            attribute["alias"] = field.alias
-        if field.length is not None:
-            attribute["length"] = field.length
-        if field.nullable is not None:
-            attribute["nullable"] = field.nullable
-        entity["attributes"].append(attribute)
 
-    if layer_info.raster:
-        entity["raster"] = layer_info.raster.to_dict()
+        for field in layer_info.fields:
+            attribute: dict[str, Any] = {
+                "label": field.name,
+                "definition": TODO_ATTR_DEF,
+                "definition_source": "TODO: provide attribute definition source",
+                "unrepresentable_domain": f"Raw field type: {field.field_type}",
+            }
+            if field.alias:
+                attribute["alias"] = field.alias
+            if field.length is not None:
+                attribute["length"] = field.length
+            if field.nullable is not None:
+                attribute["nullable"] = field.nullable
+            entity["attributes"].append(attribute)
 
-    return {"entities": [entity]}
+        if layer_info.spatial_reference:
+            entity["spatial_reference"] = layer_info.spatial_reference.to_dict()
+        if layer_info.extent:
+            entity["extent"] = layer_info.extent.to_dict()
+        if layer_info.raster:
+            entity["raster"] = layer_info.raster.to_dict()
+        entities.append(entity)
+
+    return {"entities": entities}
 
 
 def _looks_like_utm(name: str | None, epsg: int | None) -> bool:
@@ -329,3 +357,92 @@ def _infer_utm_zone(name: str | None, epsg: int | None) -> str:
         if 26901 <= epsg <= 26923:
             return str(epsg - 26900)
     return "TODO: confirm UTM zone"
+
+
+def _transform_extent_to_geographic(layer_info: LayerInfo) -> dict[str, float] | None:
+    if layer_info.extent is None or layer_info.spatial_reference is None:
+        return None
+    crs_hint = (
+        f"EPSG:{layer_info.spatial_reference.epsg}"
+        if layer_info.spatial_reference.epsg is not None
+        else layer_info.spatial_reference.wkt or layer_info.spatial_reference.name
+    )
+    if crs_hint is None:
+        return None
+    try:
+        from pyproj import Transformer
+
+        os.environ.setdefault("PROJ_NETWORK", "OFF")
+
+        west, south, east, north = _transform_bounds_with_fallback(
+            crs_hint,
+            layer_info.extent.west,
+            layer_info.extent.south,
+            layer_info.extent.east,
+            layer_info.extent.north,
+        )
+        values = [west, east, north, south]
+        if not all(math.isfinite(value) for value in values):
+            return None
+        return {
+            "west": float(west),
+            "east": float(east),
+            "north": float(north),
+            "south": float(south),
+        }
+    except Exception:
+        return None
+
+
+def _preferred_layer_info(inspection: DatasetInspection) -> LayerInfo | None:
+    if inspection.layer_info is not None:
+        return inspection.layer_info
+    if not inspection.layer_details:
+        return None
+
+    layers_with_extent = [layer for layer in inspection.layer_details if layer.extent is not None]
+    if not layers_with_extent:
+        return inspection.layer_details[0]
+
+    first = layers_with_extent[0]
+    west = min(layer.extent.west for layer in layers_with_extent if layer.extent is not None)
+    east = max(layer.extent.east for layer in layers_with_extent if layer.extent is not None)
+    south = min(layer.extent.south for layer in layers_with_extent if layer.extent is not None)
+    north = max(layer.extent.north for layer in layers_with_extent if layer.extent is not None)
+
+    return LayerInfo(
+        name=inspection.dataset_name,
+        data_kind=first.data_kind,
+        geometry_type=first.geometry_type,
+        feature_count=sum(layer.feature_count or 0 for layer in layers_with_extent),
+        fields=[],
+        spatial_reference=first.spatial_reference,
+        extent=type(first.extent)(west=west, east=east, south=south, north=north) if first.extent else None,
+        raster=first.raster,
+    )
+
+
+def _transform_bounds_with_fallback(
+    source_crs: str,
+    west: float,
+    south: float,
+    east: float,
+    north: float,
+) -> tuple[float, float, float, float]:
+    from pyproj import Transformer
+
+    candidate_targets = ["EPSG:4326", "EPSG:4269"]
+    for target_crs in candidate_targets:
+        transformer = Transformer.from_crs(
+            source_crs,
+            target_crs,
+            always_xy=True,
+            allow_ballpark=True,
+            only_best=False,
+        )
+        west_ll, south_ll = transformer.transform(west, south)
+        east_ll, north_ll = transformer.transform(east, north)
+        values = [west_ll, south_ll, east_ll, north_ll]
+        if all(math.isfinite(value) for value in values):
+            return west_ll, south_ll, east_ll, north_ll
+    raise ValueError(f"Could not transform extent from {source_crs} to a geographic CRS.")
