@@ -1,0 +1,3731 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<metadata>
+  <idinfo>
+    <citation>
+      <citeinfo>
+        <origin>Alyssa Hachmann</origin>
+        <origin>Benjamin L. Melosh</origin>
+        <origin>Zenon C. Valin</origin>
+        <origin>Robert J. McLaughlin</origin>
+        <pubdate>2026</pubdate>
+        <title>Digital database for the geologic map of The Geysers Geothermal field and surrounding area, northern California Coast Ranges</title>
+        <geoform>vector digital data</geoform>
+        <pubinfo>
+          <pubplace>U.S. Geological Survey</pubplace>
+          <publish>U.S. Geological Survey</publish>
+        </pubinfo>
+      </citeinfo>
+    </citation>
+    <descript>
+      <abstract>This file geodatabase contains a GeMS-compliant 1:24,000-scale digital geologic map of The Geysers geothermal field and surrounding region in the northern California Coast Ranges and the Mayacamas Mountains. The database includes geologic map unit polygons, contacts, faults, geologic linework, structural orientation data, overlays, and supporting tables such as DataSources, DescriptionOfMapUnits, GeoMaterialDict, and Glossary. This dataset is part of a digital GeMS-compliant geologic map database for The Geysers geothermal field and surrounding region, derived from the original printed geologic map by Robert J. McLaughlin (1978, USGS Open-File Report 78-389).</abstract>
+      <purpose>The purpose of this work is to provide a modern, GeMS-compliant digital geologic database for The Geysers geothermal field and surrounding region. The dataset supports ongoing geologic mapping, geothermal exploration, seismic hazard assessment, and scientific studies of faulting, stratigraphy, hydrothermal alteration, and crustal deformation in the northern California Coast Ranges.</purpose>
+    </descript>
+    <timeperd>
+      <timeinfo>
+        <sngdate>
+          <caldate>1978</caldate>
+        </sngdate>
+      </timeinfo>
+      <current>publication date</current>
+    </timeperd>
+    <status>
+      <progress>Complete</progress>
+      <update>None planned</update>
+    </status>
+    <spdom>
+      <bounding>
+        <westbc>-122.9742</westbc>
+        <eastbc>-122.6230</eastbc>
+        <northbc>38.9246</northbc>
+        <southbc>38.6624</southbc>
+      </bounding>
+    </spdom>
+    <keywords>
+      <theme>
+        <themekt>ISO 19115 Topic Category</themekt>
+        <themekey>geoscientificInformation</themekey>
+      </theme>
+      <theme>
+        <themekt>None</themekt>
+        <themekey>The Geysers</themekey>
+        <themekey>Mayacamas Mountains</themekey>
+        <themekey>Franciscan</themekey>
+        <themekey>Geologic mapping</themekey>
+        <themekey>Geothermal</themekey>
+        <themekey>GIS database</themekey>
+      </theme>
+      <theme>
+        <themekt>USGS Thesaurus</themekt>
+        <themekey>geothermal resources</themekey>
+        <themekey>geologic energy storage</themekey>
+        <themekey>geology</themekey>
+        <themekey>geospatial datasets</themekey>
+      </theme>
+    </keywords>
+    <accconst>None</accconst>
+    <useconst>None.</useconst>
+    <ptcontac>
+      <cntinfo>
+        <cntperp>
+          <cntper>Benjamin L. Melosh</cntper>
+          <cntorg>U.S. Geological Survey</cntorg>
+        </cntperp>
+        <cntaddr>
+          <addrtype>physical</addrtype>
+          <address>350 N. Akron Rd.</address>
+          <city>Moffett Field</city>
+          <state>CA</state>
+          <postal>94035</postal>
+        </cntaddr>
+        <cntvoice>650 439 2361</cntvoice>
+        <cntemail>bmelosh@usgs.gov</cntemail>
+      </cntinfo>
+    </ptcontac>
+    <datacred>Compiled by Alyssa K. Hackman, Benjamin L. Melosh, and Zenon C. Valin, building on the original geologic map of The Geysers by Robert J. McLaughlin (1978, USGS Open-File Report 78-389).</datacred>
+  </idinfo>
+  <dataqual>
+    <attracc>
+      <attraccr>The attribute values in this dataset were derived from original geologic mapping and legacy sources. Attributes were entered and reviewed for consistency with the GeMS schema. No formal quantitative tests were conducted to assess attribute accuracy; however, logical consistency checks and visual inspections were performed to ensure data integrity. Users should be aware that some attributes may reflect the limitations of the original source materials.</attraccr>
+    </attracc>
+    <logic>The dataset has been reviewed for logical consistency and completeness. Attribute values were checked to ensure they fall within expected domains and ranges defined by the GeMS schema. Topology rules were applied and validated to confirm that features are spatially consistent (e.g., no gaps or overlaps in polygons, proper line connectivity). Data duplication and omission were systematically checked and corrected where necessary. The spatial and attribute data are consistent with the descriptive metadata and intended geologic representation.</logic>
+    <complete>This dataset represents geologic features mapped within a defined geographic area covering the central Mayacamas Mountains and The Geysers steam field in Sonoma, Lake, and Mendocino counties, California. It includes only those geologic units, structures, and features that were documented in the original source maps and field investigations. The dataset is limited to surface geologic observations and does not include subsurface interpretations, geophysical data, or geochemical analyses. Features outside the mapped extent or not visible at the scale of mapping are not represented. As such, the dataset provides a comprehensive but geographically bounded view of the geology relevant to the study area.</complete>
+    <lineage>
+      <procstep>
+        <procdesc>Geologic field mapping by Robert J. McLaughlin.</procdesc>
+        <procdate>1978</procdate>
+      </procstep>
+      <procstep>
+        <procdesc>Digitization of black and white PDF map by Zenon C. Valin.</procdesc>
+        <procdate>2015</procdate>
+      </procstep>
+      <procstep>
+        <procdesc>Digitization and compilation of digital datasets into GeMS level 3 compliance by Alyssa K. Hachmann and Ben Melosh.</procdesc>
+        <procdate>2025</procdate>
+      </procstep>
+    </lineage>
+  </dataqual>
+  <spdoinfo>
+    <direct>Vector</direct>
+    <ptvctinf>
+      <sdtsterm>
+        <sdtstype>Point</sdtstype>
+        <ptvctcnt>1</ptvctcnt>
+      </sdtsterm>
+    </ptvctinf>
+  </spdoinfo>
+  <spref>
+    <horizsys>
+      <planar>
+        <gridsys>
+          <gridsysn>Universal Transverse Mercator</gridsysn>
+          <utm>
+            <utmzone>10</utmzone>
+            <transmer>
+              <sfctrmer>0.9996</sfctrmer>
+              <longcm>-123.0</longcm>
+              <latprjo>0.0</latprjo>
+              <feast>500000.0</feast>
+              <fnorth>0.0</fnorth>
+            </transmer>
+          </utm>
+        </gridsys>
+        <planci>
+          <plance>coordinate pair</plance>
+          <coordrep>
+            <absres>0.6096</absres>
+            <ordres>0.6096</ordres>
+          </coordrep>
+          <plandu>meters</plandu>
+        </planci>
+      </planar>
+      <geodetic>
+        <horizdn>North_American_Datum_1927</horizdn>
+        <ellips>Clarke 1866</ellips>
+        <semiaxis>6378206.4</semiaxis>
+        <denflat>294.978698213898</denflat>
+      </geodetic>
+    </horizsys>
+  </spref>
+  <eainfo>
+    <detailed>
+      <enttyp>
+        <enttypl>DescriptionOfMapUnits</enttypl>
+        <enttypd>Non-spatial table that captures content of the Description of Map Units (or equivalent List of Map Units and associated pamphlet text) included in a traditional paper geologic map. Has an internal hierarchy expressed by attribute HierarchyKey</enttypd>
+        <enttypds>GeMS</enttypds>
+      </enttyp>
+      <attr>
+        <attrlabl>OBJECTID</attrlabl>
+        <attrdef>Internal feature number</attrdef>
+        <attrdefs>ESRI</attrdefs>
+        <attrdomv>
+          <udom>Unrepresentable domain</udom>
+        </attrdomv>
+      </attr>
+      <attr>
+  <attrlabl>MapUnit</attrlabl><attrdef>Short plain-text identifier of the map unit. Foreign key to DescriptionOfMapUnits table.</attrdef><attrdefs>GeMS</attrdefs><attrdomv>
+    <edom>
+      <edomv>sp?</edomv>
+      <edomvd>Serpentinite</edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>fs2</edomv>
+      <edomvd>Lithic graywacke</edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>fms?</edomv>
+      <edomvd>Locally conglomeratic metagraywacke</edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Qoa?</edomv>
+      <edomvd>Uplifted alluvium</edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>rd</edomv>
+      <edomvd>Rodingite mineral assemblages</edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Qls?</edomv>
+      <edomvd>Landslide deposits</edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>QTc</edomv>
+      <edomvd>Clear Lake volcanics of Hearn and others, 1975</edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Tu</edomv>
+      <edomvd>Older fluvial and lacustrine deposits of Little Sulphur Creek</edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Tu?</edomv>
+      <edomvd>Older fluvial and lacustrine deposits of Little Sulphur Creek</edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>fsb</edomv>
+      <edomvd>Sedimentary breccia and conglomerate</edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>fm</edomv>
+      <edomvd>High-grade glaucophane schist, amphibolite, and eclogite</edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Ku</edomv>
+      <edomvd>Sandstone and mudstone</edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>fsr</edomv>
+      <edomvd>Melange Undifferentiated (structural unit 2)</edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Tvs?</edomv>
+      <edomvd>Sonoma Volcanics</edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Qtf</edomv>
+      <edomvd>Fan and Terrace deposits</edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Jv</edomv>
+      <edomvd>Basaltic rocks</edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>fg?</edomv>
+      <edomvd>Altered basaltic rocks (greenstone)</edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Jd</edomv>
+      <edomvd>Diabase</edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Qoa</edomv>
+      <edomvd>Uplifted alluvium</edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Qvt</edomv>
+      <edomvd>Coarse water-laid tuff</edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Qos</edomv>
+      <edomvd>Laminated lacustrine silts</edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Tgs</edomv>
+      <edomvd>Older fluvial deposits</edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Jc</edomv>
+      <edomvd>Tuffaceous chert</edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>sc?</edomv>
+      <edomvd>Silica carbonate rock</edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>fl</edomv>
+      <edomvd>Limestone</edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>fmsr</edomv>
+      <edomvd>Melange</edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Toa</edomv>
+      <edomvd>Older alluvium beneath Clear Lake volcanics</edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>fmg</edomv>
+      <edomvd>Greenstone</edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>QTc?</edomv>
+      <edomvd>Clear Lake volcanics of Hearn and others, 1975</edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>KJs?</edomv>
+      <edomvd>Mudstone</edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>fc?</edomv>
+      <edomvd>Chert and minor interbedded siliceous shale and tuff</edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>fmc</edomv>
+      <edomvd>Low blueschist grade metachert</edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Jgd</edomv>
+      <edomvd>Gabbro and diabase</edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>KJs</edomv>
+      <edomvd>Mudstone</edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Qal</edomv>
+      <edomvd>Alluvial and lacustrine deposits</edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>sc</edomv>
+      <edomvd>Silica carbonate rock</edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>sp</edomv>
+      <edomvd>Serpentinite</edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>fsb?</edomv>
+      <edomvd>Sedimentary breccia and conglomerate</edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Kl</edomv>
+      <edomvd>Sandstone and mudstone</edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>mum</edomv>
+      <edomvd>Metamorphosed ultramafic rock</edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>fsm</edomv>
+      <edomvd>Metasandstone and glaucophane-muscovite-quartz schist</edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>fm?</edomv>
+      <edomvd>High-grade glaucophane schist, amphibolite, and eclogite</edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>fg</edomv>
+      <edomvd>Altered basaltic rocks (greenstone)</edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Qt</edomv>
+      <edomvd>Alluvial and fluvial deposits</edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Jdb</edomv>
+      <edomvd>Diabase and diabase-basalt breccia</edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>fs</edomv>
+      <edomvd>Lithic graywacke</edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>fs1</edomv>
+      <edomvd>Graywacke of Little Sulphur Creek (structural unit 1)</edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Kul</edomv>
+      <edomvd>Limestone lens</edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>fsr?</edomv>
+      <edomvd>Melange Undifferentiated (structural unit 2)</edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Qls</edomv>
+      <edomvd>Landslide deposits</edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>water</edomv>
+      <edomvd>water</edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>fs2?</edomv>
+      <edomvd>Lithic graywacke</edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Tvs</edomv>
+      <edomvd>Sonoma Volcanics</edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>KJt</edomv>
+      <edomvd>Siliceous tuff</edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>fms</edomv>
+      <edomvd>Locally conglomeratic metagraywacke</edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>fc</edomv>
+      <edomvd>Chert and minor interbedded siliceous shale and tuff</edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+</attr>
+      <attr>
+        <attrlabl>Name</attrlabl>
+        <attrdef>Name of map unit, as shown in boldface in traditional DMU, e.g., "Shnabkaib Member". Identifies unit within its hierarchical context.</attrdef>
+        <attrdefs>GeMS</attrdefs>
+        <attrdomv><udom>Unrepresentable domain</udom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>FullName</attrlabl>
+        <attrdef>Name of map unit including identification of containing higher rank unit(s), e.g., "Shnabkaib Member of Moenkopi Formation".</attrdef>
+        <attrdefs>GeMS</attrdefs>
+        <attrdomv><udom>Unrepresentable domain</udom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>Age</attrlabl>
+        <attrdef>Age of map unit as shown in Description of Map Units. Examples of values are "late Holocene", "Pliocene and Miocene", "Lower Cretaceous".</attrdef>
+        <attrdefs>GeMS</attrdefs>
+        <attrdomv><udom>Unrepresentable domain</udom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>Description</attrlabl>
+        <attrdef>Free-format text description of map unit. Commonly structured according to one or more accepted traditions (e.g., lithology, thickness, color, weathering and outcrop characteristics, distinguishing features, genesis, age constraints) and terse.</attrdef>
+        <attrdefs>GeMS</attrdefs>
+        <attrdomv><udom>Unrepresentable domain</udom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>HierarchyKey</attrlabl>
+        <attrdef>String that records hierarchical structure. Has form nn-nn-nn, nnn-nnn, or similar. Numeric, left-padded with zeros, dash-delimited. Each HierarchyKey fragment of each row MUST be the same length to allow text-based sorting of table entries.</attrdef>
+        <attrdefs>GeMS</attrdefs>
+        <attrdomv><udom>Unrepresentable domain</udom>
+        </attrdomv>
+      </attr>
+      <attr>
+  <attrlabl>ParagraphStyle</attrlabl><attrdef>Token that identifies formatting of paragraph(s) within traditional Description of Map Units that correspond to this table entry.</attrdef><attrdefs>GeMS</attrdefs><attrdomv>
+    <edom>
+      <edomv>DMU Unit 2</edomv>
+      <edomvd>Paragraph heading for geologic units or groups of units</edomvd>
+      <edomvds>GeMS Geologic Map Data Schema</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>DMU-Heading4</edomv>
+      <edomvd>High-level paragraph heading for broad groupings of geologic units</edomvd>
+      <edomvds>GeMS Geologic Map Data Schema</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>DMU-Heading3</edomv>
+      <edomvd>High-level paragraph heading for broad groupings of geologic units</edomvd>
+      <edomvds>GeMS Geologic Map Data Schema</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>DMU Unit 1</edomv>
+      <edomvd>Paragraph heading for geologic units or groups of units</edomvd>
+      <edomvds>GeMS Geologic Map Data Schema</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>DMU-Heading2</edomv>
+      <edomvd>High-level paragraph heading for broad groupings of geologic units</edomvd>
+      <edomvds>GeMS Geologic Map Data Schema</edomvds>
+    </edom>
+  </attrdomv>
+</attr>
+      <attr>
+        <attrlabl>Label</attrlabl>
+        <attrdef>Plain-text equivalent of the desired annotation for a feature: for example "14 Ma", or "^c" which (when used with the FGDC GeoAge font) results in the geologic map-unit label TRc (with TR run together to make the Triassic symbol).</attrdef>
+        <attrdefs>GeMS</attrdefs>
+        <attrdomv><udom>Unrepresentable domain</udom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>Symbol</attrlabl>
+        <attrdef>Reference to a point marker, line symbol, or area-fill symbol that is used on the map graphic to denote the feature: perhaps a star for a K-Ar age locality, or a heavy black line for a fault.</attrdef>
+        <attrdefs>GeMS</attrdefs>
+        <attrdomv><udom>Unrepresentable domain</udom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>AreaFillRGB</attrlabl>
+        <attrdef>{Red, Green, Blue} tuples that specify the suggested color (e.g., "255,255,255", "124,005,255") of area fill for symbolizing MapUnit. Each color value is an integer between 0 and 255, values are zero-padded to a length of 3 digits, and values are separated by commas with no space: NNN,NNN,NNN.</attrdef>
+        <attrdefs>GeMS</attrdefs>
+        <attrdomv><udom>Unrepresentable domain</udom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>AreaFillPatternDescription</attrlabl>
+        <attrdef>Text description (e.g., "random small red dashes") provided as a convenience for users who must recreate symbolization.</attrdef>
+        <attrdefs>GeMS</attrdefs>
+        <attrdomv><udom>Unrepresentable domain</udom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>DescriptionSourceID</attrlabl>
+        <attrdef>Source of map-unit description; foreign key to table Datasources.</attrdef>
+        <attrdefs>GeMS</attrdefs>
+        <attrdomv><udom>Unrepresentable domain</udom>
+        </attrdomv>
+      </attr>
+      <attr>
+  <attrlabl>GeoMaterial</attrlabl><attrdef>Categorization of map unit based on lithologic and genetic character, term selected from NGMDB standard term list defined in Appendix A of GeMS documentation, available at http://ngmdb.usgs.gov/Info/standards/GeMS..</attrdef><attrdefs>GeMS</attrdefs><attrdomv>
+    <edom>
+      <edomv>Felsic-composition air-fall tephra</edomv>
+      <edomvd>Fragments of volcanic rock and lava, of various sizes, carried into air by explosions and by hot gases in eruption columns or lava fountains; known as tephra. As tephra falls to ground, with increasing distance from volcano, average size of individual rock particles and thickness of resulting deposit decrease. Because of their high silica content and resulting high viscosity, felsic-composition magmas tend to erupt explosively, readily forming pumice and volcanic ash. Composed of light-colored rocks (for example, rhyolite, dacite, trachyte, latite).</edomvd>
+      <edomvds>GeMS</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Meta-ultramafic rock</edomv>
+      <edomvd>Rock derived from preexisting ultramafic rocks by essentially solid-state, mineralogical, chemical, or structural changes, in response to marked changes in temperature, pressure, deformation, and (or) chemical environment, generally at depth in Earths crust. Composed mostly of magnesium-bearing minerals (for example, serpentine, talc, magnesite).</edomvd>
+      <edomvds>GeMS</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Alluvial sediment</edomv>
+      <edomvd>Unconsolidated material deposited by streams or other bodies of running water as sorted or semisorted sediment in streambed, or on its floodplain or delta, or as cone or fan at base of mountain slope. Grain size varies from clay to gravel.</edomvd>
+      <edomvds>GeMS</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Clastic sedimentary rock</edomv>
+      <edomvd>Sedimentary rock, composed predominantly of particles or clasts derived by erosion, weathering, or mass-wasting of preexisting rock and deposited by gravity, air, water, or ice.</edomvd>
+      <edomvds>GeMS</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Mostly mudstone</edomv>
+      <edomvd>Mostly mudstone, interbedded with other sedimentary rocks that locally may include coarser grained clastic rocks (sandstone, conglomerate), carbonates, and (or) coal.</edomvd>
+      <edomvds>GeMS</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Intrusive igneous rock</edomv>
+      <edomvd>Rock that solidified from molten or partly molten material (magma) below Earths surface.</edomvd>
+      <edomvds>GeMS</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Carbonate rock</edomv>
+      <edomvd>Sedimentary rock, consisting chiefly of carbonate minerals such as limestone or dolomite.</edomvd>
+      <edomvds>GeMS</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Fine-grained, mafic-composition intrusive igneous rock</edomv>
+      <edomvd>Rock that solidified from molten or partly molten material (magma) at shallow depth beneath Earths surface, thereby cooling quickly. Generally fine grained but may contain large mineral crystals (phenocrysts). Mostly found as tabular dikes or sills. Composed mostly of dark-colored minerals. Includes basaltic rock.</edomvd>
+      <edomvds>GeMS</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Medium and high-grade regional metamorphic rock, of unspecified origin</edomv>
+      <edomvd>Rock derived from preexisting rocks and altered by essentially solid-state mineralogical, chemical, or structural changes, in response to relatively intense regional changes in temperature, pressure, deformation, and (or) chemical environment, generally at depth in Earths crust. Origin of preexisting rock is mixed (for example, igneous and sedimentary) or is not known. Includes amphibolite, granulite, schist, and gneiss.</edomvd>
+      <edomvds>GeMS</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Lacustrine sediment, mostly coarse-grained</edomv>
+      <edomvd>Mostly well-sorted and well-bedded material, generally sand and gravel sized, with lesser amounts of silt and clay, deposited in perennial to intermittent lakes. Much of sediment is derived from material eroded and transported by streams. Mostly deposits of lake-marginal beaches and deltas.</edomvd>
+      <edomvds>GeMS</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Meta-mafic rock</edomv>
+      <edomvd>Rock derived from preexisting mafic rocks by essentially solid-state, mineralogical, chemical, or structural changes, in response to marked changes in temperature, pressure, deformation, and (or) chemical environment, generally at depth in Earths crust. Composed mostly of iron- and magnesium-bearing, dark-colored and (or) green minerals. Includes greenstone, amphibolite, and metagabbro.</edomvd>
+      <edomvds>GeMS</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Alluvial sediment, mostly coarse-grained</edomv>
+      <edomvd>Unconsolidated material deposited by streams or other bodies of running water as sorted or semisorted sediment in streambed, or on its floodplain or delta, or as cone or fan at base of mountain slope. Sediment is mostly sand, gravel, and coarser material but may also contain some silt and clay.</edomvd>
+      <edomvds>GeMS</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Water or ice</edomv>
+      <edomvd>Water or ice</edomvd>
+      <edomvds>GeMS</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Chert</edomv>
+      <edomvd>Sedimentary rock, composed chiefly of microcrystalline or cryptocrystalline quartz.</edomvd>
+      <edomvds>GeMS</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Debris flows, landslides, and other localized mass-movement sediment</edomv>
+      <edomvd>Sediment formed by relatively localized, downslope transport of particles or clasts produced by weathering and breakdown of underlying rock, sediment, and (or) soil. Composed of poorly sorted and poorly stratified material that ranges in size from clay to boulders. Speed of downslope transport ranges from rapid to imperceptible.</edomvd>
+      <edomvds>GeMS</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Conglomerate</edomv>
+      <edomvd>Sedimentary rock, composed predominantly of particles or clasts derived by erosion and weathering of preexisting rock; contains more than 30 percent gravel-sized clasts.</edomvd>
+      <edomvds>GeMS</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Sandstone and mudstone</edomv>
+      <edomvd>Sandstone and mudstone (including shale and siltstone), in approximately equal (or unspecified) proportions.</edomvd>
+      <edomvds>GeMS</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Schist and gneiss, of sedimentary-rock origin</edomv>
+      <edomvd>Foliated rock derived from preexisting sedimentary rocks by essentially solid-state mineralogical, chemical, or structural changes in response to marked changes in temperature, pressure, deformation, and (or) chemical environment, generally at depth in Earths crust. Includes schist (characterized by such strong foliation or alignment of minerals that it readily splits into flakes or slabs) and gneiss (characterized by alternating, irregular bands of different mineral composition). Mostly formed from fine-grained material such as mudstone.</edomvd>
+      <edomvds>GeMS</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Metasedimentary rock</edomv>
+      <edomvd>Rock derived from preexisting sedimentary rocks and altered by essentially solid-state mineralogical, chemical, or structural changes, in response to marked changes in temperature, pressure, deformation, and (or) chemical environment, generally at depth in Earths crust.</edomvd>
+      <edomvds>GeMS</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Mafic-composition lava flows</edomv>
+      <edomvd>Lateral, surficial outpourings of molten lava from vent or fissure; also, solidified bodies of rock that form when they cool. Low-silica parental magmas have low viscosity and tend to form extensive sheets that have generally low relief. Includes basaltic shield volcanoes, which may become very large (for example, in Hawaii). Composed of fine-grained, dark rocks, including basaltic.</edomvd>
+      <edomvds>GeMS</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Limestone</edomv>
+      <edomvd>Carbonate sedimentary rock, consisting chiefly of calcite.</edomvd>
+      <edomvds>GeMS</edomvds>
+    </edom>
+  </attrdomv>
+</attr>
+      <attr>
+  <attrlabl>GeoMaterialConfidence</attrlabl><attrdef>Describes appropriateness of GeoMaterial term for describing the map unit.</attrdef><attrdefs>GeMS</attrdefs><attrdomv>
+    <edom>
+      <edomv>High</edomv>
+      <edomvd>The term and definition adequately characterize the overall lithologic nature of rocks and sediments in the map unit. Regarding the subjective term "adequately characterize", we refer to context and objectives of this classification as described in the GeMS documentation.</edomvd>
+      <edomvds>GeMS documentation</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Low</edomv>
+      <edomvd>The overall lithology of this map unit is not adequately classifiable using this list of terms and definitions, but the term selected is the best available.  Or this map unit is insufficiently known to confidently assign a GeoMaterial term.</edomvd>
+      <edomvds>GeMS documentation</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Medium</edomv>
+      <edomvd>The term and definition generally characterize the overall lithology of the map unit, but there are one or more significant minor lithologies that are not adequately described by the selected term.</edomvd>
+      <edomvds>GeMS documentation</edomvds>
+    </edom>
+  </attrdomv>
+</attr>
+      <attr>
+        <attrlabl>DescriptionOfMapUnits_ID</attrlabl>
+        <attrdef>Primary key.</attrdef>
+        <attrdefs>GeMS</attrdefs>
+        <attrdomv><udom>Arbitrary string. Values should be unique within this database.</udom>
+        </attrdomv>
+      </attr>
+    </detailed>
+    <detailed>
+      <enttyp>
+        <enttypl>DataSources</enttypl>
+        <enttypd>Non-spatial table of sources of all spatial features, sources of some attributes of spatial features, and sources of some attributes of non-spatial table entries.</enttypd>
+        <enttypds>GeMS</enttypds>
+      </enttyp>
+      <attr>
+        <attrlabl>OBJECTID</attrlabl>
+        <attrdef>Internal feature number</attrdef>
+        <attrdefs>ESRI</attrdefs>
+        <attrdomv>
+          <udom>Unrepresentable domain</udom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>Source</attrlabl>
+        <attrdef>Plain-text short description that identifies the data source.</attrdef>
+        <attrdefs>GeMS</attrdefs>
+        <attrdomv><udom>Unrepresentable domain</udom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>Notes</attrlabl>
+        <attrdef>Additional information specific to a particular feature or table entry.</attrdef>
+        <attrdefs>GeMS</attrdefs>
+        <attrdomv><udom>Unrepresentable domain. Free text. Values of &lt;null&gt; or #null indicate no entry.</udom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>URL</attrlabl>
+        <attrdef>Universal Resource Locator (URL) or Document Object Identifier (DOI), identifies a document on the World Wide Web.</attrdef>
+        <attrdefs>GeMS</attrdefs>
+        <attrdomv><udom>Unrepresentable domain</udom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>DataSources_ID</attrlabl>
+        <attrdef>Primary key.</attrdef>
+        <attrdefs>GeMS</attrdefs>
+        <attrdomv><udom>Arbitrary string. Values should be unique within this database.</udom>
+        </attrdomv>
+      </attr>
+    </detailed>
+    <detailed>
+      <enttyp>
+        <enttypl>Glossary</enttypl>
+        <enttypd>Non-spatial table that, for certain fields (including all Type fields, Confidence fields, and GeneralLithology), lists the terms that populate these fields, term definitions, and sources for definitions.</enttypd>
+        <enttypds>GeMS</enttypds>
+      </enttyp>
+      <attr>
+        <attrlabl>OBJECTID</attrlabl>
+        <attrdef>Internal feature number</attrdef>
+        <attrdefs>ESRI</attrdefs>
+        <attrdomv>
+          <udom>Unrepresentable domain</udom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>Term</attrlabl>
+        <attrdef>Plain-language word for a concept. Values must be unique within database as a whole.</attrdef>
+        <attrdefs>GeMS</attrdefs>
+        <attrdomv><udom>Unrepresentable domain</udom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>Definition</attrlabl>
+        <attrdef>Plain-language definition.</attrdef>
+        <attrdefs>GeMS</attrdefs>
+        <attrdomv><udom>Unrepresentable domain</udom>
+        </attrdomv>
+      </attr>
+      <attr>
+  <attrlabl>DefinitionSourceID</attrlabl><attrdef>Source of definition; foreign key to DataSources.</attrdef><attrdefs>GeMS</attrdefs><attrdomv>
+    <edom>
+      <edomv>DAS02</edomv>
+      <edomvd>American Geosciences Institute Glossary of Geology</edomvd>
+      <edomvds>This report</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>DAS05</edomv>
+      <edomvd>National Geologic Synthesis [a call from the National Cooperative Geologic Mapping Program (NCGMP)], 2022.</edomvd>
+      <edomvds>This report</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>DAS01 | DAS02</edomv>
+      <edomvd>T | A</edomvd>
+      <edomvds>This report</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>DAS01</edomv>
+      <edomvd>This study</edomvd>
+      <edomvds>This report</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>DAS03</edomv>
+      <edomvd>FGDC-Cartographic Standards</edomvd>
+      <edomvds>This report</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>DAS02 | DAS05</edomv>
+      <edomvd>A | N</edomvd>
+      <edomvds>This report</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>DAS04</edomv>
+      <edomvd>GeMS Geologic Map Data Schema</edomvd>
+      <edomvds>This report</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>DAS01 | DAS04</edomv>
+      <edomvd>T | G</edomvd>
+      <edomvds>This report</edomvds>
+    </edom>
+  </attrdomv>
+</attr>
+      <attr>
+        <attrlabl>Glossary_ID</attrlabl>
+        <attrdef>Primary key.</attrdef>
+        <attrdefs>GeMS</attrdefs>
+        <attrdomv><udom>Arbitrary string. Values should be unique within this database.</udom>
+        </attrdomv>
+      </attr>
+    </detailed>
+    <detailed>
+      <enttyp>
+        <enttypl>GeoMaterialDict</enttypl>
+        <enttypd>Non-spatial table that provides values of GeoMaterial, placed in a hierarchy, and their definitions. For further information, see Appendix A in GeMS documentation, available at http://ngmdb.usgs.gov/Info/standards/GeMS.</enttypd>
+        <enttypds>GeMS</enttypds>
+      </enttyp>
+      <attr>
+        <attrlabl>OBJECTID</attrlabl>
+        <attrdef>Internal feature number</attrdef>
+        <attrdefs>ESRI</attrdefs>
+        <attrdomv>
+          <udom>Unrepresentable domain</udom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>HierarchyKey</attrlabl>
+        <attrdef>String that records hierarchical structure. Has form nn-nn-nn, nnn-nnn, or similar. Numeric, left-padded with zeros, dash-delimited. Each HierarchyKey fragment of each row MUST be the same length to allow text-based sorting of table entries.</attrdef>
+        <attrdefs>GeMS</attrdefs>
+        <attrdomv><udom>Unrepresentable domain</udom>
+        </attrdomv>
+      </attr>
+      <attr>
+  <attrlabl>GeoMaterial</attrlabl><attrdef>Categorization of map unit based on lithologic and genetic character, term selected from NGMDB standard term list defined in Appendix A of GeMS documentation, available at http://ngmdb.usgs.gov/Info/standards/GeMS..</attrdef><attrdefs>GeMS</attrdefs><attrdomv>
+    <edom>
+      <edomv>Coarse-grained intrusive igneous rock</edomv>
+      <edomvd>Rock that solidified from molten or partly molten material (magma) at some depth beneath Earths surface, thereby cooling slowly enough for mineral crystals to grow large enough to be visible to naked eye.</edomvd>
+      <edomvds>GeMS</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Coarse-grained, intermediate-composition intrusive igneous rock</edomv>
+      <edomvd>Rock that solidified from molten or partly molten material (magma) at some depth beneath Earths surface, thereby cooling slowly enough for mineral crystals to grow large enough to be visible to naked eye. Intermediate in color and in mineral composition (between felsic and mafic igneous rock). Includes dioritic rock.</edomvd>
+      <edomvds>GeMS</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Coal and lignite</edomv>
+      <edomvd>Organic-rich sedimentary rock, formed from compaction and alteration of plant remains. Coal is consolidated, harder, black rock. Lignite is semiconsolidated, brown to black, earthy material that may contain large particles of recognizable plant parts and tends to crack upon drying.</edomvd>
+      <edomvds>GeMS</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Extrusive igneous material</edomv>
+      <edomvd>Molten material that was erupted onto Earths surface, fusing into rock or remaining as unconsolidated particles. Includes pyroclastic flows, air-fall tephra, lava flows, and volcanic mass flows.</edomvd>
+      <edomvds>GeMS</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Meta-ultramafic rock</edomv>
+      <edomvd>Rock derived from preexisting ultramafic rocks by essentially solid-state, mineralogical, chemical, or structural changes, in response to marked changes in temperature, pressure, deformation, and (or) chemical environment, generally at depth in Earths crust. Composed mostly of magnesium-bearing minerals (for example, serpentine, talc, magnesite).</edomvd>
+      <edomvds>GeMS</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Glacial till, mostly sandy</edomv>
+      <edomvd>Mostly unsorted and unstratified material, generally unconsolidated, deposited directly by and underneath or adjacent to glacier without subsequent reworking by meltwater. Consists of heterogeneous mixture of clay, silt, sand, gravel, and boulders, ranging widely in size and shape. Relatively sandy in texture.</edomvd>
+      <edomvds>GeMS</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Mass movement sediment</edomv>
+      <edomvd>Sediment formed by downslope transport of particles or clasts produced by weathering and breakdown of underlying rock, sediment, and (or) soil. Composed of poorly sorted and poorly stratified material that ranges in size from clay to boulders. Includes colluvial, landslide, talus, and rock-avalanche deposits.</edomvd>
+      <edomvds>GeMS</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Rock and sediment</edomv>
+      <edomvd>Various rocks and sediment, not differentiated.</edomvd>
+      <edomvds>GeMS</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Glacial till, mostly silty</edomv>
+      <edomvd>Mostly unsorted and unstratified material, generally unconsolidated, deposited directly by and underneath or adjacent to glacier without subsequent reworking by meltwater. Consists of heterogeneous mixture of clay, silt, sand, gravel, and boulders, ranging widely in size and shape. Relatively loamy (silty) in texture.</edomvd>
+      <edomvds>GeMS</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Clastic sedimentary rock</edomv>
+      <edomvd>Sedimentary rock, composed predominantly of particles or clasts derived by erosion, weathering, or mass-wasting of preexisting rock and deposited by gravity, air, water, or ice.</edomvd>
+      <edomvds>GeMS</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Marine sediment, mostly coarse-grained</edomv>
+      <edomvd>Mud, sand, and gravel eroded from rocks and sediment on land, transported by streams, and deposited in marine deltas and basins. Mostly siliceous in composition.</edomvd>
+      <edomvds>GeMS</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Iron-rich sedimentary rock</edomv>
+      <edomvd>Sedimentary rock, in which at least half (by volume) of observed minerals are iron bearing (hematite, magnetite, limonite group minerals, siderite, iron sulfides).</edomvd>
+      <edomvds>GeMS</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Evaporitic rock</edomv>
+      <edomvd>Sedimentary rock, composed primarily of minerals produced by evaporation of saline solution. Examples include gypsum, anhydrite, other diverse sulfates, halite (rock salt), primary dolomite, and rocks composed of various nitrates and borates.</edomvd>
+      <edomvds>GeMS</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Peat and muck</edomv>
+      <edomvd>Unconsolidated material, principally composed of plant remains, with lesser amounts of fine-grained clastic sediment. Deposited in water-saturated environment such as swamp, marsh, or bog. With lithification, such material becomes coal.</edomvd>
+      <edomvds>GeMS</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Mostly mudstone</edomv>
+      <edomvd>Mostly mudstone, interbedded with other sedimentary rocks that locally may include coarser grained clastic rocks (sandstone, conglomerate), carbonates, and (or) coal.</edomvd>
+      <edomvds>GeMS</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Mafic-composition air-fall tephra</edomv>
+      <edomvd>Fragments of volcanic rock and lava, of various sizes, carried into the air by explosions and by hot gases in eruption columns or lava fountains; known as tephra. As tephra falls to ground, with increasing distance from volcano, average size of individual rock particles and thickness of resulting deposit decrease. Because of their low silica content and resulting low viscosity, parental magmas tend to erupt gently as lava flows, and so these deposits are uncommon. Includes basalt; rocks are commonly dark-colored.</edomvd>
+      <edomvds>GeMS</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Dune sand</edomv>
+      <edomvd>Mostly sand-sized sediment, deposited by wind. Typically characterized by various dune landforms.</edomvd>
+      <edomvds>GeMS</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Carbonate sediment</edomv>
+      <edomvd>Sediment formed by biotic or abiotic precipitation from aqueous solution of carbonates of calcium, magnesium, or iron (for example, limestone, dolomite).</edomvd>
+      <edomvds>GeMS</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Ice-contact and ice-marginal sediment, mostly fine-grained</edomv>
+      <edomvd>Mostly silt- and clay-sized particles or clasts, with lesser amounts of sand and gravel, derived from rock or preexisting sediment that has been eroded and transported by glaciers. As glacier melted, material was deposited by running water essentially in contact with glacial ice or was transported and deposited by glacially fed streams. Includes sediment deposited into water bodies adjacent to glacier.</edomvd>
+      <edomvds>GeMS</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Mostly carbonate rock</edomv>
+      <edomvd>Mostly carbonate rock, interbedded with other sedimentary rock types.</edomvd>
+      <edomvds>GeMS</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Dolomite</edomv>
+      <edomvd>Carbonate sedimentary rock, consisting chiefly of dolomite. Although dolostone is the proper analog to limestone, it has not often been applied to dolomitic units.</edomvd>
+      <edomvds>GeMS</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Sedimentary and extrusive igneous material</edomv>
+      <edomvd>Either (1) sedimentary rock and (or) unconsolidated material (sediment) and extrusive igneous material (volcanic rock and [or] sediment) or (2) volcanic rock and (or) sediment and such material after erosion and redeposition.</edomvd>
+      <edomvds>GeMS</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Meta-mafic rock</edomv>
+      <edomvd>Rock derived from preexisting mafic rocks by essentially solid-state, mineralogical, chemical, or structural changes, in response to marked changes in temperature, pressure, deformation, and (or) chemical environment, generally at depth in Earths crust. Composed mostly of iron- and magnesium-bearing, dark-colored and (or) green minerals. Includes greenstone, amphibolite, and metagabbro.</edomvd>
+      <edomvds>GeMS</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Mostly sandstone</edomv>
+      <edomvd>Mostly sandstone, interbedded with other sedimentary rocks that locally may include conglomerate and finer grained clastic rocks (mudstone), carbonates, and (or) coal.</edomvd>
+      <edomvds>GeMS</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Ultramafic intrusive igneous rock</edomv>
+      <edomvd>Rock that solidified from molten or partly molten material (magma) at some depth beneath Earths surface, thereby cooling slowly enough for mineral crystals to grow large enough to be visible to naked eye. Composed almost entirely of mafic minerals (for example, hypersthene, augite, olivine).</edomvd>
+      <edomvds>GeMS</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Coastal zone sediment, mostly coarse-grained</edomv>
+      <edomvd>Mostly sand, silt, and gravel, deposited on beaches, in dunes, and in shallow-marine and related alluvial environments.</edomvd>
+      <edomvds>GeMS</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Metasedimentary rock</edomv>
+      <edomvd>Rock derived from preexisting sedimentary rocks and altered by essentially solid-state mineralogical, chemical, or structural changes, in response to marked changes in temperature, pressure, deformation, and (or) chemical environment, generally at depth in Earths crust.</edomvd>
+      <edomvds>GeMS</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Mafic-composition lava flows</edomv>
+      <edomvd>Lateral, surficial outpourings of molten lava from vent or fissure; also, solidified bodies of rock that form when they cool. Low-silica parental magmas have low viscosity and tend to form extensive sheets that have generally low relief. Includes basaltic shield volcanoes, which may become very large (for example, in Hawaii). Composed of fine-grained, dark rocks, including basaltic.</edomvd>
+      <edomvds>GeMS</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Felsic-composition pyroclastic flows</edomv>
+      <edomvd>Hot ash, pumice, and rock fragments erupted from volcano or caldera. Material moves downslope commonly in chaotic flows; once deposited, hot fragments may compact under their own weight and weld together. Because of their high-silica content and resulting high viscosity, parental magmas tend to erupt explosively. Includes rhyolite, dacite, trachyte, latite; rocks are commonly light-colored.</edomvd>
+      <edomvds>GeMS</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Glacial till</edomv>
+      <edomvd>Mostly unsorted and unstratified material, generally unconsolidated, deposited directly by and underneath or adjacent to glacier without subsequent reworking by meltwater. Consists of heterogeneous mixture of clay, silt, sand, gravel, and boulders, ranging widely in size and shape.</edomvd>
+      <edomvds>GeMS</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Lava flows</edomv>
+      <edomvd>Lateral, surficial outpourings of molten lava from vent or fissure; also, solidified bodies of rock that form when they cool. Composed generally of fine-grained, dark-colored rocks (for example, basalt), which tend to form extensive sheets that have generally low relief, except in vent areas where cinder cones or shield volcanoes may form. Includes basaltic shield volcanoes, which may become very large (for example, Hawaii).</edomvd>
+      <edomvds>GeMS</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Metamorphic rock</edomv>
+      <edomvd>Rock derived from preexisting rocks and altered by essentially solid-state mineralogical, chemical, or structural changes, in response to marked changes in temperature, pressure, deformation, and (or) chemical environment, generally at depth in Earths crust.</edomvd>
+      <edomvds>GeMS</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Volcanic mass flow</edomv>
+      <edomvd>Volcanic deposits formed by mass movement (for example, debris avalanches, debris flows, lahar deposits), in many cases triggered by volcanic eruption. Debris avalanches that occur on volcanoes clearly without eruptive trigger may be classified as sedimentary (for example, as Debris flows, landslides, and other localized mass-movement sediment).</edomvd>
+      <edomvds>GeMS</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Residual material</edomv>
+      <edomvd>Unconsolidated material, developed in place by weathering of underlying rock or sediment. Usually forms relatively thin surface layer that conceals unweathered or partly altered source material. Material from which soils are formed.</edomvd>
+      <edomvds>GeMS</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Sand and gravel of unspecified origin</edomv>
+      <edomvd>Sediment composed mostly of sand and (or) gravel, formed by weathering and erosion of preexisting rocks or minerals; eroded particles or clasts are transported and deposited by gravity, air, water, or ice.</edomvd>
+      <edomvds>GeMS</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Meta-carbonate rock</edomv>
+      <edomvd>Rock derived from preexisting carbonate sedimentary rocks and altered by essentially solid-state mineralogical, chemical, or structural changes, in response to marked changes in temperature, pressure, deformation, and (or) chemical environment, generally at depth in Earths crust. Characterized by recrystallization of carbonate minerals in source rock. Includes marble (for which preexisting rock was dominantly limestone or other rock composed of calcite), dolomitic marble, meta-dolostone, and meta-dolomite (for which preexisting rock contained appreciable amount of magnesium).</edomvd>
+      <edomvds>GeMS</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Fine-grained, felsic-composition intrusive igneous rock</edomv>
+      <edomvd>Rock that solidified from molten or partly molten material (magma) at shallow depth beneath Earths surface, thereby cooling quickly. Generally fine grained but may contain large mineral crystals (phenocrysts). Mostly found as tabular dikes or sills. Composed mostly of light-colored minerals. Includes rhyolitic, dacitic, trachytic, and latitic rock.</edomvd>
+      <edomvds>GeMS</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Mafic-composition pyroclastic flows</edomv>
+      <edomvd>Hot ash, pumice, and rock fragments erupted from volcano. Material moves downslope commonly in chaotic flows; once deposited, hot fragments may compact under their own weight and weld together. Because of their low silica content and resulting low viscosity, parental magmas tend to erupt gently as lava flows rather than more forcefully as pyroclastic flows. Includes basalt; rocks are commonly dark-colored.</edomvd>
+      <edomvds>GeMS</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Marine sediment</edomv>
+      <edomvd>Mud and sand, deposited in various marine environments. May originate from erosion of rocks and sediment or may be derived from marine organisms (of carbonate or siliceous composition).</edomvd>
+      <edomvds>GeMS</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Medium and high-grade regional metamorphic rock, of unspecified origin</edomv>
+      <edomvd>Rock derived from preexisting rocks and altered by essentially solid-state mineralogical, chemical, or structural changes, in response to relatively intense regional changes in temperature, pressure, deformation, and (or) chemical environment, generally at depth in Earths crust. Origin of preexisting rock is mixed (for example, igneous and sedimentary) or is not known. Includes amphibolite, granulite, schist, and gneiss.</edomvd>
+      <edomvds>GeMS</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Volcaniclastic (fragmental) material</edomv>
+      <edomvd>Rock and unconsolidated material consisting of particles or clasts that were formed by volcanic explosion or aerial expulsion from volcanic vent.</edomvd>
+      <edomvds>GeMS</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Chert</edomv>
+      <edomvd>Sedimentary rock, composed chiefly of microcrystalline or cryptocrystalline quartz.</edomvd>
+      <edomvds>GeMS</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Coarse-grained, mafic-composition intrusive igneous rock</edomv>
+      <edomvd>Rock that solidified from molten or partly molten material (magma) at some depth beneath Earths surface, thereby cooling slowly enough for mineral crystals to grow large enough to be visible to naked eye. Composed mostly of feldspar and dark-colored minerals. Includes gabbroic rock.</edomvd>
+      <edomvds>GeMS</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Slate and phyllite, of sedimentary-rock origin</edomv>
+      <edomvd>Fine-grained rock derived from preexisting sedimentary rocks and altered by essentially solid-state mineralogical, chemical, or structural changes, in response to marked changes in temperature, pressure, deformation, and (or) chemical environment, generally at depth in Earths crust. Includes phyllite and slate (compact, fine-grained rock that possesses strong cleavage and, hence, can be split into slabs and thin plates). Mostly formed from fine-grained material such as mudstone.</edomvd>
+      <edomvds>GeMS</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Igneous and metamorphic rock</edomv>
+      <edomvd>Consists of coarse-grained intrusive igneous rock and generally medium- to high-grade metamorphic rock.</edomvd>
+      <edomvds>GeMS</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Loess</edomv>
+      <edomvd>Silty sediment, deposited by wind, commonly near glacial margin.</edomvd>
+      <edomvds>GeMS</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Coastal zone sediment, mostly fine-grained</edomv>
+      <edomvd>Mostly clay and silt, deposited in lagoons, tidal flats, backbarriers, and coastal marshes.</edomvd>
+      <edomvds>GeMS</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Felsic-composition air-fall tephra</edomv>
+      <edomvd>Fragments of volcanic rock and lava, of various sizes, carried into air by explosions and by hot gases in eruption columns or lava fountains; known as tephra. As tephra falls to ground, with increasing distance from volcano, average size of individual rock particles and thickness of resulting deposit decrease. Because of their high silica content and resulting high viscosity, felsic-composition magmas tend to erupt explosively, readily forming pumice and volcanic ash. Composed of light-colored rocks (for example, rhyolite, dacite, trachyte, latite).</edomvd>
+      <edomvds>GeMS</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Sediment</edomv>
+      <edomvd>Unconsolidated material (sediment) composed of particles deposited by gravity, air, water, or ice, or as accumulated by other natural agents operating at Earths surface such as chemical precipitation or secretion by organisms. Does not include sedimentary material directly deposited as a result of volcanic activity.</edomvd>
+      <edomvds>GeMS</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Rock</edomv>
+      <edomvd>Various rock types, not differentiated.</edomvd>
+      <edomvds>GeMS</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Lacustrine sediment, mostly fine-grained</edomv>
+      <edomvd>Mostly well-sorted and well-bedded material, generally silt and clay sized, with lesser amounts of sand, deposited in perennial to intermittent lakes.</edomvd>
+      <edomvds>GeMS</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Marine sediment, mostly fine-grained</edomv>
+      <edomvd>Mostly clay- and silt-sized sediment, deposited in relatively deep, quiet water, far removed from areas where coarser grained clastic sediments are washed into marine environment. Includes sediment derived from marine organisms.</edomvd>
+      <edomvds>GeMS</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Regional metamorphic rock, of unspecified origin</edomv>
+      <edomvd>Rock derived from preexisting rocks and altered by essentially solid-state mineralogical, chemical, or structural changes, in response to marked regional changes in temperature, pressure, deformation, and (or) chemical environment, generally at depth in Earths crust. Origin of preexisting rock is mixed (for example, igneous and sedimentary) or is not known.</edomvd>
+      <edomvds>GeMS</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Unmapped area</edomv>
+      <edomvd>Unmapped area</edomvd>
+      <edomvds>GeMS</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Coarse-grained, felsic-composition intrusive igneous rock</edomv>
+      <edomvd>Rock that solidified from molten or partly molten material (magma) at some depth beneath Earths surface, thereby cooling slowly enough for mineral crystals to grow large enough to be visible to naked eye. Composed mostly of light-colored minerals (for example, feldspar, quartz). Includes granitic, syenitic, and monzonitic rock.</edomvd>
+      <edomvds>GeMS</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Contact-metamorphic rock</edomv>
+      <edomvd>Altered rock that originated by local processes of thermal metamorphism, genetically related to intrusion and extrusion of magmas and taking place at or near contact with body of igneous rock. Metamorphic changes are effected by heat and fluids emanating from magma and by some deformation because of emplacement of igneous mass.</edomvd>
+      <edomvds>GeMS</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Carbonate rock</edomv>
+      <edomvd>Sedimentary rock, consisting chiefly of carbonate minerals such as limestone or dolomite.</edomvd>
+      <edomvds>GeMS</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Silt and clay of unspecified origin</edomv>
+      <edomvd>Sediment composed mostly of silt and (or) clay, formed by weathering and erosion of preexisting rocks or minerals; eroded particles or clasts are transported and deposited by gravity, air, water, or ice.</edomvd>
+      <edomvds>GeMS</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Playa sediment</edomv>
+      <edomvd>Fine-grained clastic sediment and evaporitic salts, deposited in ephemeral lakes in centers of undrained basins. Includes material deposited in playas, mud flats, salt flats, and adjacent saline marshes. Generally interbedded with eolian sand and with lacustrine sediment deposited during wetter climatic periods; commonly intertongues upslope with sediment deposited by alluvial fans.</edomvd>
+      <edomvds>GeMS</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Fine-grained, intermediate-composition intrusive igneous rock</edomv>
+      <edomvd>Rock that solidified from molten or partly molten material (magma) at shallow depth beneath Earths surface, thereby cooling quickly. Generally fine grained but may contain large mineral crystals (phenocrysts). Mostly found as tabular dikes or sills. Intermediate in color and in mineral composition (between felsic and mafic igneous rock). Includes andesitic rock.</edomvd>
+      <edomvds>GeMS</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Alluvial sediment, mostly fine-grained</edomv>
+      <edomvd>Unconsolidated material deposited by streams or other bodies of running water as sorted or semisorted sediment in streambed, or on its floodplain or delta, or as cone or fan at base of mountain slope. Sediment is mostly silt and clay but may also contain some sand and gravel.</edomvd>
+      <edomvds>GeMS</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Eolian sediment</edomv>
+      <edomvd>Silt- and sand-sized sediment, deposited by wind.</edomvd>
+      <edomvds>GeMS</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Other materials</edomv>
+      <edomvd>Other materials</edomvd>
+      <edomvds>GeMS</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Quartzite</edomv>
+      <edomvd>Rock derived from preexisting quartz-rich sedimentary rocks (commonly sandstone) and altered by essentially solid-state mineralogical, chemical, or structural changes, in response to marked changes in temperature, pressure, shear stress, and (or) chemical environment, generally at depth in Earths crust.</edomvd>
+      <edomvds>GeMS</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Clastic sediment</edomv>
+      <edomvd>Sediment formed by weathering and erosion of preexisting rocks or minerals; eroded particles or clasts are transported and deposited by gravity, air, water, or ice.</edomvd>
+      <edomvds>GeMS</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Coastal zone sediment</edomv>
+      <edomvd>Mud and sand, with lesser amounts of gravel, deposited on beaches, on barrier islands, or in nearshore-marine, deltaic, or various low-energy shoreline (mud flat, tidal flat, sabka, algal flat) environments.</edomvd>
+      <edomvds>GeMS</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Lacustrine sediment, mostly coarse-grained</edomv>
+      <edomvd>Mostly well-sorted and well-bedded material, generally sand and gravel sized, with lesser amounts of silt and clay, deposited in perennial to intermittent lakes. Much of sediment is derived from material eroded and transported by streams. Mostly deposits of lake-marginal beaches and deltas.</edomvd>
+      <edomvds>GeMS</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Igneous rock</edomv>
+      <edomvd>Rock and fragmental material that solidified from molten or partly molten material (magma).</edomvd>
+      <edomvds>GeMS</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Metaigneous rock</edomv>
+      <edomvd>Rock derived from preexisting igneous rocks and altered by essentially solid-state, mineralogical, chemical, or structural changes, in response to marked changes in temperature, pressure, shear stress, and (or) chemical environment, generally at depth in Earths crust.</edomvd>
+      <edomvds>GeMS</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Air-fall tephra</edomv>
+      <edomvd>Fragments of volcanic rock and lava, of various sizes, carried into air by explosions and by hot gases in eruption columns or lava fountains; known as tephra. As tephra falls to ground, with increasing distance from volcano, average size of individual rock particles and thickness of resulting deposit decrease. Fine tephra deposited at some distance from volcano is known as volcanic ash.</edomvd>
+      <edomvds>GeMS</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Debris flows, landslides, and other localized mass-movement sediment</edomv>
+      <edomvd>Sediment formed by relatively localized, downslope transport of particles or clasts produced by weathering and breakdown of underlying rock, sediment, and (or) soil. Composed of poorly sorted and poorly stratified material that ranges in size from clay to boulders. Speed of downslope transport ranges from rapid to imperceptible.</edomvd>
+      <edomvds>GeMS</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Lower-grade metamorphic rock, of unspecified origin</edomv>
+      <edomvd>Rock derived from preexisting rocks and altered by essentially solid-state mineralogical, chemical, or structural changes, in response to relatively mild regional changes in temperature, pressure, deformation, and (or) chemical environment, generally at depth in Earths crust. Origin of preexisting rock is mixed (for example, igneous and sedimentary) or is not known. Includes slate and phyllite.</edomvd>
+      <edomvds>GeMS</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Sandstone and mudstone</edomv>
+      <edomvd>Sandstone and mudstone (including shale and siltstone), in approximately equal (or unspecified) proportions.</edomvd>
+      <edomvds>GeMS</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Meta-felsic and intermediate rock</edomv>
+      <edomvd>Rock derived from preexisting felsic and intermediate-composition rocks by essentially solid-state, mineralogical, chemical, or structural changes, in response to marked changes in temperature, pressure, deformation, and (or) chemical environment, generally at depth in Earths crust. Composed mostly of light-colored minerals; relatively enriched in silica. Includes metagranite, metadiorite, and meta-andesite.</edomvd>
+      <edomvds>GeMS</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Mudstone</edomv>
+      <edomvd>Sedimentary rock, composed predominantly of particles or clasts derived by erosion and weathering of preexisting rock; consists mostly of mud (that is, silt- and clay-sized particles). Includes shale and siltstone.</edomvd>
+      <edomvds>GeMS</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>"Made" or human-engineered land</edomv>
+      <edomvd>Modern, unconsolidated material known to have human-related origin.</edomvd>
+      <edomvds>GeMS</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Limestone</edomv>
+      <edomvd>Carbonate sedimentary rock, consisting chiefly of calcite.</edomvd>
+      <edomvds>GeMS</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Sedimentary rock</edomv>
+      <edomvd>Consolidated material (rock) composed of particles transported and deposited by gravity, air, water, or ice, or accumulated by other natural agents operating at Earths surface, such as chemical precipitation or secretion by organisms. Does not here include sedimentary material directly deposited as result of volcanic activity.</edomvd>
+      <edomvds>GeMS</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Meta-volcaniclastic rock</edomv>
+      <edomvd>Rock derived from preexisting volcaniclastic rocks by essentially solid-state, mineralogical, chemical, or structural changes, in response to marked changes in temperature, pressure, deformation, and (or) chemical environment, generally at depth in Earths crust. Composed of deformed but recognizable particles or clasts of volcanic explosive material.</edomvd>
+      <edomvds>GeMS</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Lacustrine sediment</edomv>
+      <edomvd>Mostly well-sorted and well-bedded material that ranges in grain size from clay to gravel, deposited in perennial to intermittent lakes. Much of sediment is derived from material eroded and transported by streams. Includes deposits of lake-marginal beaches and deltas.</edomvd>
+      <edomvds>GeMS</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Alluvial sediment</edomv>
+      <edomvd>Unconsolidated material deposited by streams or other bodies of running water as sorted or semisorted sediment in streambed, or on its floodplain or delta, or as cone or fan at base of mountain slope. Grain size varies from clay to gravel.</edomvd>
+      <edomvds>GeMS</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Sandstone</edomv>
+      <edomvd>Sedimentary rock, composed predominantly of particles or clasts derived by erosion and weathering of preexisting rock; consists mostly of sand-sized particles, with or without fine-grained matrix of silt or clay.</edomvd>
+      <edomvds>GeMS</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Intermediate-composition pyroclastic flows</edomv>
+      <edomvd>Hot ash, pumice, and rock fragments erupted from volcano. Material moves downslope commonly in chaotic flows; once deposited, hot fragments may compact under their own weight and weld together. Parental magma commonly erupts from stratovolcanoes as thick lava flows but also can generate strong explosive eruptions to form pyroclastic flows. Includes rocks that are, in color and mineral composition, intermediate between felsic and mafic rocks (for example, andesite).</edomvd>
+      <edomvds>GeMS</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Intrusive igneous rock</edomv>
+      <edomvd>Rock that solidified from molten or partly molten material (magma) below Earths surface.</edomvd>
+      <edomvds>GeMS</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Glacial till, mostly clayey</edomv>
+      <edomvd>Mostly unsorted and unstratified material, generally unconsolidated, deposited directly by and underneath or adjacent to glacier without subsequent reworking by meltwater. Consists of heterogeneous mixture of clay, silt, sand, gravel, and boulders, ranging widely in size and shape. Relatively clayey in texture.</edomvd>
+      <edomvds>GeMS</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Felsic-composition lava flows</edomv>
+      <edomvd>Lateral, surficial outpourings of molten lava from vent or fissure; also, solidified bodies of rock that form when they cool. Because of their high silica content and resulting high viscosity, parental magmas tend to erupt explosively, and so these deposits are uncommon. Includes fine-grained, light-colored rock with rhyolitic, dacitic, trachytic, and latitic composition.</edomvd>
+      <edomvds>GeMS</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Exotic-composition intrusive igneous rock</edomv>
+      <edomvd>Rock that solidified from molten or partly molten material (magma) below Earths surface that has exotic mineralogical, textural, or field setting characteristics. Typically dark colored with abundant phenocrysts. Includes kimberlite, lamprophyre, lamproite, and foiditic rocks.</edomvd>
+      <edomvds>GeMS</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Deformation-related metamorphic rock</edomv>
+      <edomvd>Rock derived from preexisting rocks by essentially solid-state mineralogical, chemical, or structural changes in response to strong deformation, commonly in association with marked changes in temperature, pressure, and (or) chemical environment. Generally forms in narrow, planar zones of local deformation (for example, along faults); characterized by foliation or alignment of mineral grains. Includes mylonite and cataclasite.</edomvd>
+      <edomvds>GeMS</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Ice-contact and ice-marginal sediment, mostly coarse-grained</edomv>
+      <edomvd>Mostly sand- and gravel-sized particles or clasts, with lesser amounts of silt and clay, derived from rock or preexisting sediment that has been eroded and transported by glaciers. As glacier melted, material was deposited by running water essentially in contact with glacial ice or was transported and deposited by glacially fed streams. Includes sediment deposited into water bodies adjacent to glacier.</edomvd>
+      <edomvds>GeMS</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Fine-grained, mafic-composition intrusive igneous rock</edomv>
+      <edomvd>Rock that solidified from molten or partly molten material (magma) at shallow depth beneath Earths surface, thereby cooling quickly. Generally fine grained but may contain large mineral crystals (phenocrysts). Mostly found as tabular dikes or sills. Composed mostly of dark-colored minerals. Includes basaltic rock.</edomvd>
+      <edomvds>GeMS</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Intermediate-composition lava flows</edomv>
+      <edomvd>Lateral, surficial outpourings of molten lava from vent or fissure; also, solidified bodies of rock that form when they cool. Parental magma commonly erupts from stratovolcanoes as thick lava flows. Includes rocks that are, in color and in mineral composition, intermediate between felsic and mafic rocks (for example, andesite).</edomvd>
+      <edomvds>GeMS</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Ice-contact and ice-marginal sediment</edomv>
+      <edomvd>Mostly sand-, silt-, and gravel-sized particles or clasts derived from rock or preexisting sediment that has been eroded and transported by glaciers. As glacier melted, material was deposited by running water essentially in contact with glacial ice or was transported and deposited by glacially fed streams. Includes sediment deposited into water bodies adjacent to glacier.</edomvd>
+      <edomvds>GeMS</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Fine-grained intrusive igneous rock</edomv>
+      <edomvd>Rock that solidified from molten or partly molten material (magma) at shallow depth beneath Earths surface, thereby cooling quickly. Generally fine grained but may contain large mineral crystals (phenocrysts). Mostly found as tabular dikes or sills.</edomvd>
+      <edomvds>GeMS</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Colluvium and other widespread mass-movement sediment</edomv>
+      <edomvd>Sediment formed by slow, relatively widespread, downslope transport of particles or clasts produced by weathering and breakdown of underlying rock, sediment, and (or) soil. Composed of poorly sorted and poorly stratified material that ranges in size from clay to boulders.</edomvd>
+      <edomvds>GeMS</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Alluvial sediment, mostly coarse-grained</edomv>
+      <edomvd>Unconsolidated material deposited by streams or other bodies of running water as sorted or semisorted sediment in streambed, or on its floodplain or delta, or as cone or fan at base of mountain slope. Sediment is mostly sand, gravel, and coarser material but may also contain some silt and clay.</edomvd>
+      <edomvds>GeMS</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Water or ice</edomv>
+      <edomvd>Water or ice</edomvd>
+      <edomvds>GeMS</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Conglomerate</edomv>
+      <edomvd>Sedimentary rock, composed predominantly of particles or clasts derived by erosion and weathering of preexisting rock; contains more than 30 percent gravel-sized clasts.</edomvd>
+      <edomvds>GeMS</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Pyroclastic flows</edomv>
+      <edomvd>Hot ash, pumice, and rock fragments erupted from volcano or caldera. Material moves downslope commonly in chaotic flows; once deposited, hot fragments may compact under their own weight and weld together.</edomvd>
+      <edomvds>GeMS</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Sedimentary material</edomv>
+      <edomvd>An aggregation of particles deposited by gravity, air, water, or ice, or as accumulated by other natural agents operating at Earths surface such as chemical precipitation or secretion by organisms. May include unconsolidated material (sediment) and (or) sedimentary rock. Does not include sedimentary material directly deposited as a result of volcanic activity.</edomvd>
+      <edomvds>GeMS</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Schist and gneiss, of sedimentary-rock origin</edomv>
+      <edomvd>Foliated rock derived from preexisting sedimentary rocks by essentially solid-state mineralogical, chemical, or structural changes in response to marked changes in temperature, pressure, deformation, and (or) chemical environment, generally at depth in Earths crust. Includes schist (characterized by such strong foliation or alignment of minerals that it readily splits into flakes or slabs) and gneiss (characterized by alternating, irregular bands of different mineral composition). Mostly formed from fine-grained material such as mudstone.</edomvd>
+      <edomvds>GeMS</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Intermediate-composition air-fall tephra</edomv>
+      <edomvd>Fragments of volcanic rock and lava, of various sizes, carried into the air by explosions and by hot gases in eruption columns or lava fountains; known as tephra. As tephra falls to ground, with increasing distance from volcano, average size of individual rock particles and thickness of resulting deposit decrease. Parental magma commonly erupts from stratovolcanoes as thick lava flows but also can generate strong explosive eruptions to form pyroclastic flows. Includes rocks that are, in color and mineral composition, intermediate between felsic and mafic rocks (for example, andesite).</edomvd>
+      <edomvds>GeMS</edomvds>
+    </edom>
+  </attrdomv>
+</attr>
+      <attr>
+        <attrlabl>IndentedName</attrlabl>
+        <attrdef>Name with addition of leading spaces to help show rank within a hierarchical list.</attrdef>
+        <attrdefs>GeMS</attrdefs>
+        <attrdomv><udom>Unrepresentable domain</udom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>Definition</attrlabl>
+        <attrdef>Plain-language definition.</attrdef>
+        <attrdefs>GeMS</attrdefs>
+        <attrdomv><udom>Unrepresentable domain</udom>
+        </attrdomv>
+      </attr>
+    </detailed>
+    <detailed>
+      <enttyp>
+        <enttypl>MapUnitPolys</enttypl>
+        <enttypd>Polygons that record distribution of map units (including water, snowfields, glaciers, and unmapped area) on the particular map horizon.  In the original file geodatabase, this dataset is found within the GeologicMap feature dataset.</enttypd>
+        <enttypds>GeMS</enttypds>
+      </enttyp>
+      <attr>
+        <attrlabl>OBJECTID</attrlabl>
+        <attrdef>Internal feature number</attrdef>
+        <attrdefs>ESRI</attrdefs>
+        <attrdomv>
+          <udom>Unrepresentable domain</udom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>Shape</attrlabl>
+        <attrdef>Internal geometry object</attrdef>
+        <attrdefs>ESRI</attrdefs>
+        <attrdomv><udom>Unrepresentable domain</udom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>Shape_Length</attrlabl>
+        <attrdef>Internal feature length, double</attrdef>
+        <attrdefs>ESRI</attrdefs>
+        <attrdomv><udom>Unrepresentable domain</udom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>Shape_Area</attrlabl>
+        <attrdef>Internal feature area, double</attrdef>
+        <attrdefs>ESRI</attrdefs>
+        <attrdomv><udom>Unrepresentable domain</udom>
+        </attrdomv>
+      </attr>
+      <attr>
+  <attrlabl>MapUnit</attrlabl><attrdef>Short plain-text identifier of the map unit. Foreign key to DescriptionOfMapUnits table.</attrdef><attrdefs>GeMS</attrdefs><attrdomv>
+    <edom>
+      <edomv>sp?</edomv>
+      <edomvd>Serpentinite</edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>fs2</edomv>
+      <edomvd>Lithic graywacke</edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>fms?</edomv>
+      <edomvd>Locally conglomeratic metagraywacke</edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Qoa?</edomv>
+      <edomvd>Uplifted alluvium</edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>rd</edomv>
+      <edomvd>Rodingite mineral assemblages</edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>QTc</edomv>
+      <edomvd>Clear Lake volcanics of Hearn and others, 1975</edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Tu</edomv>
+      <edomvd>Older fluvial and lacustrine deposits of Little Sulphur Creek</edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Tu?</edomv>
+      <edomvd>Older fluvial and lacustrine deposits of Little Sulphur Creek</edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Qls?</edomv>
+      <edomvd>Landslide deposits</edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>fsb</edomv>
+      <edomvd>Sedimentary breccia and conglomerate</edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>fm</edomv>
+      <edomvd>High-grade glaucophane schist, amphibolite, and eclogite</edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Ku</edomv>
+      <edomvd>Sandstone and mudstone</edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>fsr</edomv>
+      <edomvd>Melange Undifferentiated (structural unit 2)</edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Tvs?</edomv>
+      <edomvd>Sonoma Volcanics</edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>fg?</edomv>
+      <edomvd>Altered basaltic rocks (greenstone)</edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Jv</edomv>
+      <edomvd>Basaltic rocks</edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Jd</edomv>
+      <edomvd>Diabase</edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Qoa</edomv>
+      <edomvd>Uplifted alluvium</edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Qvt</edomv>
+      <edomvd>Coarse water-laid tuff</edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Qos</edomv>
+      <edomvd>Laminated lacustrine silts</edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Tgs</edomv>
+      <edomvd>Older fluvial deposits</edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Jc</edomv>
+      <edomvd>Tuffaceous chert</edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>sc?</edomv>
+      <edomvd>Silica carbonate rock</edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>fl</edomv>
+      <edomvd>Limestone</edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>fmsr</edomv>
+      <edomvd>Melange</edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Toa</edomv>
+      <edomvd>Older alluvium beneath Clear Lake volcanics</edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>fmg</edomv>
+      <edomvd>Greenstone</edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>QTc?</edomv>
+      <edomvd>Clear Lake volcanics of Hearn and others, 1975</edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>KJs?</edomv>
+      <edomvd>Mudstone</edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>fc?</edomv>
+      <edomvd>Chert and minor interbedded siliceous shale and tuff</edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>fmc</edomv>
+      <edomvd>Low blueschist grade metachert</edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Jgd</edomv>
+      <edomvd>Gabbro and diabase</edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>sp</edomv>
+      <edomvd>Serpentinite</edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>sc</edomv>
+      <edomvd>Silica carbonate rock</edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Qal</edomv>
+      <edomvd>Alluvial and lacustrine deposits</edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>KJs</edomv>
+      <edomvd>Mudstone</edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>mum</edomv>
+      <edomvd>Metamorphosed ultramafic rock</edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>fsb?</edomv>
+      <edomvd>Sedimentary breccia and conglomerate</edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Kl</edomv>
+      <edomvd>Sandstone and mudstone</edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>fsm</edomv>
+      <edomvd>Metasandstone and glaucophane-muscovite-quartz schist</edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>fm?</edomv>
+      <edomvd>High-grade glaucophane schist, amphibolite, and eclogite</edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>fg</edomv>
+      <edomvd>Altered basaltic rocks (greenstone)</edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Qt</edomv>
+      <edomvd>Alluvial and fluvial deposits</edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Jdb</edomv>
+      <edomvd>Diabase and diabase-basalt breccia</edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>fs</edomv>
+      <edomvd>Lithic graywacke</edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>fs1</edomv>
+      <edomvd>Graywacke of Little Sulphur Creek (structural unit 1)</edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Kul</edomv>
+      <edomvd>Limestone lens</edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>fsr?</edomv>
+      <edomvd>Melange Undifferentiated (structural unit 2)</edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Qls</edomv>
+      <edomvd>Landslide deposits</edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>water</edomv>
+      <edomvd>water</edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>fs2?</edomv>
+      <edomvd>Lithic graywacke</edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Tvs</edomv>
+      <edomvd>Sonoma Volcanics</edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>KJt</edomv>
+      <edomvd>Siliceous tuff</edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>fms</edomv>
+      <edomvd>Locally conglomeratic metagraywacke</edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>fc</edomv>
+      <edomvd>Chert and minor interbedded siliceous shale and tuff</edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+</attr>
+      <attr>
+  <attrlabl>IdentityConfidence</attrlabl><attrdef>Confidence that feature is correctly identified.</attrdef><attrdefs>GeMS</attrdefs><attrdomv>
+    <edom>
+      <edomv>certain</edomv>
+      <edomvd>Identity of a feature can be determined using relevant observations and scientific judgment; therefore, one can be reasonably confident in the credibility of this interpretation.</edomvd>
+      <edomvds>FGDC-Cartographic Standards</edomvds>
+    </edom>
+  </attrdomv>
+</attr>
+      <attr>
+        <attrlabl>Label</attrlabl>
+        <attrdef>Plain-text equivalent of the desired annotation for a feature: for example "14 Ma", or "^c" which (when used with the FGDC GeoAge font) results in the geologic map-unit label TRc (with TR run together to make the Triassic symbol).</attrdef>
+        <attrdefs>GeMS</attrdefs>
+        <attrdomv><udom>Unrepresentable domain</udom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>Symbol</attrlabl>
+        <attrdef>Reference to a point marker, line symbol, or area-fill symbol that is used on the map graphic to denote the feature: perhaps a star for a K-Ar age locality, or a heavy black line for a fault.</attrdef>
+        <attrdefs>GeMS</attrdefs>
+        <attrdomv><udom>Unrepresentable domain</udom>
+        </attrdomv>
+      </attr>
+      <attr>
+  <attrlabl>DataSourceID</attrlabl><attrdef>Source of data; foreign key to table DataSources.</attrdef><attrdefs>GeMS</attrdefs><attrdomv>
+    <edom>
+      <edomv>DAS01</edomv>
+      <edomvd>This study</edomvd>
+      <edomvds>This report</edomvds>
+    </edom>
+  </attrdomv>
+</attr>
+      <attr>
+        <attrlabl>Notes</attrlabl>
+        <attrdef>Additional information specific to a particular feature or table entry.</attrdef>
+        <attrdefs>GeMS</attrdefs>
+        <attrdomv><udom>Unrepresentable domain. Free text. Values of &lt;null&gt; or #null indicate no entry.</udom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>MapUnitPolys_ID</attrlabl>
+        <attrdef>Primary key.</attrdef>
+        <attrdefs>GeMS</attrdefs>
+        <attrdomv><udom>Arbitrary string. Values should be unique within this database.</udom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>OverlayPolys_ID</attrlabl>
+        <attrdef>Primary key.</attrdef>
+        <attrdefs>GeMS</attrdefs>
+        <attrdomv><udom>Arbitrary string. Values should be unique within this database.</udom>
+        </attrdomv>
+      </attr>
+    </detailed>
+    <detailed>
+      <enttyp>
+        <enttypl>OverlayPolys</enttypl>
+        <enttypd>Polygons that delineate underlying material, overlying material, or some aspect of earth materials other than the geologic map unit, e.g., dike swarm, alteration zone. On a map graphic, such polygons are commonly shown by a patterned overprint. In the original file geodatabase, this dataset is found within the GeologicMap feature dataset.</enttypd>
+        <enttypds>GeMS</enttypds>
+      </enttyp>
+      <attr>
+        <attrlabl>OBJECTID</attrlabl>
+        <attrdef>Internal feature number</attrdef>
+        <attrdefs>ESRI</attrdefs>
+        <attrdomv>
+          <udom>Unrepresentable domain</udom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>Shape</attrlabl>
+        <attrdef>Internal geometry object</attrdef>
+        <attrdefs>ESRI</attrdefs>
+        <attrdomv><udom>Unrepresentable domain</udom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>Shape_Length</attrlabl>
+        <attrdef>Internal feature length, double</attrdef>
+        <attrdefs>ESRI</attrdefs>
+        <attrdomv><udom>Unrepresentable domain</udom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>Shape_Area</attrlabl>
+        <attrdef>Internal feature area, double</attrdef>
+        <attrdefs>ESRI</attrdefs>
+        <attrdomv><udom>Unrepresentable domain</udom>
+        </attrdomv>
+      </attr>
+      <attr>
+  <attrlabl>Type</attrlabl><attrdef>Classifier that specifies what kind of geologic feature is represented by a database element: that a certain line within feature class ContactsAndFaults is a contact, or thrust fault, or water boundary; or that a point in GeochronPoints represents a K-Ar date.</attrdef><attrdefs>GeMS</attrdefs><attrdomv>
+    <edom>
+      <edomv>Shear zone</edomv>
+      <edomvd>A parallel-sided zone of localized shearing displacement, which may be recognized by sigmoidal mineral-filled veins, locally well-developed cleavage or foliation, wholesale grain-size reduction or mylonitization, or some combination of these features</edomvd>
+      <edomvds>American Geosciences Institute Glossary of Geology</edomvds>
+    </edom>
+  </attrdomv>
+</attr>
+      <attr>
+  <attrlabl>IdentityConfidence</attrlabl><attrdef>Confidence that feature is correctly identified.</attrdef><attrdefs>GeMS</attrdefs><attrdomv>
+    <edom>
+      <edomv>certain</edomv>
+      <edomvd>Identity of a feature can be determined using relevant observations and scientific judgment; therefore, one can be reasonably confident in the credibility of this interpretation.</edomvd>
+      <edomvds>FGDC-Cartographic Standards</edomvds>
+    </edom>
+  </attrdomv>
+</attr>
+      <attr>
+        <attrlabl>Label</attrlabl>
+        <attrdef>Plain-text equivalent of the desired annotation for a feature: for example "14 Ma", or "^c" which (when used with the FGDC GeoAge font) results in the geologic map-unit label TRc (with TR run together to make the Triassic symbol).</attrdef>
+        <attrdefs>GeMS</attrdefs>
+        <attrdomv><udom>Unrepresentable domain</udom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>Symbol</attrlabl>
+        <attrdef>Reference to a point marker, line symbol, or area-fill symbol that is used on the map graphic to denote the feature: perhaps a star for a K-Ar age locality, or a heavy black line for a fault.</attrdef>
+        <attrdefs>GeMS</attrdefs>
+        <attrdomv><udom>Unrepresentable domain</udom>
+        </attrdomv>
+      </attr>
+      <attr>
+  <attrlabl>DataSourceID</attrlabl><attrdef>Source of data; foreign key to table DataSources.</attrdef><attrdefs>GeMS</attrdefs><attrdomv>
+    <edom>
+      <edomv>DAS01</edomv>
+      <edomvd>This study</edomvd>
+      <edomvds>This report</edomvds>
+    </edom>
+  </attrdomv>
+</attr>
+      <attr>
+        <attrlabl>Notes</attrlabl>
+        <attrdef>Additional information specific to a particular feature or table entry.</attrdef>
+        <attrdefs>GeMS</attrdefs>
+        <attrdomv><udom>Unrepresentable domain. Free text. Values of &lt;null&gt; or #null indicate no entry.</udom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>OverlayPolys_ID</attrlabl>
+        <attrdef>Primary key.</attrdef>
+        <attrdefs>GeMS</attrdefs>
+        <attrdomv><udom>Arbitrary string. Values should be unique within this database.</udom>
+        </attrdomv>
+      </attr>
+    </detailed>
+    <detailed>
+      <enttyp>
+        <enttypl>ContactsAndFaults</enttypl>
+        <enttypd>Contacts between map units, faults that bound map units, and associated dangling faults. Includes concealed faults and contacts, waterlines, snowfield and glacier boundaries, and map boundary. In the original file geodatabase, this dataset is found within the GeologicMap feature dataset.</enttypd>
+        <enttypds>GeMS</enttypds>
+      </enttyp>
+      <attr>
+        <attrlabl>OBJECTID</attrlabl>
+        <attrdef>Internal feature number</attrdef>
+        <attrdefs>ESRI</attrdefs>
+        <attrdomv>
+          <udom>Unrepresentable domain</udom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>Shape</attrlabl>
+        <attrdef>Internal geometry object</attrdef>
+        <attrdefs>ESRI</attrdefs>
+        <attrdomv><udom>Unrepresentable domain</udom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>Shape_Length</attrlabl>
+        <attrdef>Internal feature length, double</attrdef>
+        <attrdefs>ESRI</attrdefs>
+        <attrdomv><udom>Unrepresentable domain</udom>
+        </attrdomv>
+      </attr>
+      <attr>
+  <attrlabl>Type</attrlabl><attrdef>Classifier that specifies what kind of geologic feature is represented by a database element: that a certain line within feature class ContactsAndFaults is a contact, or thrust fault, or water boundary; or that a point in GeochronPoints represents a K-Ar date.</attrdef><attrdefs>GeMS</attrdefs><attrdomv>
+    <edom>
+      <edomv>Reverse fault</edomv>
+      <edomvd>A fault on which the hanging wall has moved upward relative to the footwall. The dip of the fault is usually greater than 45°.</edomvd>
+      <edomvds>American Geosciences Institute Glossary of Geology</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Shoreline</edomv>
+      <edomvd>A line delineating the boundary of a body of water, such as a river, lake, or the ocean.</edomvd>
+      <edomvds>National Geologic Synthesis [a call from the National Cooperative Geologic Mapping Program (NCGMP)], 2022.</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>contact, scarp</edomv>
+      <edomvd>Contact denoting the boundary of a scarp.</edomvd>
+      <edomvds>This study</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Trench</edomv>
+      <edomvd>Closed depression</edomvd>
+      <edomvds>This study</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Scratch boundary</edomv>
+      <edomvd>Arbitrary, non-physical boundary between map units. For example, between an undivided unit and its subunits, or between different names for the same package of rocks.</edomvd>
+      <edomvds>National Geologic Synthesis [a call from the National Cooperative Geologic Mapping Program (NCGMP)], 2022.</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Contact</edomv>
+      <edomvd>Line denoting unfaulted [depositional, intrusive, metamorphic, etc.] boundary between two geologic map units</edomvd>
+      <edomvds>GeMS Geologic Map Data Schema</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>contact, pit</edomv>
+      <edomvd>Contact denoting the boundary of a pit.</edomvd>
+      <edomvds>This study</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Thrust fault</edomv>
+      <edomvd>A fault with a dip of 45° or less over much of its extent, on which the hanging wall has moved upward relative to the footwall.</edomvd>
+      <edomvds>American Geosciences Institute Glossary of Geology</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Map boundary</edomv>
+      <edomvd>The boundary of the map. Unmapped areas within the boundary must be specifically labeled as such.</edomvd>
+      <edomvds>National Geologic Synthesis [a call from the National Cooperative Geologic Mapping Program (NCGMP)], 2022.</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Fault</edomv>
+      <edomvd>A discrete surface or zone of discrete surfaces separating two rock masses across which one mass has slid past the other</edomvd>
+      <edomvds>American Geosciences Institute Glossary of Geology</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Lineament</edomv>
+      <edomvd>A linear feature that has been determined from aerial photographs or remotely sensed data but not identified on the ground.</edomvd>
+      <edomvds>FGDC-Cartographic Standards</edomvds>
+    </edom>
+  </attrdomv>
+</attr>
+      <attr>
+        <attrlabl>IsConcealed</attrlabl>
+        <attrdef>Flag for contacts and faults covered by overlying map unit.</attrdef>
+        <attrdefs>GeMS</attrdefs>
+        <attrdomv><udom>Unrepresentable domain</udom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>LocationConfidenceMeters</attrlabl>
+        <attrdef>Estimated half-width in meters of positional uncertainty envelope; position is relative to other features in database.</attrdef>
+        <attrdefs>GeMS</attrdefs>
+        <attrdomv><udom>Positive real number. Value of -9, -99, or -999 indicates value is unknown.</udom>
+        </attrdomv>
+      </attr>
+      <attr>
+  <attrlabl>ExistenceConfidence</attrlabl><attrdef>Confidence that feature exists.</attrdef><attrdefs>GeMS</attrdefs><attrdomv>
+    <edom>
+      <edomv>questionable</edomv>
+      <edomvd>Identity of a feature cannot be determined using relevant observations and scientific judgment; therefore, one cannot be reasonably confident in the credibility of this interpretation.</edomvd>
+      <edomvds>FGDC-Cartographic Standards</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>certain</edomv>
+      <edomvd>Identity of a feature can be determined using relevant observations and scientific judgment; therefore, one can be reasonably confident in the credibility of this interpretation.</edomvd>
+      <edomvds>FGDC-Cartographic Standards</edomvds>
+    </edom>
+  </attrdomv>
+</attr>
+      <attr>
+  <attrlabl>IdentityConfidence</attrlabl><attrdef>Confidence that feature is correctly identified.</attrdef><attrdefs>GeMS</attrdefs><attrdomv>
+    <edom>
+      <edomv>questionable</edomv>
+      <edomvd>Identity of a feature cannot be determined using relevant observations and scientific judgment; therefore, one cannot be reasonably confident in the credibility of this interpretation.</edomvd>
+      <edomvds>FGDC-Cartographic Standards</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>certain</edomv>
+      <edomvd>Identity of a feature can be determined using relevant observations and scientific judgment; therefore, one can be reasonably confident in the credibility of this interpretation.</edomvd>
+      <edomvds>FGDC-Cartographic Standards</edomvds>
+    </edom>
+  </attrdomv>
+</attr>
+      <attr>
+        <attrlabl>Label</attrlabl>
+        <attrdef>Plain-text equivalent of the desired annotation for a feature: for example "14 Ma", or "^c" which (when used with the FGDC GeoAge font) results in the geologic map-unit label TRc (with TR run together to make the Triassic symbol).</attrdef>
+        <attrdefs>GeMS</attrdefs>
+        <attrdomv><udom>Unrepresentable domain</udom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>Symbol</attrlabl>
+        <attrdef>Reference to a point marker, line symbol, or area-fill symbol that is used on the map graphic to denote the feature: perhaps a star for a K-Ar age locality, or a heavy black line for a fault.</attrdef>
+        <attrdefs>GeMS</attrdefs>
+        <attrdomv><udom>Unrepresentable domain</udom>
+        </attrdomv>
+      </attr>
+      <attr>
+  <attrlabl>DataSourceID</attrlabl><attrdef>Source of data; foreign key to table DataSources.</attrdef><attrdefs>GeMS</attrdefs><attrdomv>
+    <edom>
+      <edomv>DAS01</edomv>
+      <edomvd>This study</edomvd>
+      <edomvds>This report</edomvds>
+    </edom>
+  </attrdomv>
+</attr>
+      <attr>
+        <attrlabl>Notes</attrlabl>
+        <attrdef>Additional information specific to a particular feature or table entry.</attrdef>
+        <attrdefs>GeMS</attrdefs>
+        <attrdomv><udom>Unrepresentable domain. Free text. Values of &lt;null&gt; or #null indicate no entry.</udom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>ContactsAndFaults_ID</attrlabl>
+        <attrdef>Primary key.</attrdef>
+        <attrdefs>GeMS</attrdefs>
+        <attrdomv><udom>Arbitrary string. Values should be unique within this database.</udom>
+        </attrdomv>
+      </attr>
+    </detailed>
+    <detailed>
+      <enttyp>
+        <enttypl>CartographicLines</enttypl>
+        <enttypd>Lines (e.g., cross-section lines) that have no real-world physical existence, such that LocationConfidenceMeters, ExistenceConfidence, and IdentityConfidence attributes are meaningless, and that are never shown as concealed beneath a covering unit. In the original file geodatabase, this dataset is found within the GeologicMap feature dataset.</enttypd>
+        <enttypds>GeMS</enttypds>
+      </enttyp>
+      <attr>
+        <attrlabl>OBJECTID</attrlabl>
+        <attrdef>Internal feature number</attrdef>
+        <attrdefs>ESRI</attrdefs>
+        <attrdomv>
+          <udom>Unrepresentable domain</udom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>Shape</attrlabl>
+        <attrdef>Internal geometry object</attrdef>
+        <attrdefs>ESRI</attrdefs>
+        <attrdomv><udom>Unrepresentable domain</udom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>Shape_Length</attrlabl>
+        <attrdef>Internal feature length, double</attrdef>
+        <attrdefs>ESRI</attrdefs>
+        <attrdomv><udom>Unrepresentable domain</udom>
+        </attrdomv>
+      </attr>
+      <attr>
+  <attrlabl>Type</attrlabl><attrdef>Classifier that specifies what kind of geologic feature is represented by a database element: that a certain line within feature class ContactsAndFaults is a contact, or thrust fault, or water boundary; or that a point in GeochronPoints represents a K-Ar date.</attrdef><attrdefs>GeMS</attrdefs><attrdomv>
+    <edom>
+      <edomv>Landslide arrow</edomv>
+      <edomvd>Lines denoting the direction of flow or failure of a landslide</edomvd>
+      <edomvds>American Geosciences Institute Glossary of Geology</edomvds>
+    </edom>
+  </attrdomv>
+</attr>
+      <attr>
+        <attrlabl>Symbol</attrlabl>
+        <attrdef>Reference to a point marker, line symbol, or area-fill symbol that is used on the map graphic to denote the feature: perhaps a star for a K-Ar age locality, or a heavy black line for a fault.</attrdef>
+        <attrdefs>GeMS</attrdefs>
+        <attrdomv><udom>Unrepresentable domain</udom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>Label</attrlabl>
+        <attrdef>Plain-text equivalent of the desired annotation for a feature: for example "14 Ma", or "^c" which (when used with the FGDC GeoAge font) results in the geologic map-unit label TRc (with TR run together to make the Triassic symbol).</attrdef>
+        <attrdefs>GeMS</attrdefs>
+        <attrdomv><udom>Unrepresentable domain</udom>
+        </attrdomv>
+      </attr>
+      <attr>
+  <attrlabl>DataSourceID</attrlabl><attrdef>Source of data; foreign key to table DataSources.</attrdef><attrdefs>GeMS</attrdefs><attrdomv>
+    <edom>
+      <edomv>DAS01</edomv>
+      <edomvd>This study</edomvd>
+      <edomvds>This report</edomvds>
+    </edom>
+  </attrdomv>
+</attr>
+      <attr>
+        <attrlabl>Notes</attrlabl>
+        <attrdef>Additional information specific to a particular feature or table entry.</attrdef>
+        <attrdefs>GeMS</attrdefs>
+        <attrdomv><udom>Unrepresentable domain. Free text. Values of &lt;null&gt; or #null indicate no entry.</udom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>CartographicLines_ID</attrlabl>
+        <attrdef>Primary key.</attrdef>
+        <attrdefs>GeMS</attrdefs>
+        <attrdomv><udom>Arbitrary string. Values should be unique within this database.</udom>
+        </attrdomv>
+      </attr>
+    </detailed>
+    <detailed>
+      <enttyp>
+        <enttypl>OrientationPoints</enttypl>
+        <enttypd>Point structure data (e.g., bedding attitudes, foliation attitudes, slip vectors measured at a point, etc.), one point per measurement. Multiple measurements at a single station (e.g., bedding and cleavage) should have the same StationsID. In the original file geodatabase, this dataset is found within the GeologicMap feature dataset.</enttypd>
+        <enttypds>GeMS</enttypds>
+      </enttyp>
+      <attr>
+        <attrlabl>OBJECTID</attrlabl>
+        <attrdef>Internal feature number</attrdef>
+        <attrdefs>ESRI</attrdefs>
+        <attrdomv>
+          <udom>Unrepresentable domain</udom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>Shape</attrlabl>
+        <attrdef>Internal geometry object</attrdef>
+        <attrdefs>ESRI</attrdefs>
+        <attrdomv><udom>Unrepresentable domain</udom>
+        </attrdomv>
+      </attr>
+      <attr>
+  <attrlabl>Type</attrlabl><attrdef>Classifier that specifies what kind of geologic feature is represented by a database element: that a certain line within feature class ContactsAndFaults is a contact, or thrust fault, or water boundary; or that a point in GeochronPoints represents a K-Ar date.</attrdef><attrdefs>GeMS</attrdefs><attrdomv>
+    <edom>
+      <edomv>Lineation on planar surface, showing bearing and plunge</edomv>
+      <edomvd>A general, nongeneric term for a locally linear structure or fabric in a rock, e.g. flow lines, scratches, striae, slickensides or slickenfibers on a single surface; linear arrangements of components in sediments; or axes of folds. Lineation in metamorphic rocks includes aligned rod-shaped and/or elongate minerals grains, crenulation fold axes, and the lines of intersection between bedding and cleavage or any two sets of oriented surfaces. Orientation defined by bearing and plunge parallel to elongation direction.</edomvd>
+      <edomvds>American Geosciences Institute Glossary of Geology</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Flow structure</edomv>
+      <edomvd>Flow structure or primary layering defined by crystal size gradation or mineral segregation</edomvd>
+      <edomvds>This study</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Inclined bedding with way up indicator</edomv>
+      <edomvd>Bedding that is tilted away from horizontal, where original top-to-bottom orientation of strata is preserved by internal features (such as graded bedding, cross-bedding, ripple marks, or fossil orientation). The term denotes that not only is the attitude of bedding inclined, but the “way-up” of the succession can be determined with confidence, allowing recognition of structural overturning, younging direction, or correct stratigraphic facing.</edomvd>
+      <edomvds>This study</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Overturned flow structure with way-up indicator</edomv>
+      <edomvd>Flow structure where the dip of the bedding planes is nonhorizontal and tilted beyond the perpendicular such that the sequence of strata thus appears reversed</edomvd>
+      <edomvds>T | A</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Minor fold, showing axial trace</edomv>
+      <edomvd>Axial trace of small-scale folds</edomvd>
+      <edomvds>This study</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Minor fold, showing bearing and plunge</edomv>
+      <edomvd>Bearing of axial trace of small-scale folds</edomvd>
+      <edomvds>This study</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Inclined bedding</edomv>
+      <edomvd>Layers of sedimentary rock where the dip of the bedding planes is nonhorizontal, typically greater than 10 degrees, as measured from a horizontal plane, perpendicular to the strike of the beds.</edomvd>
+      <edomvds>American Geosciences Institute Glossary of Geology</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Vertical bedding</edomv>
+      <edomvd>Layers of sedimentary rock where the dip of the bedding planes is tilted to vertical, perpendicular to a horizontal plane. Dip measured from a horizontal plane, perpendicular to the strike of the beds.</edomvd>
+      <edomvds>A | N</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Vertical foliation</edomv>
+      <edomvd>The orientation of the metamorphic or tectonic fabric within a rock</edomvd>
+      <edomvds>This study</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Overturned bedding</edomv>
+      <edomvd>Layers of sedimentary rock where the dip of the bedding planes is nonhorizontal and tilted beyond the perpendicular such that the sequence of strata thus appears reversed. Dip measured from a horizontal plane, perpendicular to the strike of the beds.</edomvd>
+      <edomvds>A | N</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Overturned bedding with way up indicator</edomv>
+      <edomvd>A small-scale fold that is associated with or related to the major fold of an area. Orientation defined by bearing and plunge parallel to fold axis.</edomvd>
+      <edomvds>This study</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Flow structure with way-up indicator</edomv>
+      <edomvd>Flow structure where ball indicates tops of flows where known from sedimentary features</edomvd>
+      <edomvds>This study</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Dip arrow</edomv>
+      <edomvd>Inclination of a contact or fault.</edomvd>
+      <edomvds>This study</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Crumpled bedding</edomv>
+      <edomvd>Inclined crenulated, warped, undulatory, or contorted bedding—Showing approximate strike and dip</edomvd>
+      <edomvds>FGDC-Cartographic Standards</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Approximate attitude of lithologic unit</edomv>
+      <edomvd>Approximate orientation of inclined bedding, showing approximate strike and dip direction. Determined from air photos or far away observations</edomvd>
+      <edomvds>T | G</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Vertical bedding with way up indicator</edomv>
+      <edomvd>Vertical bedding, where original top-to-bottom orientation of strata is preserved by internal features (such as graded bedding, cross-bedding, ripple marks, or fossil orientation). The term denotes that not only is the attitude of bedding inclined, but the “way-up” of the succession can be determined with confidence, allowing recognition of structural overturning, younging direction, or correct stratigraphic facing.</edomvd>
+      <edomvds>This study</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Inclined foliation</edomv>
+      <edomvd>The orientation of the metamorphic or tectonic fabric within a rock</edomvd>
+      <edomvds>This study</edomvds>
+    </edom>
+  </attrdomv>
+</attr>
+      <attr>
+        <attrlabl>Azimuth</attrlabl>
+        <attrdef>Strike or trend, measured in degrees clockwise from geographic North. Use right-hand rule (dip is to right of azimuth direction). Horizontal planar features may have any azimuth.</attrdef>
+        <attrdefs>GeMS</attrdefs>
+        <attrdomv><rdom>
+            <rdommin>0</rdommin>
+            <rdommax>360</rdommax>
+            <attrunit>degrees (angular measure)</attrunit>
+          </rdom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>Inclination</attrlabl>
+        <attrdef>Dip or plunge, measured in degrees down from horizontal. Negative values allowed when specifying vectors (not axes) that point above the horizon, e.g., paleocurrents. Types defined as horizontal (e.g., horizontal bedding) shall have Inclination=0.</attrdef>
+        <attrdefs>GeMS</attrdefs>
+        <attrdomv><rdom>
+            <rdommin>-90</rdommin>
+            <rdommax>90</rdommax>
+            <attrunit>degrees (angular measure)</attrunit>
+          </rdom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>Symbol</attrlabl>
+        <attrdef>Reference to a point marker, line symbol, or area-fill symbol that is used on the map graphic to denote the feature: perhaps a star for a K-Ar age locality, or a heavy black line for a fault.</attrdef>
+        <attrdefs>GeMS</attrdefs>
+        <attrdomv><udom>Unrepresentable domain</udom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>Label</attrlabl>
+        <attrdef>Plain-text equivalent of the desired annotation for a feature: for example "14 Ma", or "^c" which (when used with the FGDC GeoAge font) results in the geologic map-unit label TRc (with TR run together to make the Triassic symbol).</attrdef>
+        <attrdefs>GeMS</attrdefs>
+        <attrdomv><udom>Unrepresentable domain</udom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>LocationConfidenceMeters</attrlabl>
+        <attrdef>Estimated half-width in meters of positional uncertainty envelope; position is relative to other features in database.</attrdef>
+        <attrdefs>GeMS</attrdefs>
+        <attrdomv><udom>Positive real number. Value of -9, -99, or -999 indicates value is unknown.</udom>
+        </attrdomv>
+      </attr>
+      <attr>
+  <attrlabl>IdentityConfidence</attrlabl><attrdef>Confidence that feature is correctly identified.</attrdef><attrdefs>GeMS</attrdefs><attrdomv>
+    <edom>
+      <edomv>questionable</edomv>
+      <edomvd>Identity of a feature cannot be determined using relevant observations and scientific judgment; therefore, one cannot be reasonably confident in the credibility of this interpretation.</edomvd>
+      <edomvds>FGDC-Cartographic Standards</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>certain</edomv>
+      <edomvd>Identity of a feature can be determined using relevant observations and scientific judgment; therefore, one can be reasonably confident in the credibility of this interpretation.</edomvd>
+      <edomvds>FGDC-Cartographic Standards</edomvds>
+    </edom>
+  </attrdomv>
+</attr>
+      <attr>
+        <attrlabl>OrientationConfidenceDegrees</attrlabl>
+        <attrdef>Estimated angular precision of combined azimuth AND inclination measurements, in degrees.</attrdef>
+        <attrdefs>GeMS</attrdefs>
+        <attrdomv><udom>Positive real number. Value of -9, -99, or -999 indicates value is unknown.</udom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>PlotAtScale</attrlabl>
+        <attrdef>At what scale (or larger) should this observation or analysis be plotted? At smaller scales, it should not be plotted. Useful to prevent crowding of display at small scales and to display progressively more data at larger and larger scales. Value is scale denominator.</attrdef>
+        <attrdefs>GeMS</attrdefs>
+        <attrdomv><udom>Positive real number.</udom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>StationsID</attrlabl>
+        <attrdef>Foreign key to Stations point feature class.</attrdef>
+        <attrdefs>GeMS</attrdefs>
+        <attrdomv><udom>Unrepresentable domain</udom>
+        </attrdomv>
+      </attr>
+      <attr>
+  <attrlabl>MapUnit</attrlabl><attrdef>Short plain-text identifier of the map unit. Foreign key to DescriptionOfMapUnits table.</attrdef><attrdefs>GeMS</attrdefs><attrdomv>
+    <edom>
+      <edomv>sp?</edomv>
+      <edomvd>Serpentinite</edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>fs2</edomv>
+      <edomvd>Lithic graywacke</edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>QTc</edomv>
+      <edomvd>Clear Lake volcanics of Hearn and others, 1975</edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Tu</edomv>
+      <edomvd>Older fluvial and lacustrine deposits of Little Sulphur Creek</edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>fsb</edomv>
+      <edomvd>Sedimentary breccia and conglomerate</edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Ku</edomv>
+      <edomvd>Sandstone and mudstone</edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>fsr</edomv>
+      <edomvd>Melange Undifferentiated (structural unit 2)</edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Tvs?</edomv>
+      <edomvd>Sonoma Volcanics</edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Jv</edomv>
+      <edomvd>Basaltic rocks</edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Jd</edomv>
+      <edomvd>Diabase</edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Qoa</edomv>
+      <edomvd>Uplifted alluvium</edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Qvt</edomv>
+      <edomvd>Coarse water-laid tuff</edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Jc</edomv>
+      <edomvd>Tuffaceous chert</edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Tgs</edomv>
+      <edomvd>Older fluvial deposits</edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>fmsr</edomv>
+      <edomvd>Melange</edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>fmg</edomv>
+      <edomvd>Greenstone</edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>fmc</edomv>
+      <edomvd>Low blueschist grade metachert</edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Jgd</edomv>
+      <edomvd>Gabbro and diabase</edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>KJs</edomv>
+      <edomvd>Mudstone</edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Qal</edomv>
+      <edomvd>Alluvial and lacustrine deposits</edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>sp</edomv>
+      <edomvd>Serpentinite</edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>sc</edomv>
+      <edomvd>Silica carbonate rock</edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>mum</edomv>
+      <edomvd>Metamorphosed ultramafic rock</edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Kl</edomv>
+      <edomvd>Sandstone and mudstone</edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>fg</edomv>
+      <edomvd>Altered basaltic rocks (greenstone)</edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Qt</edomv>
+      <edomvd>Alluvial and fluvial deposits</edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Jdb</edomv>
+      <edomvd>Diabase and diabase-basalt breccia</edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>fs</edomv>
+      <edomvd>Lithic graywacke</edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>fs1</edomv>
+      <edomvd>Graywacke of Little Sulphur Creek (structural unit 1)</edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Qls</edomv>
+      <edomvd>Landslide deposits</edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Tvs</edomv>
+      <edomvd>Sonoma Volcanics</edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>KJt</edomv>
+      <edomvd>Siliceous tuff</edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>fms</edomv>
+      <edomvd>Locally conglomeratic metagraywacke</edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>fc</edomv>
+      <edomvd>Chert and minor interbedded siliceous shale and tuff</edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+</attr>
+      <attr>
+  <attrlabl>LocationSourceID</attrlabl><attrdef>Source of location; foreign key to table DataSources.</attrdef><attrdefs>GeMS</attrdefs><attrdomv>
+    <edom>
+      <edomv>DAS01</edomv>
+      <edomvd>This study</edomvd>
+      <edomvds>This report</edomvds>
+    </edom>
+  </attrdomv>
+</attr>
+      <attr>
+  <attrlabl>OrientationSourceID</attrlabl><attrdef>Source of orientation data; foreign key to table DataSources.</attrdef><attrdefs>GeMS</attrdefs><attrdomv>
+    <edom>
+      <edomv>DAS01</edomv>
+      <edomvd>This study</edomvd>
+      <edomvds>This report</edomvds>
+    </edom>
+  </attrdomv>
+</attr>
+      <attr>
+        <attrlabl>Notes</attrlabl>
+        <attrdef>Additional information specific to a particular feature or table entry.</attrdef>
+        <attrdefs>GeMS</attrdefs>
+        <attrdomv><udom>Unrepresentable domain. Free text. Values of &lt;null&gt; or #null indicate no entry.</udom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>OrientationPoints_ID</attrlabl>
+        <attrdef>Primary key.</attrdef>
+        <attrdefs>GeMS</attrdefs>
+        <attrdomv><udom>Arbitrary string. Values should be unique within this database.</udom>
+        </attrdomv>
+      </attr>
+    </detailed>
+    <detailed>
+      <enttyp>
+        <enttypl>MapUnitPoints</enttypl>
+        <enttypd>Points that record distribution of map units of point-like extent on the particular map horizon.  In the original file geodatabase, this dataset is found within the GeologicMap feature dataset.</enttypd>
+        <enttypds>GeMS</enttypds>
+      </enttyp>
+      <attr>
+        <attrlabl>OBJECTID</attrlabl>
+        <attrdef>Internal feature number</attrdef>
+        <attrdefs>ESRI</attrdefs>
+        <attrdomv>
+          <udom>Unrepresentable domain</udom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>Shape</attrlabl>
+        <attrdef>Internal geometry object</attrdef>
+        <attrdefs>ESRI</attrdefs>
+        <attrdomv><udom>Unrepresentable domain</udom>
+        </attrdomv>
+      </attr>
+      <attr>
+  <attrlabl>MapUnit</attrlabl><attrdef>Short plain-text identifier of the map unit. Foreign key to DescriptionOfMapUnits table.</attrdef><attrdefs>GeMS</attrdefs><attrdomv>
+    <edom>
+      <edomv>sp?</edomv>
+      <edomvd>Serpentinite</edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>fs2</edomv>
+      <edomvd>Lithic graywacke</edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>fms?</edomv>
+      <edomvd>Locally conglomeratic metagraywacke</edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Qoa?</edomv>
+      <edomvd>Uplifted alluvium</edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>rd</edomv>
+      <edomvd>Rodingite mineral assemblages</edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>QTc</edomv>
+      <edomvd>Clear Lake volcanics of Hearn and others, 1975</edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Tu</edomv>
+      <edomvd>Older fluvial and lacustrine deposits of Little Sulphur Creek</edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Qls?</edomv>
+      <edomvd>Landslide deposits</edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Tu?</edomv>
+      <edomvd>Older fluvial and lacustrine deposits of Little Sulphur Creek</edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>fsb</edomv>
+      <edomvd>Sedimentary breccia and conglomerate</edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>fm</edomv>
+      <edomvd>High-grade glaucophane schist, amphibolite, and eclogite</edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Ku</edomv>
+      <edomvd>Sandstone and mudstone</edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>fsr</edomv>
+      <edomvd>Melange Undifferentiated (structural unit 2)</edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Tvs?</edomv>
+      <edomvd>Sonoma Volcanics</edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Qtf</edomv>
+      <edomvd>Fan and Terrace deposits</edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>fg?</edomv>
+      <edomvd>Altered basaltic rocks (greenstone)</edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Jv</edomv>
+      <edomvd>Basaltic rocks</edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Jd</edomv>
+      <edomvd>Diabase</edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Qoa</edomv>
+      <edomvd>Uplifted alluvium</edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Qvt</edomv>
+      <edomvd>Coarse water-laid tuff</edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Qos</edomv>
+      <edomvd>Laminated lacustrine silts</edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Jc</edomv>
+      <edomvd>Tuffaceous chert</edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Tgs</edomv>
+      <edomvd>Older fluvial deposits</edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>fl</edomv>
+      <edomvd>Limestone</edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>sc?</edomv>
+      <edomvd>Silica carbonate rock</edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>fmsr</edomv>
+      <edomvd>Melange</edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Toa</edomv>
+      <edomvd>Older alluvium beneath Clear Lake volcanics</edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>fmg</edomv>
+      <edomvd>Greenstone</edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>QTc?</edomv>
+      <edomvd>Clear Lake volcanics of Hearn and others, 1975</edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>KJs?</edomv>
+      <edomvd>Mudstone</edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>fc?</edomv>
+      <edomvd>Chert and minor interbedded siliceous shale and tuff</edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>fmc</edomv>
+      <edomvd>Low blueschist grade metachert</edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Jgd</edomv>
+      <edomvd>Gabbro and diabase</edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>sp</edomv>
+      <edomvd>Serpentinite</edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Qal</edomv>
+      <edomvd>Alluvial and lacustrine deposits</edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>sc</edomv>
+      <edomvd>Silica carbonate rock</edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>KJs</edomv>
+      <edomvd>Mudstone</edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>mum</edomv>
+      <edomvd>Metamorphosed ultramafic rock</edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Kl</edomv>
+      <edomvd>Sandstone and mudstone</edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>fsb?</edomv>
+      <edomvd>Sedimentary breccia and conglomerate</edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>fsm</edomv>
+      <edomvd>Metasandstone and glaucophane-muscovite-quartz schist</edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>fm?</edomv>
+      <edomvd>High-grade glaucophane schist, amphibolite, and eclogite</edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>fg</edomv>
+      <edomvd>Altered basaltic rocks (greenstone)</edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Qt</edomv>
+      <edomvd>Alluvial and fluvial deposits</edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Jdb</edomv>
+      <edomvd>Diabase and diabase-basalt breccia</edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>fs</edomv>
+      <edomvd>Lithic graywacke</edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>fs1</edomv>
+      <edomvd>Graywacke of Little Sulphur Creek (structural unit 1)</edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Kul</edomv>
+      <edomvd>Limestone lens</edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>fsr?</edomv>
+      <edomvd>Melange Undifferentiated (structural unit 2)</edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Qls</edomv>
+      <edomvd>Landslide deposits</edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>water</edomv>
+      <edomvd>water</edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>fs2?</edomv>
+      <edomvd>Lithic graywacke</edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Tvs</edomv>
+      <edomvd>Sonoma Volcanics</edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>KJt</edomv>
+      <edomvd>Siliceous tuff</edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>fms</edomv>
+      <edomvd>Locally conglomeratic metagraywacke</edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>fc</edomv>
+      <edomvd>Chert and minor interbedded siliceous shale and tuff</edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+</attr>
+      <attr>
+        <attrlabl>LocationConfidenceMeters</attrlabl>
+        <attrdef>Estimated half-width in meters of positional uncertainty envelope; position is relative to other features in database.</attrdef>
+        <attrdefs>GeMS</attrdefs>
+        <attrdomv><udom>Positive real number. Value of -9, -99, or -999 indicates value is unknown.</udom>
+        </attrdomv>
+      </attr>
+      <attr>
+  <attrlabl>ExistenceConfidence</attrlabl><attrdef>Confidence that feature exists.</attrdef><attrdefs>GeMS</attrdefs><attrdomv>
+    <edom>
+      <edomv>certain</edomv>
+      <edomvd>Identity of a feature can be determined using relevant observations and scientific judgment; therefore, one can be reasonably confident in the credibility of this interpretation.</edomvd>
+      <edomvds>FGDC-Cartographic Standards</edomvds>
+    </edom>
+  </attrdomv>
+</attr>
+      <attr>
+  <attrlabl>IdentityConfidence</attrlabl><attrdef>Confidence that feature is correctly identified.</attrdef><attrdefs>GeMS</attrdefs><attrdomv>
+    <edom>
+      <edomv>certain</edomv>
+      <edomvd>Identity of a feature can be determined using relevant observations and scientific judgment; therefore, one can be reasonably confident in the credibility of this interpretation.</edomvd>
+      <edomvds>FGDC-Cartographic Standards</edomvds>
+    </edom>
+  </attrdomv>
+</attr>
+      <attr>
+        <attrlabl>Label</attrlabl>
+        <attrdef>Plain-text equivalent of the desired annotation for a feature: for example "14 Ma", or "^c" which (when used with the FGDC GeoAge font) results in the geologic map-unit label TRc (with TR run together to make the Triassic symbol).</attrdef>
+        <attrdefs>GeMS</attrdefs>
+        <attrdomv><udom>Unrepresentable domain</udom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>Symbol</attrlabl>
+        <attrdef>Reference to a point marker, line symbol, or area-fill symbol that is used on the map graphic to denote the feature: perhaps a star for a K-Ar age locality, or a heavy black line for a fault.</attrdef>
+        <attrdefs>GeMS</attrdefs>
+        <attrdomv><udom>Unrepresentable domain</udom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>PlotAtScale</attrlabl>
+        <attrdef>At what scale (or larger) should this observation or analysis be plotted? At smaller scales, it should not be plotted. Useful to prevent crowding of display at small scales and to display progressively more data at larger and larger scales. Value is scale denominator.</attrdef>
+        <attrdefs>GeMS</attrdefs>
+        <attrdomv><udom>Positive real number.</udom>
+        </attrdomv>
+      </attr>
+      <attr>
+  <attrlabl>DataSourceID</attrlabl><attrdef>Source of data; foreign key to table DataSources.</attrdef><attrdefs>GeMS</attrdefs><attrdomv>
+    <edom>
+      <edomv>DAS01</edomv>
+      <edomvd>This study</edomvd>
+      <edomvds>This report</edomvds>
+    </edom>
+  </attrdomv>
+</attr>
+      <attr>
+        <attrlabl>Notes</attrlabl>
+        <attrdef>Additional information specific to a particular feature or table entry.</attrdef>
+        <attrdefs>GeMS</attrdefs>
+        <attrdomv><udom>Unrepresentable domain. Free text. Values of &lt;null&gt; or #null indicate no entry.</udom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>MapUnitPoints_ID</attrlabl>
+        <attrdef>Primary key.</attrdef>
+        <attrdefs>GeMS</attrdefs>
+        <attrdomv><udom>Arbitrary string. Values should be unique within this database.</udom>
+        </attrdomv>
+      </attr>
+    </detailed>
+    <detailed>
+      <enttyp>
+        <enttypl>GeologicLines</enttypl>
+        <enttypd>Lines that represent dikes, coal seams, ash beds, fold hinge-surface traces, isograds, and other linear features. All have these properties: (A) They do not participate in map-unit topology. (B) They correspond to features that exist within the Earth and may be concealed beneath younger, covering, material. (C) They are located with an accuracy that likely can be estimated. In the original file geodatabase, this dataset is found within the GeologicMap feature dataset.</enttypd>
+        <enttypds>GeMS</enttypds>
+      </enttyp>
+      <attr>
+        <attrlabl>OBJECTID</attrlabl>
+        <attrdef>Internal feature number</attrdef>
+        <attrdefs>ESRI</attrdefs>
+        <attrdomv>
+          <udom>Unrepresentable domain</udom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>Shape</attrlabl>
+        <attrdef>Internal geometry object</attrdef>
+        <attrdefs>ESRI</attrdefs>
+        <attrdomv><udom>Unrepresentable domain</udom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>Shape_Length</attrlabl>
+        <attrdef>Internal feature length, double</attrdef>
+        <attrdefs>ESRI</attrdefs>
+        <attrdomv><udom>Unrepresentable domain</udom>
+        </attrdomv>
+      </attr>
+      <attr>
+  <attrlabl>Type</attrlabl><attrdef>Classifier that specifies what kind of geologic feature is represented by a database element: that a certain line within feature class ContactsAndFaults is a contact, or thrust fault, or water boundary; or that a point in GeochronPoints represents a K-Ar date.</attrdef><attrdefs>GeMS</attrdefs><attrdomv>
+    <edom>
+      <edomv>Trench</edomv>
+      <edomvd>Closed depression</edomvd>
+      <edomvds>This study</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Plunging syncline</edomv>
+      <edomvd>A syncline in which the hinge line (axis) is inclined from the horizontal, so that the fold plunges into the subsurface.</edomvd>
+      <edomvds>This study</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Plunging anticline</edomv>
+      <edomvd>An anticline in which the hinge line (axis) is inclined from the horizontal, so that the fold plunges into the subsurface.</edomvd>
+      <edomvds>This study</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Anticline</edomv>
+      <edomvd>A fold in which the core contains the stratigraphically older rocks; generally convex upwards</edomvd>
+      <edomvds>American Geosciences Institute Glossary of Geology</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Syncline</edomv>
+      <edomvd>A fold in which the core contains the stratigraphically younger rocks; generally concave upwards</edomvd>
+      <edomvds>American Geosciences Institute Glossary of Geology</edomvds>
+    </edom>
+  </attrdomv>
+</attr>
+      <attr>
+        <attrlabl>IsConcealed</attrlabl>
+        <attrdef>Flag for contacts and faults covered by overlying map unit.</attrdef>
+        <attrdefs>GeMS</attrdefs>
+        <attrdomv><udom>Unrepresentable domain</udom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>LocationConfidenceMeters</attrlabl>
+        <attrdef>Estimated half-width in meters of positional uncertainty envelope; position is relative to other features in database.</attrdef>
+        <attrdefs>GeMS</attrdefs>
+        <attrdomv><udom>Positive real number. Value of -9, -99, or -999 indicates value is unknown.</udom>
+        </attrdomv>
+      </attr>
+      <attr>
+  <attrlabl>ExistenceConfidence</attrlabl><attrdef>Confidence that feature exists.</attrdef><attrdefs>GeMS</attrdefs><attrdomv>
+    <edom>
+      <edomv>certain</edomv>
+      <edomvd>Identity of a feature can be determined using relevant observations and scientific judgment; therefore, one can be reasonably confident in the credibility of this interpretation.</edomvd>
+      <edomvds>FGDC-Cartographic Standards</edomvds>
+    </edom>
+  </attrdomv>
+</attr>
+      <attr>
+  <attrlabl>IdentityConfidence</attrlabl><attrdef>Confidence that feature is correctly identified.</attrdef><attrdefs>GeMS</attrdefs><attrdomv>
+    <edom>
+      <edomv>questionable</edomv>
+      <edomvd>Identity of a feature cannot be determined using relevant observations and scientific judgment; therefore, one cannot be reasonably confident in the credibility of this interpretation.</edomvd>
+      <edomvds>FGDC-Cartographic Standards</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>certain</edomv>
+      <edomvd>Identity of a feature can be determined using relevant observations and scientific judgment; therefore, one can be reasonably confident in the credibility of this interpretation.</edomvd>
+      <edomvds>FGDC-Cartographic Standards</edomvds>
+    </edom>
+  </attrdomv>
+</attr>
+      <attr>
+        <attrlabl>Symbol</attrlabl>
+        <attrdef>Reference to a point marker, line symbol, or area-fill symbol that is used on the map graphic to denote the feature: perhaps a star for a K-Ar age locality, or a heavy black line for a fault.</attrdef>
+        <attrdefs>GeMS</attrdefs>
+        <attrdomv><udom>Unrepresentable domain</udom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>Label</attrlabl>
+        <attrdef>Plain-text equivalent of the desired annotation for a feature: for example "14 Ma", or "^c" which (when used with the FGDC GeoAge font) results in the geologic map-unit label TRc (with TR run together to make the Triassic symbol).</attrdef>
+        <attrdefs>GeMS</attrdefs>
+        <attrdomv><udom>Unrepresentable domain</udom>
+        </attrdomv>
+      </attr>
+      <attr>
+  <attrlabl>DataSourceID</attrlabl><attrdef>Source of data; foreign key to table DataSources.</attrdef><attrdefs>GeMS</attrdefs><attrdomv>
+    <edom>
+      <edomv>DAS01</edomv>
+      <edomvd>This study</edomvd>
+      <edomvds>This report</edomvds>
+    </edom>
+  </attrdomv>
+</attr>
+      <attr>
+        <attrlabl>Notes</attrlabl>
+        <attrdef>Additional information specific to a particular feature or table entry.</attrdef>
+        <attrdefs>GeMS</attrdefs>
+        <attrdomv><udom>Unrepresentable domain. Free text. Values of &lt;null&gt; or #null indicate no entry.</udom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>GeologicLines_ID</attrlabl>
+        <attrdef>Primary key.</attrdef>
+        <attrdefs>GeMS</attrdefs>
+        <attrdomv><udom>Arbitrary string. Values should be unique within this database.</udom>
+        </attrdomv>
+      </attr>
+    </detailed>
+  </eainfo>
+  <distinfo>
+    <distrib>
+      <cntinfo>
+        <cntorgp>
+          <cntorg>U.S. Geological Survey</cntorg>
+        </cntorgp>
+        <cntaddr>
+          <addrtype>physical</addrtype>
+          <address>350 N. Akron Rd.</address>
+          <city>Moffett Field</city>
+          <state>CA</state>
+          <postal>94035</postal>
+        </cntaddr>
+        <cntvoice>650-439-2361</cntvoice>
+        <cntemail>bmelosh@usgs.gov</cntemail>
+      </cntinfo>
+    </distrib>
+    <distliab>na</distliab>
+    <stdorder>
+      <digform><digtinfo>
+          <formname>Digital Data</formname>
+        </digtinfo>
+        <digtopt><onlinopt><computer><networka><networkr>https://ngmdb.usgs.gov/ngmdb/ngmdb_home.html</networkr></networka></computer></onlinopt></digtopt></digform>
+      <fees>na</fees>
+    </stdorder>
+  </distinfo>
+  <metainfo>
+    <metd>2026</metd>
+    <metc>
+      <cntinfo>
+        <cntperp>
+          <cntper>Benjamin L. Melosh</cntper>
+        </cntperp>
+        <cntaddr>
+          <addrtype>mailing and physical</addrtype>
+          <address>350 N. Akron Rd.</address>
+          <city>Moffett Field</city>
+          <state>CA</state>
+          <postal>94035</postal>
+        </cntaddr>
+        <cntvoice>650-439-2361</cntvoice>
+        <cntemail>bmelosh@usgs.gov</cntemail>
+      </cntinfo>
+    </metc>
+    <metstdn>FGDC Content Standard for Digital Geospatial Metadata</metstdn>
+    <metstdv>FGDC-STD-001-1998</metstdv>
+    <mettc>local time</mettc>
+  </metainfo>
+</metadata>

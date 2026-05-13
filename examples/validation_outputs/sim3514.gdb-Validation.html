@@ -1,0 +1,978 @@
+
+
+<style>
+  .report {
+    font-family: Courier New, Courier, monospace;
+    margin-left: 20px;
+    margin-right: 20px;
+  }
+
+  h2,
+  h3 {
+    background-color: lightgray;
+    padding: 5px;
+    border-radius: 4px;
+    font-family: "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
+  }
+
+  h4 {
+    margin-bottom: 4px;
+    font-size: larger;
+  }
+
+  .ess-tables {
+    width: 95%;
+    margin-left: 20px;
+  }
+
+  .table-header:hover {
+    cursor: pointer;
+  }
+
+  table,
+  th,
+  td {
+    border: 1px solid gray;
+    border-collapse: collapse;
+    padding: 3px;
+  }
+
+  .table {
+    color: darkorange;
+    font-weight: bold;
+  }
+
+  .field {
+    color: darkblue;
+    font-weight: bold;
+  }
+
+  .value {
+    color: darkgreen;
+    font-weight: bold;
+  }
+
+  .highlight {
+    background-color: #f2fcd6;
+    padding: 0 2px;
+    border-radius: 3px;
+    border-bottom: 1px solid gray;
+  }
+
+  li {
+    list-style: disc;
+    margin-top: 1px;
+    margin-bottom: 1px;
+  }
+
+  #back-to-top {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    padding: 10px;
+    margin: 10px;
+    background-color: rgba(250, 250, 250, 0.7);
+    border-radius: 5px;
+  }
+
+  .tab {
+    display: inline-block;
+    margin-left: 40px;
+  }
+</style>
+
+
+<h2><a name="overview"><i>GeMS validation of </i>sim3514.gdb</a></h2>
+<div class="report">
+  File written by <b>GeMS_ValidateDatabase.py, version of 5/15/2024</b><br>
+  Tue Dec  3 11:26:53 2024<br>
+  Runtime parameters<br>
+  
+  <span class="tab"></span>Database path: C:\Users\ksullivan\Desktop\sim3514_gdb\sim3514.gdb<br>
+  
+  <span class="tab"></span>Output directory: C:\Users\ksullivan\Desktop\sim3514_gdb\GeMS_validation<br>
+  
+  <span class="tab"></span>Metadata file: C:\Users\ksullivan\Desktop\sim3514_gdb\sim3514.xml<br>
+  
+  <span class="tab"></span>Check embedded metadata: False<br>
+  
+  <span class="tab"></span>Skip topology check: False<br>
+  
+  <span class="tab"></span>Refresh GeoMaterialDict: False<br>
+  
+  <span class="tab"></span>Delete extra rows in Glossary and DataSources: False<br>
+  
+  <span class="tab"></span>Compact GDB: False<br>
+  <br>
+  This database is <a href=#Level3><font size="+1"><b>LEVEL 3 COMPLIANT.</b></a></font>
+<br><br>
+  
+                The database-level FGDC metadata are <a href="sim3514_errors.txt">formally correct</a> 
+                although the metadata record should be reviewed to verify that it is meaningful.<br>
+                <br>
+  This file should be accompanied by sim3514.gdb-ValidationErrors.html and sim3514.xml_errors.txt
+  in the same directory.<br><br>
+  If this database will be submitted to the NGMDB, it also needs to be accompanied by
+  a reviewed Geologic Names report that includes identification of any suggested modifications to <a
+    href="https://ngmdb.usgs.gov/Geolex/">Geolex</a>. Use the
+  <a href="https://github.com/DOI-USGS/gems-tools-pro/wiki/GeMS-Tools-Documentation#geologic-names-check">Geologic Names
+    Check</a> tool to generate that report or provide other documentation of a review.<br><br>
+</div>
+<div id="back-to-top"><a href="#overview">Back to Top</a></div>
+<h3>Contents</h3>
+<div class="report" id="contents">
+  <a href="#Compliance_Criteria">Compliance Criteria</a><br>
+  <a href="#Warnings">Warnings</a><br>
+  <a href="#Extensions">Content not specified in GeMS schema</a><br>
+  <a href="#MapUnits_Match">Occurrence of MapUnits in DMU, feature datasets, or geopackage tables</a><br>
+  
+  <a href="#Contents_Nonspatial">Contents of Nonspatial Tables</a><br>
+  
+  <span class="tab"></span><a href="#DataSources">DataSources</a><br>
+  
+  <span class="tab"></span><a href="#DescriptionOfMapUnits">DescriptionOfMapUnits</a><br>
+  
+  <span class="tab"></span><a href="#Glossary">Glossary</a><br>
+  
+  
+  <a href="#Database_Inventory">Database Inventory</a><br>
+</div>
+<h3><a name="Compliance_Criteria"></a>Compliance Criteria</h3>
+<div class="report">
+  <h4><a name="Level1">LEVEL 1</a></h4>
+  <i>Criteria for a LEVEL 1 GeMS database are:</i>
+  <ul>
+    <li>No overlaps or internal gaps in map-unit polygon layer</li>
+    <li>Contacts and faults in single feature class</li>
+    <li>Map-unit polygon boundaries are covered by contacts and faults lines</li>
+  </ul>
+  <i>Databases with a variety of schema may meet these criteria. This script cannot confirm LEVEL 1 compliance.</i>
+  <h4><a name="Level2">LEVEL 2--MINIMALLY COMPLIANT</a></h4>
+  <i>A LEVEL 2 GeMS database is accompanied by a peer-reviewed Geologic Names report, including identification of
+    suggested modifications to Geolex, and meets the following criteria:</i><br>
+  <table class="ess-tables">
+    <tbody>
+      <tr>
+        <td valign="top">2.1 Has required elements: nonspatial tables DataSources, DescriptionOfMapUnits,
+          GeoMaterialDict; feature dataset GeologicMap with feature classes ContactsAndFaults and MapUnitPolys</td>
+        
+<td valign="top">PASS</td>
+
+      </tr>
+      <tr>
+        <td valign="top">2.2 Required fields within required elements are present and correctly defined</td>
+        
+<td valign="top">PASS</td>
+
+      </tr>
+      <tr>
+        <td valign="top">2.3 All MapUnitPolys and ContactsAndFaults based feature classes obey Level 2 topology rules:
+          no internal gaps or overlaps in MapUnitPolys, boundaries of MapUnitPolys are covered by ContactsAndFaults</td>
+        
+<td valign="top">PASS</td>
+
+      </tr>
+      <tr>
+        <td valign="top">2.4 All map units in MapUnitPolys have entries in DescriptionOfMapUnits table</td>
+        
+<td valign="top">PASS</td>
+
+      </tr>
+      <tr>
+        <td valign="top">2.5 No duplicate MapUnit values in DescriptionOfMapUnit table</td>
+        
+<td valign="top">PASS</td>
+
+      </tr>
+      <tr>
+        <td valign="top">2.6 Certain field values within required elements have entries in Glossary table</td>
+        
+<td valign="top">PASS</td>
+
+      </tr>
+      <tr>
+        <td valign="top">2.7 No duplicate Term values in Glossary table</td>
+        
+<td valign="top">PASS</td>
+
+      </tr>
+      <tr>
+        <td valign="top">2.8 All xxxSourceID values in required elements have entries in DataSources table</td>
+        
+<td valign="top">PASS</td>
+
+        </td>
+      </tr>
+      <tr>
+        <td valign="top">2.9 No duplicate DataSources_ID values in DataSources table</td>
+        
+<td valign="top">PASS</td>
+
+      </tr>
+    </tbody>
+  </table>
+  <h4><a name="Level3">LEVEL 3--FULLY COMPLIANT</a></h4>
+  <i>A LEVEL 3 GeMS database meets these additional criteria:</i><br>
+  <table class="ess-tables">
+    <tbody>
+      <tr>
+        <td valign="top">3.1 Table and field definitions beyond Level 2 conform to GeMS schema</td>
+        
+<td valign="top">PASS</td>
+
+      </tr>
+      <tr>
+        <td valign="top">3.2 All MapUnitPolys and ContactsAndFaults based feature classes obey Level 3 topology rules:
+          No ContactsAndFaults overlaps, self-overlaps, or self-intersections. </td>
+        
+<td valign="top">PASS</td>
+
+      </tr>
+      <tr>
+        <td valign="top">3.3 No missing required values</td>
+        
+<td valign="top">PASS</td>
+
+      </tr>
+      <tr>
+        <td valign="top">3.4 No missing terms in Glossary</td>
+        
+<td valign="top">PASS</td>
+
+      </tr>
+      <tr>
+        <td valign="top">3.5 No unnecessary terms in Glossary</td>
+        
+<td valign="top">PASS</td>
+
+      </tr>
+      <tr>
+        <td valign="top">3.6 No missing sources in DataSources</td>
+        
+<td valign="top">PASS</td>
+
+      </tr>
+      <tr>
+        <td valign="top">3.7 No unnecessary sources in DataSources</td>
+        
+<td valign="top">PASS</td>
+
+      </tr>
+      <tr>
+        <td valign="top">3.8 No map units without entries in DescriptionOfMapUnits</td>
+        
+<td valign="top">PASS</td>
+
+      </tr>
+      <tr>
+        <td valign="top">3.9 No unnecessary map units in DescriptionOfMapUnits</td>
+        
+<td valign="top">PASS</td>
+
+      </tr>
+      <tr>
+        <td valign="top">3.10 HierarchyKey values in DescriptionOfMapUnits are unique and well formed</td>
+        
+<td valign="top">PASS</td>
+
+      </tr>
+      <tr>
+        <td valign="top">3.11 All values of GeoMaterial are defined in GeoMaterialDict. GeoMaterialDict is as specified
+          in the GeMS standard</td>
+        
+<td valign="top">PASS</td>
+
+      </tr>
+      <tr>
+        <td valign="top">3.12 No duplicate _ID values</td>
+        
+<td valign="top">PASS</td>
+
+      </tr>
+      <tr>
+        <td valign="top">3.13 No zero-length, whitespace-only, or bad null values</td>
+        
+<td valign="top">PASS</td>
+
+      </tr>
+    </tbody>
+  </table>
+  <br>
+</div>
+<h3><a name="Warnings"></a>Warnings</h3>
+<div class="report">
+  
+  <a href='sim3514.gdb-ValidationErrors.html#Warnings'>There are 5 warnings</a><br>
+  
+</div>
+
+<h3><a name="Extensions"></a>Content not specified in GeMS schema</h3>
+<div class="report">
+  <i>Some of the extensions to the GeMS schema identified here may be necessary to capture geologic content and are
+    entirely appropriate. <b>Please document these extensions in metadata for the database, any accompanying README
+      file, and (if applicable) any transmittal letter that accompanies the dataset.</b> Other extensions may be
+    intermediate datasets, fields, or files that should be deleted before distribution of the database.</i><br><br>
+  
+  <h4>Fields</h4><br>
+  
+  <span class="tab"></span><span class="table">MapUnitPolys</span>, <span class="field">ColorSelection</span><br>
+  
+  <span class="tab"></span><span class="table">SeismicityCartographicLines</span>, <span class="field">CartographicLines_ID</span><br>
+  
+  <span class="tab"></span><span class="table">OrientationPoints</span>, <span class="field">StationID</span><br>
+  
+  <span class="tab"></span><span class="table">MapUnitLabelPoints</span>, <span class="field">ExistenceConfidence</span><br>
+  
+  <span class="tab"></span><span class="table">MapUnitLabelPoints</span>, <span class="field">IdentityConfidence</span><br>
+  
+  <span class="tab"></span><span class="table">GeochronPoints</span>, <span class="field">StationID</span><br>
+  
+  <span class="tab"></span><span class="table">FossilPoints</span>, <span class="field">StationID</span><br>
+  
+  <span class="tab"></span><span class="table">FossilPoints</span>, <span class="field">FossilFormsID</span><br>
+  
+  <h4>Tables</h4><br>
+  
+  <span class="tab"></span><span class="table">SeismicityMap</span><br>
+  
+  <span class="tab"></span><span class="table">MicroSeismicity</span><br>
+  
+  <span class="tab"></span><span class="table">MapUnitPolysAnno</span><br>
+  
+  <span class="tab"></span><span class="table">MapUnitLabelPoints</span><br>
+  
+  <span class="tab"></span><span class="table">Contour200ftAnno_Fill</span><br>
+  
+  <span class="tab"></span><span class="table">Contour200ftAnno</span><br>
+  
+  <span class="tab"></span><span class="table">OrientationPointsAnno</span><br>
+  
+  <span class="tab"></span><span class="table">MapBoundary</span><br>
+  
+  <span class="tab"></span><span class="table">Roads_clip</span><br>
+  
+  <span class="tab"></span><span class="table">Flowline_clip</span><br>
+  
+</div>
+
+
+<div class="" report>
+  <h3><a name="MapUnits_Match"></a>Occurrence of MapUnit in DMU, feature datasets, or geopackage tables</h3>
+  <div class="report"></div>
+  <table class="ess-tables" ; style="text-align:center">
+    <tr>
+      <th>MapUnit</th>
+      
+      
+      <th>DescriptionOfMapUnits</th>
+      
+      <th>GeologicMap</th>
+      
+    </tr>
+    
+    <tr>
+      <td>Jobb</td>
+      
+      
+      <td>X</td>
+      
+      
+      
+      <td>X</td>
+      
+      
+    </tr>
+    
+    <tr>
+      <td>omsp</td>
+      
+      
+      <td>X</td>
+      
+      
+      
+      <td>X</td>
+      
+      
+    </tr>
+    
+    <tr>
+      <td>Jk</td>
+      
+      
+      <td>X</td>
+      
+      
+      
+      <td>X</td>
+      
+      
+    </tr>
+    
+    <tr>
+      <td>ompb</td>
+      
+      
+      <td>X</td>
+      
+      
+      
+      <td>X</td>
+      
+      
+    </tr>
+    
+    <tr>
+      <td>pgb</td>
+      
+      
+      <td>X</td>
+      
+      
+      
+      <td>X</td>
+      
+      
+    </tr>
+    
+    <tr>
+      <td>mvpb</td>
+      
+      
+      <td>X</td>
+      
+      
+      
+      <td>X</td>
+      
+      
+    </tr>
+    
+    <tr>
+      <td>KJssp</td>
+      
+      
+      <td>X</td>
+      
+      
+      
+      <td>X</td>
+      
+      
+    </tr>
+    
+    <tr>
+      <td>msp</td>
+      
+      
+      <td>X</td>
+      
+      
+      
+      <td>X</td>
+      
+      
+    </tr>
+    
+    <tr>
+      <td>Qva</td>
+      
+      
+      <td>X</td>
+      
+      
+      
+      <td>X</td>
+      
+      
+    </tr>
+    
+    <tr>
+      <td>Jom</td>
+      
+      
+      <td>X</td>
+      
+      
+      
+      <td>X</td>
+      
+      
+    </tr>
+    
+    <tr>
+      <td>mvbb</td>
+      
+      
+      <td>X</td>
+      
+      
+      
+      <td>X</td>
+      
+      
+    </tr>
+    
+    <tr>
+      <td>tfb</td>
+      
+      
+      <td>X</td>
+      
+      
+      
+      <td>X</td>
+      
+      
+    </tr>
+    
+    <tr>
+      <td>ssb</td>
+      
+      
+      <td>X</td>
+      
+      
+      
+      <td>X</td>
+      
+      
+    </tr>
+    
+    <tr>
+      <td>Qoal</td>
+      
+      
+      <td>X</td>
+      
+      
+      
+      <td>X</td>
+      
+      
+    </tr>
+    
+    <tr>
+      <td>Qs</td>
+      
+      
+      <td>X</td>
+      
+      
+      
+      <td>X</td>
+      
+      
+    </tr>
+    
+    <tr>
+      <td>ab</td>
+      
+      
+      <td>X</td>
+      
+      
+      
+      <td>X</td>
+      
+      
+    </tr>
+    
+    <tr>
+      <td>shb</td>
+      
+      
+      <td>X</td>
+      
+      
+      
+      <td>X</td>
+      
+      
+    </tr>
+    
+    <tr>
+      <td>Josp</td>
+      
+      
+      <td>X</td>
+      
+      
+      
+      <td>X</td>
+      
+      
+    </tr>
+    
+    <tr>
+      <td>Qt</td>
+      
+      
+      <td>X</td>
+      
+      
+      
+      <td>X</td>
+      
+      
+    </tr>
+    
+    <tr>
+      <td>Qc</td>
+      
+      
+      <td>X</td>
+      
+      
+      
+      <td>X</td>
+      
+      
+    </tr>
+    
+    <tr>
+      <td>ombu</td>
+      
+      
+      <td>X</td>
+      
+      
+      
+      <td>X</td>
+      
+      
+    </tr>
+    
+    <tr>
+      <td>mvbu</td>
+      
+      
+      <td>X</td>
+      
+      
+      
+      <td>X</td>
+      
+      
+    </tr>
+    
+    <tr>
+      <td>Qwt</td>
+      
+      
+      <td>X</td>
+      
+      
+      
+      <td>X</td>
+      
+      
+    </tr>
+    
+    <tr>
+      <td>Qlv</td>
+      
+      
+      <td>X</td>
+      
+      
+      
+      <td>X</td>
+      
+      
+    </tr>
+    
+    <tr>
+      <td>Kv</td>
+      
+      
+      <td>X</td>
+      
+      
+      
+      <td>X</td>
+      
+      
+    </tr>
+    
+    <tr>
+      <td>QTc</td>
+      
+      
+      <td>X</td>
+      
+      
+      
+      <td>X</td>
+      
+      
+    </tr>
+    
+    <tr>
+      <td>Qls</td>
+      
+      
+      <td>X</td>
+      
+      
+      
+      <td>X</td>
+      
+      
+    </tr>
+    
+    <tr>
+      <td>gb</td>
+      
+      
+      <td>X</td>
+      
+      
+      
+      <td>X</td>
+      
+      
+    </tr>
+    
+    <tr>
+      <td>omu</td>
+      
+      
+      <td>X</td>
+      
+      
+      
+      <td>X</td>
+      
+      
+    </tr>
+    
+    <tr>
+      <td>Qal</td>
+      
+      
+      <td>X</td>
+      
+      
+      
+      <td>X</td>
+      
+      
+    </tr>
+    
+    <tr>
+      <td>Kfm</td>
+      
+      
+      <td>X</td>
+      
+      
+      
+      <td>X</td>
+      
+      
+    </tr>
+    
+    <tr>
+      <td>sc</td>
+      
+      
+      <td>X</td>
+      
+      
+      
+      <td>X</td>
+      
+      
+    </tr>
+    
+    <tr>
+      <td>af</td>
+      
+      
+      <td>X</td>
+      
+      
+      
+      <td>X</td>
+      
+      
+    </tr>
+    
+    <tr>
+      <td>Qpc</td>
+      
+      
+      <td>X</td>
+      
+      
+      
+      <td>X</td>
+      
+      
+    </tr>
+    
+    <tr>
+      <td>cb</td>
+      
+      
+      <td>X</td>
+      
+      
+      
+      <td>X</td>
+      
+      
+    </tr>
+    
+    <tr>
+      <td>omgs</td>
+      
+      
+      <td>X</td>
+      
+      
+      
+      <td>X</td>
+      
+      
+    </tr>
+    
+    <tr>
+      <td>KJgvl</td>
+      
+      
+      <td>X</td>
+      
+      
+      
+      <td>X</td>
+      
+      
+    </tr>
+    
+    <tr>
+      <td>Lake</td>
+      
+      
+      <td>X</td>
+      
+      
+      
+      <td>X</td>
+      
+      
+    </tr>
+    
+    <tr>
+      <td>Qpf</td>
+      
+      
+      <td>X</td>
+      
+      
+      
+      <td>X</td>
+      
+      
+    </tr>
+    
+    
+  </table>
+</div>
+
+
+<div class="report"></div>
+<h3><a name="Contents_Nonspatial"></a>Contents of Nonspatial Tables</h3>
+
+<div class="report">
+  <h4><a name="DataSources"></a>DataSources</h4>
+  <table class="ess-tables"><thead><tr><th>OBJECTID</th><th>Source</th><th>Notes</th><th>URL</th><th>DataSources_ID</th><//tr><//thead><tr><td>2<//td><td>This report<//td><td>None<//td><td>None<//td><td>DAS1<//td><//tr><tr><td>11<//td><td>McLaughlin et al., 2016<//td><td>McLaughlin et al., 2016<//td><td>None<//td><td>DAS10<//td><//tr><tr><td>14<//td><td>Double-difference Earthquake Catalog for Northern California (1984-2011)<//td><td>Waldhauser, F. and D.P. Schaff (2008), Large-scale relocation of two decades of Northern California seismicity using cross-correlation and double-difference methods, J. Geophys. Res., 113, B08311, doi:10.1029/2007JB005479.<//td><td>https://www.ldeo.columbia.edu/~felixw/NCAeqDD/<//td><td>DAS11<//td><//tr><tr><td>3<//td><td>Mapping by John Lawton, 1954<//td><td>Lawton, J., 1954<//td><td>None<//td><td>DAS2<//td><//tr><tr><td>4<//td><td>Mapping by Wagner, 1973<//td><td>Wagner, D., 1973<//td><td>None<//td><td>DAS3<//td><//tr><tr><td>5<//td><td>Mapping by Graymer et al., 2007<//td><td>Graymer et al., 2007<//td><td>None<//td><td>DAS4<//td><//tr><tr><td>6<//td><td>Mapping by Fox et al., 1973<//td><td>Fox et al., 1973<//td><td>None<//td><td>DAS5<//td><//tr><tr><td>7<//td><td>Mapping by McLaughlin et al., 2018<//td><td>McLaughlin et al., 2018<//td><td>None<//td><td>DAS6<//td><//tr><tr><td>8<//td><td>Lienkaemper et al., 2010 (BSF lidar mapping)<//td><td>Lienkaemper et al., 2010<//td><td>None<//td><td>DAS7<//td><//tr><tr><td>9<//td><td>Lienkaemper et al., 2012 (Berryessa fault mapping)<//td><td>Lienkaemper et al., 2012<//td><td>None<//td><td>DAS8<//td><//tr><tr><td>10<//td><td>Orme and Surpless, 2019<//td><td>Orme and Surpless, 2019<//td><td>None<//td><td>DAS9<//td><//tr><tr><td>1<//td><td>Federal Geographic Data Committee [prepared for the Federal Geographic Data Committee by the U.S. Geological Survey], 2006, FGDC Digital Cartographic Standard for Geologic Map Symbolization: Reston, Va., Federal Geographic Data Committee Document Number FGDC-STD-013-2006, 290 p., 2 plates.<//td><td>None<//td><td>https://ngmdb.usgs.gov/fgdc_gds/geolsymstd.php<//td><td>FGDC-STD-013-2006<//td><//tr><tr><td>12<//td><td>Internal USGS Adobe Illustrator map template, "MapTemplate_DMU_online-only_1sht_v1-0_04-11.ai"<//td><td>None<//td><td>None<//td><td>USGS-MapTemplate-V1<//td><//tr><tr><td>13<//td><td>GeMS (Geologic Map Schema) - a standard format for the digital publication of geologic maps<//td><td>None<//td><td>https://pubs.usgs.gov/tm/11b10/tm11b10.pdf<//td><td>USGS-TM11-B10<//td><//tr></table></div>
+  
+<div class="report">
+  <h4><a name="DescriptionOfMapUnits"></a>DescriptionOfMapUnits</h4>
+  <table class="ess-tables"><thead><tr><th>OBJECTID</th><th>MapUnit</th><th>Name</th><th>FullName</th><th>Age</th><th>Description</th><th>HierarchyKey</th><th>ParagraphStyle</th><th>Label</th><th>Symbol</th><th>AreaFillRGB</th><th>AreaFillPatternDescription</th><th>DescriptionSourceID</th><th>GeoMaterial</th><th>GeoMaterialConfidence</th><th>DescriptionOfMapUnits_ID</th><//tr><//thead><tr><td>2<//td><td>None<//td><td>SURFICIAL DEPOSITS<//td><td>None<//td><td>None<//td><td>None<//td><td>01<//td><td>DMU Heading2<//td><td>None<//td><td>None<//td><td>None<//td><td>None<//td><td>None<//td><td>None<//td><td>None<//td><td>DMU1<//td><//tr><tr><td>3<//td><td>af<//td><td>Artificial fill, undifferentiated<//td><td>Artificial fill, undifferentiated<//td><td>Historic<//td><td>Unconsolidated human-made deposits, predominantly consisting of piles of mining tailings of various ages in central part of map area<//td><td>01-01<//td><td>DMU Unit 1<//td><td>af<//td><td>1<//td><td>179,204,222<//td><td>None<//td><td>DAS1<//td><td>"Made" or human-engineered land<//td><td>High<//td><td>DMU2<//td><//tr><tr><td>8<//td><td>Qls<//td><td>Landslide deposits<//td><td>Landslide deposits<//td><td>Holocene to Pleistocene<//td><td>Chaotic deposits of sand, silt, clay, angular boulders, and large bedrock blocks deposited by gravity-driven sliding and flow of material. Easily identified using lidar; primarily mapped on the basis of geomorphic expression. Arrows show direction of downslope movement. Internal contacts delineate individual landslides nested within larger landslides<//td><td>01-02<//td><td>DMU Unit 1<//td><td>Qls<//td><td>2<//td><td>255,255,222<//td><td>None<//td><td>DAS1<//td><td>Debris flows, landslides, and other localized mass-movement sediment<//td><td>High<//td><td>DMU3<//td><//tr><tr><td>4<//td><td>Qal<//td><td>Alluvium<//td><td>Alluvium<//td><td>Holocene to late Pleistocene<//td><td>Sand, silt, and gravel deposited by water in active stream channels, terraces, or valleys<//td><td>01-03<//td><td>DMU Unit 1<//td><td>Qal<//td><td>3<//td><td>255,255,153<//td><td>None<//td><td>DAS1<//td><td>Alluvial sediment<//td><td>High<//td><td>DMU4<//td><//tr><tr><td>5<//td><td>Qc<//td><td>Colluvium<//td><td>Colluvium<//td><td>Holocene to late Pleistocene<//td><td>Angular gravel, cobbles, boulders, sand, and lesser silts deposited by transport of loose, unconsolidated material down hillslope<//td><td>01-04<//td><td>DMU Unit 1<//td><td>Qc<//td><td>4<//td><td>255,235,128<//td><td>None<//td><td>DAS1<//td><td>Colluvium and other widespread mass-movement sediment<//td><td>High<//td><td>DMU5<//td><//tr><tr><td>6<//td><td>Qt<//td><td>Fluvial terrace deposits<//td><td>Fluvial terrace deposits<//td><td>Holocene to Pleistocene<//td><td>Well-rounded boulders, cobbles, and gravels along abandoned river terraces. Defined by geomorphic expression of planar surfaces or sets of surfaces and mapped using 1-meter (m)-resolution lidar. Internal contacts delineate individual terraces<//td><td>01-05<//td><td>DMU Unit 1<//td><td>Qt<//td><td>5<//td><td>235,235,153<//td><td>None<//td><td>DAS1<//td><td>Alluvial sediment<//td><td>High<//td><td>DMU6<//td><//tr><tr><td>7<//td><td>Qpc<//td><td>Paleochannel deposits<//td><td>Paleochannel deposits<//td><td>Holocene to Pleistocene<//td><td>Sand, silt, and gravel deposits in abandoned stream channels. Identified on the basis of their geomorphic expression and incision into planar terraces. Mapped using lidar<//td><td>01-06<//td><td>DMU Unit 1<//td><td>Qpc<//td><td>6<//td><td>235,179,000<//td><td>None<//td><td>DAS1<//td><td>Alluvial sediment<//td><td>High<//td><td>DMU7<//td><//tr><tr><td>9<//td><td>Qoal<//td><td>Older alluvium<//td><td>Older alluvium<//td><td>late to early-Pleistocene<//td><td>Sand, silt, and gravel in older alluvial deposits. Defined by relative age relations, lack of primary geomorphic expression, and highly dissected surfaces<//td><td>01-07<//td><td>DMU Unit 1<//td><td>Qoal<//td><td>7<//td><td>235,235,179<//td><td>None<//td><td>DAS1<//td><td>Alluvial sediment<//td><td>High<//td><td>DMU8<//td><//tr><tr><td>50<//td><td>Lake<//td><td>Lake<//td><td>Lake<//td><td>Modern<//td><td>Water<//td><td>01-08<//td><td>DMU Unit 1<//td><td>Lake<//td><td>40<//td><td>222,255,255<//td><td>None<//td><td>DAS1<//td><td>Water or ice<//td><td>High<//td><td>DMU49<//td><//tr><tr><td>10<//td><td>None<//td><td>SPRING DEPOSITS<//td><td>None<//td><td>None<//td><td>None<//td><td>02<//td><td>DMU Heading2<//td><td>None<//td><td>None<//td><td>None<//td><td>None<//td><td>None<//td><td>None<//td><td>None<//td><td>DMU9<//td><//tr><tr><td>11<//td><td>Qs<//td><td>Travertine deposits<//td><td>Travertine deposits<//td><td>late-Pleistocene to modern<//td><td>White travertine deposits associated with springs near McLaughlin mine in central part of map area. Large siliceous sinter deposits were removed during excavation of McLaughlin gold deposit and are not mapped<//td><td>02-01<//td><td>DMU Unit 1<//td><td>Qs<//td><td>8<//td><td>255,000,102<//td><td>None<//td><td>DAS1<//td><td>Carbonate rock<//td><td>High<//td><td>DMU10<//td><//tr><tr><td>12<//td><td>sc<//td><td>Silica-carbonate<//td><td>Silica-carbonate<//td><td>early-Pleistocene<//td><td>Red to yellow to orange to white to black alteration zones of quartz, vitrified quartz, carbonate, magnesite, opal, chalcedony, pyrite, and lesser cinnabar. Formed during hydrothermal alteration of serpentinite; contains remnant serpentinite pieces. Rocks are intimately associated with gold and mercury deposits; exposures located near McLaughlin mine in central part of map area<//td><td>02-02<//td><td>DMU Unit 1<//td><td>sc<//td><td>9<//td><td>255,077,102<//td><td>None<//td><td>DAS1<//td><td>Mostly carbonate rock<//td><td>High<//td><td>DMU11<//td><//tr><tr><td>13<//td><td>None<//td><td>CLEAR LAKE VOLCANICS<//td><td>None<//td><td>None<//td><td>None<//td><td>03<//td><td>DMU Heading2<//td><td>None<//td><td>None<//td><td>None<//td><td>None<//td><td>None<//td><td>None<//td><td>None<//td><td>DMU12<//td><//tr><tr><td>51<//td><td>None<//td><td>Clear Lake Volcanics<//td><td>Clear Lake Volcanics<//td><td>early-to late-Pleistocene<//td><td>Mapped as the following subunits:<//td><td>03-01<//td><td>DMU Unit 1<//td><td>None<//td><td>None<//td><td>None<//td><td>None<//td><td>None<//td><td>None<//td><td>None<//td><td>DMU13<//td><//tr><tr><td>14<//td><td>Qlv<//td><td>Lava flows<//td><td>Lava flows<//td><td>early- to late-Pleistocene<//td><td>Light-gray to black, porphyritic lava flows that range from olivine basalt to quartz-bearing dacite. Lavas typically fine grained, containing 5–10 percent phenocrysts as large as about 0.5 centimeters (cm) in diameter. Flows are resistant to erosion and form ridge tops and buttes. Most extensive exposures found along southwestern margin of map area and reach thicknesses of about 20 m. Whole-rock potassium-argon age of 2.2±0.2 mega-annum (Ma) on basaltic andesite (Lehman, 1986). Intercalated with units Qwt, Qpf, and Qva in different locations<//td><td>03-01-01<//td><td>DMU Unit 2<//td><td>Qlv<//td><td>10<//td><td>235,204,255<//td><td>None<//td><td>DAS1<//td><td>Lava flows<//td><td>High<//td><td>DMU14<//td><//tr><tr><td>15<//td><td>Qwt<//td><td>Welded tuff<//td><td>Welded tuff<//td><td>early- to late-Pleistocene<//td><td>Light-gray to buff welded tuff that contains dark-gray fiamme as long as 5–10 cm and phenocrysts of plagioclase as large as 1 cm in diameter. Exposed in southwestern part of map area on ridge between Pope Creek and Putah Creek arm of Lake Berryessa. Intercalated with lava flows of unit Qlv<//td><td>03-01-02<//td><td>DMU Unit 2<//td><td>Qwt<//td><td>11<//td><td>204,102,255<//td><td>None<//td><td>DAS1<//td><td>Pyroclastic flows<//td><td>High<//td><td>DMU15<//td><//tr><tr><td>16<//td><td>Qpf<//td><td>Pumice-fall deposits<//td><td>Pumice-fall deposits<//td><td>early- to late-Pleistocene<//td><td>White to pink to red pumice-fall deposits. Pumice clasts reach 5 cm in diameter and show variable clay alteration. Exposed on southeast side of hill south of McLaughlin open-pit mine. Stratigraphically overlain by lava flows of unit Qlv<//td><td>03-01-03<//td><td>DMU Unit 2<//td><td>Qpf<//td><td>12<//td><td>222,077,222<//td><td>None<//td><td>DAS1<//td><td>Air-fall tephra<//td><td>High<//td><td>DMU16<//td><//tr><tr><td>17<//td><td>Qva<//td><td>Altered volcanic rocks<//td><td>Altered volcanic rocks<//td><td>early Pleistocene<//td><td>Light-tan to buff lava flows, dikes, and sills. Shows strong propylitic and argillic alteration (Tosdal and others, 1993) that is related to hydrothermal activity associated with McLaughlin mine ore body. Exposed near McLaughlin open-pit mine. Stratigraphically below ridge-capping lava flows of unit Qlv<//td><td>03-01-04<//td><td>DMU Unit 2<//td><td>Qva<//td><td>13<//td><td>222,153,235<//td><td>None<//td><td>DAS1<//td><td>Extrusive igneous material<//td><td>High<//td><td>DMU17<//td><//tr><tr><td>19<//td><td>None<//td><td>Cache Formation<//td><td>None<//td><td>None<//td><td>None<//td><td>04<//td><td>DMU Heading2<//td><td>None<//td><td>None<//td><td>None<//td><td>None<//td><td>None<//td><td>None<//td><td>None<//td><td>DMU18<//td><//tr><tr><td>20<//td><td>QTc<//td><td>Cache Formation<//td><td>Cache Formation<//td><td>upper Pliocene and Pleistocene<//td><td>Gray to light-gray, well-rounded fluvial gravels and lesser siltstone, sandstone, mudstone, and tuff. Gravel beds as thick as several meters have rare crossbedding and lenses of fine silts and sands. Clasts composed of metagraywacke, chert, vein quartz, schist, greenstone, and sandstone (Rymer, 1981). Lacustrine deposits locally contain plant and freshwater-fish fossils, ostracodes, pollen, and tephra layers (Rymer, 1981; Sims and others, 1981). Unit overlain by basalts (1.45 Ma); also contains obsidian pebbles derived from the Pliocene Sonoma Volcanics (4.5 Ma) (McLaughlin and others, 2018). Unit exposed in northwest corner of map area along Cache Creek; also includes fluvially reworked pumice deposits along Lake Berryessa (see Fox and others, 1973)<//td><td>04-01<//td><td>DMU Unit 1<//td><td>QTc<//td><td>14<//td><td>255,222,179<//td><td>None<//td><td>DAS1<//td><td>Clastic sediment<//td><td>High<//td><td>DMU19<//td><//tr><tr><td>21<//td><td>None<//td><td>GREAT VALLEY COMPLEX<//td><td>None<//td><td>None<//td><td>None<//td><td>05<//td><td>DMU Heading2<//td><td>None<//td><td>None<//td><td>None<//td><td>None<//td><td>None<//td><td>None<//td><td>None<//td><td>DMU20<//td><//tr><tr><td>22<//td><td>None<//td><td>GREAT VALLEY SEQUENCE<//td><td>None<//td><td>None<//td><td>None<//td><td>05-01<//td><td>DMU Heading3<//td><td>None<//td><td>None<//td><td>None<//td><td>None<//td><td>None<//td><td>None<//td><td>None<//td><td>DMU21<//td><//tr><tr><td>24<//td><td>Kv<//td><td>Venado Formation<//td><td>Venado Formation<//td><td>Late Cretaceous<//td><td>Thick-bedded to massive, fine- to coarse-grained quartz-biotite-lithic wacke and lesser mudstone, siltstone, and conglomerate; well indurated and ridge forming. Located in eastern part of map area along crest of Blue Ridge (see, for example, Graymer and others, 2002). Mudstones contain foraminifers of Late Cretaceous (Turonian) age (Goudkoff, 1945; Emerson and Roberts, 1962; Lachenbruch, 1962; Graymer and others, 2007)<//td><td>05-01-01<//td><td>DMU Unit 1<//td><td>Kv<//td><td>15<//td><td>204,255,153<//td><td>None<//td><td>DAS1<//td><td>Marine sediment, mostly coarse-grained<//td><td>High<//td><td>DMU22<//td><//tr><tr><td>25<//td><td>KJgvl<//td><td>Lower part of the Great Valley sequence<//td><td>Lower part of the Great Valley sequence<//td><td>Late Jurassic to Early Cretaceous<//td><td>Predominantly thin-bedded turbidite, dark-brown to grayish-brown shale, and tan, fine- to coarse-grained sandstone. Sandstone beds and channels are as thick as 1–2 m and are resistant to erosion, 
+forming high ridges. Locally contains conglomerate layers traceable for several kilometers, 
+carbonate lenses, and sandstone dikes. Unit is locally overturned adjacent to faults; up-direction 
+indicators consist of Bouma sequences, ripple marks, flame structures, and load casts. Ridge-in-groove slickenlines along bedding surfaces suggest considerable bedding-parallel slip, although slip is difficult to map owing to lack of reliable offset markers. Our structural observations support work by Graymer and others (2007), who said many unrecognized faults likely exist and disrupt original stratigraphic sequence; tectonic mixing may be responsible for presence of Early Cretaceous and Late Jurassic Buchia spp. fossils in this unit (Weaver, 1949). Detrital zircon uranium-lead (U-Pb) ages between 133 and 144 Ma have been reported (McLaughlin and others, 2016; Orme and Surpless, 2019). Subdivided into the following:<//td><td>05-01-02<//td><td>DMU Unit 1<//td><td>KJgvl<//td><td>16<//td><td>222,255,222<//td><td>None<//td><td>DAS1<//td><td>Marine sediment, mostly fine-grained<//td><td>High<//td><td>DMU23<//td><//tr><tr><td>26<//td><td>KJssp<//td><td>Sedimentary serpentinite<//td><td>Sedimentary serpentinite<//td><td>Late Jurassic to Early Cretaceous<//td><td>Teal-green to light-blue, coarse-grained serpentinite sand and detritus; angular fragments of serpentinite and ophiolitic debris as large as boulders. Outcrop patterns in map view form tabular to rounded bodies that appear to be concentrated in antiformal hinges and adjacent to faults, where rocks are highly sheared. North of map area, near Wilbur Springs, unit contains Early Cretaceous fossils (Carlson, 1984)<//td><td>05-01-02-01<//td><td>DMU Unit 2<//td><td>KJssp<//td><td>17<//td><td>204,179,235<//td><td>None<//td><td>DAS1<//td><td>Clastic sediment<//td><td>High<//td><td>DMU24<//td><//tr><tr><td>27<//td><td>Jk<//td><td>Knoxville Formation<//td><td>Knoxville Formation<//td><td>Late Jurassic<//td><td>Dark-brown to dark-gray, thin-bedded turbidites that contain tan, fine- to medium-grained sandstone layers. Contains laterally discontinuous basalconglomerate lenses as thick as several meters. Locally overturned near faults. Unit is limited to rocks that contain Jurassic fossils and have Jurassic detrital-zircon ages; however, considerable faulting and deformation may have mixed Cretaceous and Jurassic rocks. Some structural complexities are too small to map, but other limiting factors are poor exposures and lack of dateable material to differentiate identical rocks that have different Cretaceous or Jurassic ages. Lower contact appears faulted everywhere, but timing of faulting unknown. Detrital zircon (U-Pb) ages are between 142 and 149 Ma (Orme and Surpless, 2019, supporting work of 
+McLaughlin and others, 2016)<//td><td>05-01-02-02<//td><td>DMU Unit 2<//td><td>Jk<//td><td>18<//td><td>204,235,179<//td><td>None<//td><td>DAS1<//td><td>Marine sediment, mostly fine-grained<//td><td>High<//td><td>DMU25<//td><//tr><tr><td>28<//td><td>Jom<//td><td>Ophiolitic-block mélange<//td><td>Ophiolitic-block mélange<//td><td>Late Jurassic<//td><td>Mélange consisting of blocks of ophiolitic affinity (that is, derived from the Coast Range ophiolite) in matrix of highly sheared sandstone, shale, argillite, serpentinite, and lesser sedimentary-serpentinite layers. Some ophiolitic blocks reach several hundred meters in diameter. Matrix is highly deformed and has densely spaced fracture and shear surfaces. Presence of well-rounded ophiolitic material in sandstone matrix, observed along north shore of Lake Berryessa (fig. 10), supports olistostrome origin originally proposed by Phipps (1984). Unit has undergone intensive shearing and tectonic mixing, but timing of deformation is unclear. McLaughlin and others (2018) estimated that tectonic mixing of 
+similar ophiolitic-block mélange north of map area took place in Early Cretaceous (between 
+Albian and Valanginian). Unit is stratigraphically below the Knoxville Formation in map area, 
+although contact between units is laterally discontinuous and obscured by substantial faulting 
+and dismemberment, making primary depositional relations difficult to decipher. Faulting has 
+juxtaposed unit with the underlying Coast Range ophiolite, although contact exposures are poor 
+and timing of faulting is unclear. Blocks within mélange include the following:<//td><td>05-01-02-03<//td><td>DMU Unit 2<//td><td>Jom<//td><td>19<//td><td>179,255,222<//td><td>None<//td><td>DAS1<//td><td>Sedimentary rock<//td><td>High<//td><td>DMU26<//td><//tr><tr><td>29<//td><td>ompb<//td><td>Pillow basalt<//td><td>Pillow basalt<//td><td>Late Jurassic<//td><td>Black to dark-brown, fine-grained pillow basalt that contains plagioclase phenocrysts. Pillows are tens of centimeters to 1 m in diameter; pillow asymmetries provide rare up-direction indicators<//td><td>05-01-02-03-01<//td><td>DMU Unit 3<//td><td>ompb<//td><td>20<//td><td>255,153,204<//td><td>None<//td><td>DAS1<//td><td>Extrusive igneous material<//td><td>High<//td><td>DMU27<//td><//tr><tr><td>30<//td><td>ombu<//td><td>Basaltic rock<//td><td>Basaltic rock<//td><td>Late Jurassic<//td><td>Black to dark-brown to red basalt, mapped using aerial photographs and in field<//td><td>05-01-02-03-02<//td><td>DMU Unit 3<//td><td>ombu<//td><td>21<//td><td>235,179,179<//td><td>None<//td><td>DAS1<//td><td>Extrusive igneous material<//td><td>High<//td><td>DMU28<//td><//tr><tr><td>31<//td><td>omgs<//td><td>Greenstone<//td><td>Greenstone<//td><td>Late Jurassic<//td><td>Dark-green to black, fine-grained greenstone<//td><td>05-01-02-03-03<//td><td>DMU Unit 3<//td><td>omgs<//td><td>22<//td><td>000,179,102<//td><td>None<//td><td>DAS1<//td><td>Extrusive igneous material<//td><td>High<//td><td>DMU29<//td><//tr><tr><td>32<//td><td>omsp<//td><td>Serpentinite<//td><td>Serpentinite<//td><td>Late Jurassic<//td><td>Green to teal-green serpentinite<//td><td>05-01-02-03-04<//td><td>DMU Unit 3<//td><td>omsp<//td><td>23<//td><td>153,153,255<//td><td>None<//td><td>DAS1<//td><td>Igneous and metamorphic rock<//td><td>High<//td><td>DMU30<//td><//tr><tr><td>33<//td><td>omu<//td><td>Ophiolitic blocks, undifferentiated<//td><td>Ophiolitic blocks, undifferentiated<//td><td>Late Jurassic<//td><td>Mapped from geomorphic expression using aerial photographs only; not field checked. Internal contacts outline individual blocks that appear to be in contact<//td><td>05-01-02-03-05<//td><td>DMU Unit 3<//td><td>omu<//td><td>24<//td><td>153,204,179<//td><td>None<//td><td>DAS1<//td><td>Rock<//td><td>High<//td><td>DMU31<//td><//tr><tr><td>34<//td><td>Jobb<//td><td>Breccia of Pope Creek<//td><td>Breccia of Pope Creek<//td><td>Late Jurassic<//td><td>Black to dark-gray, mafic breccia that also contains clasts of 
+lesser gabbro and tuff. Located along Pope Creek in southwest corner of map area. McLaughlin 
+and others (2016) determined U-Pb age of 151.1±2.5 Ma from zircons in overlying tuff at Pope 
+Creek locality, suggesting that breccia is coeval with rocks of Elder Creek terrane near Paskenta. 
+Unit possibly correlates to the basaltic breccia unit mvbb, notably at Jim Dollar Mountain in 
+central part of map area<//td><td>05-01-03<//td><td>DMU Unit 1<//td><td>Jobb<//td><td>25<//td><td>153,153,179<//td><td>None<//td><td>DAS1<//td><td>Extrusive igneous material<//td><td>High<//td><td>DMU32<//td><//tr><tr><td>35<//td><td>None<//td><td>COAST RANGE OPHIOLITE<//td><td>None<//td><td>None<//td><td>None<//td><td>05-02<//td><td>DMU Heading3<//td><td>None<//td><td>None<//td><td>None<//td><td>None<//td><td>None<//td><td>None<//td><td>None<//td><td>DMU33<//td><//tr><tr><td>36<//td><td>Josp<//td><td>Serpentinized ultramafic rocks<//td><td>Serpentinized ultramafic rocks<//td><td>Middle Jurassic<//td><td>Tectonically sheared serpentinite-matrix mélange and massive, serpentinized harzburgite. Texture is well jointed and consists of brecciated blocks within a highly sheared, matrix-rich monomict serpentinite mélange (Melosh, 2019). Slabs and blocks of ophiolitic affinity that are tectonically entrained within mélange include basalt, gabbro, amphibolite, tuffaceous chert, tuff, and plagiogranite, as well as pieces of sandstone and shale from the Great Valley sequence. Uranium-lead (U-Pb) age of 163.6±2.0 Ma on zircon in plagiogranite (unit pgb) block (Orme and Surpless, 2019). Blocks within mélange include the following:<//td><td>05-02-01<//td><td>DMU Unit 1<//td><td>Josp<//td><td>26<//td><td>222,235,255<//td><td>None<//td><td>DAS1<//td><td>Igneous and metamorphic rock<//td><td>High<//td><td>DMU34<//td><//tr><tr><td>37<//td><td>msp<//td><td>Massive serpentinite<//td><td>Massive serpentinite<//td><td>Middle Jurassic<//td><td>Dark- to light-green, massive serpentinite, weathers to orange and red. Chrysotile-filled joints surround serpentinite kernels and brecciated kernels. Unit shows little to no shear deformation, although it may contain discrete shear zones; blocks reach several kilometers in diameter<//td><td>05-02-01-01<//td><td>DMU Unit 2<//td><td>msp<//td><td>27<//td><td>204,204,255<//td><td>None<//td><td>DAS1<//td><td>Igneous and metamorphic rock<//td><td>High<//td><td>DMU35<//td><//tr><tr><td>38<//td><td>ab<//td><td>Amphibolite<//td><td>Amphibolite<//td><td>Middle Jurassic<//td><td>Black, medium- to fine-grained amphibolite that contains hornblende, biotite, muscovite, and lesser chlorite. Contains ductily deformed quartz ribbons that have bulging recrystallization textures<//td><td>05-02-01-02<//td><td>DMU Unit 2<//td><td>ab<//td><td>28<//td><td>000,077,255<//td><td>None<//td><td>DAS1<//td><td>Medium and high-grade regional metamorphic rock, of unspecified origin<//td><td>High<//td><td>DMU36<//td><//tr><tr><td>39<//td><td>shb<//td><td>Schist<//td><td>Schist<//td><td>Middle Jurassic<//td><td>Mica schist blocks consisting of white and dark-gray to black to light-orange muscovite and biotite schists and fine-grained plagioclase and quartz<//td><td>05-02-01-03<//td><td>DMU Unit 2<//td><td>shb<//td><td>29<//td><td>153,222,255<//td><td>None<//td><td>DAS1<//td><td>Medium and high-grade regional metamorphic rock, of unspecified origin<//td><td>High<//td><td>DMU37<//td><//tr><tr><td>40<//td><td>cb<//td><td>Chert<//td><td>Chert<//td><td>Middle Jurassic<//td><td>Brown to white, well-bedded chert containing abundant radiolaria that are visible in thin section<//td><td>05-02-01-04<//td><td>DMU Unit 2<//td><td>cb<//td><td>30<//td><td>255,077,235<//td><td>None<//td><td>DAS1<//td><td>Marine sediment<//td><td>High<//td><td>DMU38<//td><//tr><tr><td>41<//td><td>mvbb<//td><td>Basaltic breccia<//td><td>Basaltic breccia<//td><td>Middle Jurassic<//td><td>Black to dark-brown, clast-supported basaltic breccia. Basalt has fine-grained 
+porphyritic texture and contains phenocrysts of plagioclase and olivine alteration products, 
+including chlorite and epidote. Likely correlative with the breccia of Pope Creek (Jobb)<//td><td>05-02-01-05<//td><td>DMU Unit 2<//td><td>mvbb<//td><td>31<//td><td>204,153,179<//td><td>None<//td><td>DAS1<//td><td>Extrusive igneous material<//td><td>High<//td><td>DMU39<//td><//tr><tr><td>42<//td><td>mvpb<//td><td>Pillow basalt<//td><td>Pillow basalt<//td><td>Middle Jurassic<//td><td>Black to dark-brown, fine-grained pillow basalt that contains plagioclase phenocrysts. Pillows are tens of centimeters to 1 m in diameter; pillow asymmetries provide rare up-direction indicators<//td><td>05-02-01-06<//td><td>DMU Unit 2<//td><td>mvpb<//td><td>32<//td><td>168,000,025<//td><td>None<//td><td>DAS1<//td><td>Extrusive igneous material<//td><td>High<//td><td>DMU40<//td><//tr><tr><td>43<//td><td>mvbu<//td><td>Basalt, undifferentiated<//td><td>Basalt, undifferentiated<//td><td>Middle Jurassic<//td><td>Black to dark-brown to red basalt, mapped using aerial photographs and in field<//td><td>05-02-01-07<//td><td>DMU Unit 2<//td><td>mvbu<//td><td>33<//td><td>179,036,036<//td><td>None<//td><td>DAS1<//td><td>Extrusive igneous material<//td><td>High<//td><td>DMU41<//td><//tr><tr><td>44<//td><td>pgb<//td><td>Plagiogranite<//td><td>Plagiogranite<//td><td>Middle Jurassic<//td><td>White to buff, porphyritic plagiogranite that contains phenocrysts of quartz and plagioclase as large as 1–2 cm in diameter; dated at 163.6±2.0 Ma (Orme and Surpless, 2019)<//td><td>05-02-01-08<//td><td>DMU Unit 2<//td><td>pgb<//td><td>34<//td><td>194,122,212<//td><td>None<//td><td>DAS1<//td><td>Coarse-grained, felsic-composition intrusive igneous rock<//td><td>High<//td><td>DMU42<//td><//tr><tr><td>45<//td><td>gb<//td><td>Gabbro and cumulate gabbro<//td><td>Gabbro and cumulate gabbro<//td><td>Middle Jurassic<//td><td>Dark-gray to black, porphyritic gabbro that contains phenocrysts of plagioclase, amphibole, and pyroxene 0.5 cm in diameter. Some blocks show cumulate layering textures<//td><td>05-02-01-09<//td><td>DMU Unit 2<//td><td>gb<//td><td>35<//td><td>115,076,000<//td><td>None<//td><td>DAS1<//td><td>Coarse-grained, felsic-composition intrusive igneous rock<//td><td>High<//td><td>DMU43<//td><//tr><tr><td>46<//td><td>ssb<//td><td>Sandstone and mudstone<//td><td>Sandstone and mudstone<//td><td>Middle Jurassic<//td><td>Gray to light-brown, medium- to coarse-grained sandstone and dark-brown mudstone<//td><td>05-02-01-10<//td><td>DMU Unit 2<//td><td>ssb<//td><td>36<//td><td>242,232,189<//td><td>None<//td><td>DAS1<//td><td>Clastic sediment<//td><td>High<//td><td>DMU44<//td><//tr><tr><td>47<//td><td>tfb<//td><td>Tuff<//td><td>Tuff<//td><td>Middle Jurassic<//td><td>Gray to greenish-gray to white tuff; bubble-wall shards visible in thin section<//td><td>05-02-01-11<//td><td>DMU Unit 2<//td><td>tfb<//td><td>37<//td><td>190,255,232<//td><td>None<//td><td>DAS1<//td><td>Air-fall tephra<//td><td>High<//td><td>DMU45<//td><//tr><tr><td>48<//td><td>None<//td><td>FRANCISCAN COMPLEX<//td><td>None<//td><td>None<//td><td>None<//td><td>06<//td><td>DMU Heading2<//td><td>None<//td><td>None<//td><td>None<//td><td>None<//td><td>None<//td><td>None<//td><td>None<//td><td>DMU46<//td><//tr><tr><td>52<//td><td>None<//td><td>EASTERN BELT<//td><td>None<//td><td>None<//td><td>None<//td><td>06-01<//td><td>DMU Heading3<//td><td>None<//td><td>None<//td><td>None<//td><td>None<//td><td>None<//td><td>None<//td><td>None<//td><td>DMU47<//td><//tr><tr><td>49<//td><td>Kfm<//td><td>Metagraywake<//td><td>Metagraywake<//td><td>Early and Late Cretaceous<//td><td>Light-brown to gray to dark-gray, coarse- to fine-grained, lawsonite- and jadeite-bearing metagraywacke and schist that has metamorphic foliation and textural zone 2A fabrics (Jayko and others, 1986). Similar rocks outside map area have radiometric metamorphic ages of 90–110 Ma (Mattinson and Echeverria, 1980; Wakabayashi, 1999), and they contain Late Jurassic fossils (Crawford, 1976). Unit may be correlative with rocks of Yolla Bolly terrane farther north (see, for example, McLaughlin and Ohlin, 1984)<//td><td>06-01-01<//td><td>DMU Unit 1<//td><td>Kfm<//td><td>38<//td><td>204,235,255<//td><td>None<//td><td>DAS1<//td><td>Metasedimentary rock<//td><td>High<//td><td>DMU48<//td><//tr></table></div>
+  
+<div class="report">
+  <h4><a name="Glossary"></a>Glossary</h4>
+  <table class="ess-tables"><thead><tr><th>OBJECTID</th><th>Term</th><th>Definition</th><th>DefinitionSourceID</th><th>Glossary_ID</th><//tr><//thead><tr><td>22<//td><td>anticline<//td><td>A fold, generally convex upward, where the startigraphically oldest rocks occur within the center<//td><td>DAS1<//td><td>GLO01<//td><//tr><tr><td>41<//td><td>antiform<//td><td>A fold, generally convex upward, where the stratigraphic ages of the rocks are unknown<//td><td>DAS1<//td><td>GLO32<//td><//tr><tr><td>14<//td><td>bedding<//td><td>The orientation (azimuth and inclination) of a stratigraphic layer in sedimentary rock<//td><td>DAS1<//td><td>GLO02<//td><//tr><tr><td>35<//td><td>bedding, top direction of beds is known<//td><td>Bedding with way up indicators signaling the original top direction of sedimentary beds. Examples include, flame structures, flute casts, ripple marks.<//td><td>DAS1<//td><td>GLO34<//td><//tr><tr><td>11<//td><td>Buchia Pacifica<//td><td>A pelecypod (mollusk) fossil of early Cretaceous age<//td><td>DAS1<//td><td>GLO03<//td><//tr><tr><td>12<//td><td>Buchia Piochii<//td><td>A pelecypod (mollusk) fossil of late Jurassic age<//td><td>DAS1<//td><td>GLO04<//td><//tr><tr><td>1<//td><td>certain<//td><td>Identity of a feature can be determined using relevant observations and scientific judgment; therefore, one can be reasonably confident in the credibility of this interpretation.<//td><td>FGDC-STD-013-2006<//td><td>GLO05<//td><//tr><tr><td>3<//td><td>contact<//td><td>Location on the map were two map units are in contact<//td><td>DAS1<//td><td>GLO06<//td><//tr><tr><td>24<//td><td>Cross section<//td><td>A cross section profile line from which elevation and geologic data are derived<//td><td>DAS1<//td><td>GLO07<//td><//tr><tr><td>39<//td><td>DMU Heading2<//td><td>Times New Roman, Bold, 10 pt, 12 pt leading, all caps, centered, 12 pt space before<//td><td>USGS-MapTemplate-V1<//td><td>GLO30<//td><//tr><tr><td>40<//td><td>DMU Heading3<//td><td>Times New Roman, Regular, 10 pt, 12 pt leading, all caps, centered, 10 pt space before<//td><td>USGS-MapTemplate-V1<//td><td>GLO31<//td><//tr><tr><td>36<//td><td>DMU Unit 1<//td><td>Times New Roman, Regular, 10 pt, 12 pt leading, left justified, 66 pt left indent, –20 pt 1st line indent, 4 pt space before<//td><td>USGS-MapTemplate-V1<//td><td>GLO08<//td><//tr><tr><td>37<//td><td>DMU Unit 2<//td><td>Times New Roman, Regular, 10 pt, 12 pt leading, left justified, 66 pt left indent, –10 pt 1st line indent, 3 pt space before<//td><td>USGS-MapTemplate-V1<//td><td>GLO09<//td><//tr><tr><td>38<//td><td>DMU Unit 3<//td><td>Times New Roman, Regular, 10 pt, 12 pt leading, left justified, 66 pt left indent, 0 pt 1st line indent, 2 pt space before<//td><td>USGS-MapTemplate-V1<//td><td>GLO28<//td><//tr><tr><td>10<//td><td>DZ<//td><td>Detrital zircon geochron sample location<//td><td>DAS1<//td><td>GLO10<//td><//tr><tr><td>4<//td><td>fault<//td><td>A discrete brittle fracture that accommodates simple shear deformaiton (sliding of one rock past another)<//td><td>DAS1<//td><td>GLO11<//td><//tr><tr><td>5<//td><td>fault, normal<//td><td>A fault where the hanging wall has moved down relative to the footwall<//td><td>DAS1<//td><td>GLO13<//td><//tr><tr><td>6<//td><td>fault, reverse<//td><td>A fault where the hanging wall has moved up relative to the footwall<//td><td>DAS1<//td><td>GLO14<//td><//tr><tr><td>7<//td><td>fault, thrust<//td><td>A low angle fault where the hanging wall has moved up relative to the footwall<//td><td>DAS1<//td><td>GLO15<//td><//tr><tr><td>15<//td><td>foliation<//td><td>The orientation of the metamorphic or tectonic fabric within a rock<//td><td>DAS1<//td><td>GLO16<//td><//tr><tr><td>19<//td><td>High<//td><td>The relative confidence of classification of a GeoMaterial, see GeoMaterial field in the DescriptionOfMapUnits table<//td><td>USGS-TM11-B10<//td><td>GLO17<//td><//tr><tr><td>18<//td><td>horizontal bedding<//td><td>Bedding that is flat<//td><td>DAS1<//td><td>GLO18<//td><//tr><tr><td>13<//td><td>inclined fault<//td><td>A point on a fault surface where an orientation measurement was taken (in OrientationPoints)<//td><td>DAS1<//td><td>GLO12<//td><//tr><tr><td>28<//td><td>inclined slickenline<//td><td>Orientation of a slickenline measured on a fault surface (in OrientationPoints)<//td><td>DAS1<//td><td>GLO29<//td><//tr><tr><td>25<//td><td>Landslide direction<//td><td>The direction of flow or failure of a landslide<//td><td>DAS1<//td><td>GLO19<//td><//tr><tr><td>34<//td><td>Ma<//td><td>Mega-annum, millions of years before present<//td><td>DAS1<//td><td>GLO33<//td><//tr><tr><td>8<//td><td>map boundary<//td><td>Boundary of the geologic map<//td><td>DAS1<//td><td>GLO20<//td><//tr><tr><td>17<//td><td>overturned bedding<//td><td>Bedding that has been rotated upside down<//td><td>DAS1<//td><td>GLO21<//td><//tr><tr><td>2<//td><td>questionable<//td><td>Identity of a feature cannot be determined using relevant observations and scientific judgment; therefore, one cannot be reasonably confident in the credibility of this interpretation. For example, IdentityConfidence = questionable is appropriate when a geologist reasons "I can see some kind of planar feature that separates map units in this outcrop, but I cannot be certain if it is a contact or a fault."<//td><td>FGDC-STD-013-2006<//td><td>GLO22<//td><//tr><tr><td>23<//td><td>syncline<//td><td>A fold, generally concave upward, where the stratigraphically youngest rocks occur within the center<//td><td>DAS1<//td><td>GLO23<//td><//tr><tr><td>26<//td><td>Topographic contour 200 ft<//td><td>Isotopographic contour lines seperated by 200 foot intervals<//td><td>DAS1<//td><td>GLO24<//td><//tr><tr><td>27<//td><td>Topographic contour 40 ft<//td><td>Isotopographic contour lines seperated by 40 foot intervals<//td><td>DAS1<//td><td>GLO25<//td><//tr><tr><td>16<//td><td>vertical bedding<//td><td>Bedding that is oriented vertically<//td><td>DAS1<//td><td>GLO26<//td><//tr><tr><td>9<//td><td>waterline<//td><td>Line on the map where water bodies come in contact with land.<//td><td>DAS1<//td><td>GLO27<//td><//tr></table></div>
+  
+</div>
+
+<h3><a name="Database_Inventory"></a>Database Inventory</h3>
+<div class="report">
+  <i>This summary of database content is provided as a convenience to GIS analysts, reviewers, and others. It is not
+    part of the GeMS compliance criteria.</i>
+  <br>
+  <br>
+  
+  DataSources, nonspatial table, 14 rows<br>
+  
+  DescriptionOfMapUnits, nonspatial table, 49 rows<br>
+  
+  GeoMaterialDict, nonspatial table, 101 rows<br>
+  
+  Glossary, nonspatial table, 34 rows<br>
+  
+  SeismicityMap, feature dataset<br>
+  
+  <span class="tab"></span>MicroSeismicity, simple point feature class, 1537 rows<br>
+  
+  <span class="tab"></span>SeismicityCartographicLines, simple polyline feature class, 6 rows<br>
+  
+  GeologicMap, feature dataset<br>
+  
+  <span class="tab"></span>ContactsAndFaults, simple polyline feature class, 2005 rows<br>
+  
+  <span class="tab"></span>OrientationPoints, simple point feature class, 550 rows<br>
+  
+  <span class="tab"></span>MapUnitPolysAnno, annotation polygon feature class, 966 rows<br>
+  
+  <span class="tab"></span>MapUnitLabelPoints, simple point feature class, 990 rows<br>
+  
+  <span class="tab"></span>Contour200ftAnno_Fill, simple polygon feature class, 367 rows<br>
+  
+  <span class="tab"></span>Contour200ftAnno, annotation polygon feature class, 367 rows<br>
+  
+  <span class="tab"></span>OrientationPointsAnno, annotation polygon feature class, 533 rows<br>
+  
+  <span class="tab"></span>MapUnitPolys, simple polygon feature class, 1089 rows<br>
+  
+  <span class="tab"></span>GeochronPoints, simple point feature class, 13 rows<br>
+  
+  <span class="tab"></span>FossilPoints, simple point feature class, 6 rows<br>
+  
+  <span class="tab"></span>MapBoundary, simple polygon feature class, 1 rows<br>
+  
+  <span class="tab"></span>CartographicLines, simple polyline feature class, 314 rows<br>
+  
+  <span class="tab"></span>GeologicLines, simple polyline feature class, 122 rows<br>
+  
+  <span class="tab"></span>Roads_clip, simple polyline feature class, 54 rows<br>
+  
+  <span class="tab"></span>Flowline_clip, simple polyline feature class, 233 rows<br>
+  
+  <span class="tab"></span>IsoValueLines200ft, simple polyline feature class, 933 rows<br>
+  
+  <span class="tab"></span>IsoValueLines40ft, simple polyline feature class, 4811 rows<br>
+  
+  <span class="tab"></span>DataSourcePolys, simple polygon feature class, 6 rows<br>
+  
+</div>

@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+  <idinfo>
+    <citation>
+      <citeinfo>
+        <origin>Benjamin L. Melosh, Jackson W. Bodtker, Zenon C. Valin, Katie Sullivan</origin>
+        <pubdate>2024</pubdate>
+        <title>Geospatial database of the geologic map and structure sections along the southern part of the Bartlett Springs Fault Zone and adjacent areas from Cache Creek to Lake Berryessa, northern Coast Ranges, California</title>
+        <geoform>vector digital data</geoform>
+        <serinfo>
+          <sername>Scientific Investigations Map</sername>
+          <issue>SIM 3514</issue>
+        </serinfo>
+        <pubinfo>
+          <pubplace>Reston, Virginia</pubplace>
+          <publish>U.S. Geological Survey</publish>
+        </pubinfo>
+        <othercit>https://doi.org/10.3133/sim3514</othercit>
+        <onlink>https://doi.org/10.5066/P1YJRCZD</onlink>
+      </citeinfo>
+    </citation>
+    <descript>
+      <abstract>This geologic map database consists of new geologic mapping, at a 1:24,000 scale, along the southern part of the Bartlett Springs Fault Zone in the northern Coast Ranges, California. The geologic map (published as Scientific Investigations Map 3514) covers an area of 258 square miles in Lake, Napa, Colusa, and Yolo Counties; work, which was undertaken between 2016 and 2021, was supported by the USGS National Cooperative Geologic Mapping Program. This geodatabase contains the most up-to-date and highest resolution mapping in the region. Results and observations reported here help elucidate the geologic deformational history of the area, as well as the relation between older and active structures. Please consult the accompanying pamphlet and the Description of Map Units (in the pamphlet) for a detailed presentation and interpretation of data and discussion of results. The report contains the pamphlet and two map sheets that include the geologic map, a Correlation of Map Units, four geologic-structure cross sections, six microseismicity cross sections, and a microseismicity fault map.</abstract>
+      <purpose>Mapping was driven by the need to understand the distribution of rock types along the southern part of the Bartlett Springs Fault, as well as the most recent active uplift and strike-slip faulting in the region. This part of the Bartlett Springs Fault Zone, as well as the northern part of the Berryessa Fault, is geometrically complex, involving several step-overs and many microseismicity clusters. These fault zones represent significant seismic hazards to local communities, as well as nearby locations in the greater San Francisco Bay region. The map serves as a base to develop future three-dimensional structural models of the area, in conjunction with geophysical surveys. Information in this geodatabase may be used for fault-hazard assessments as well as natural resource development.</purpose>
+      <supplinf>SIM3514.gdb conforms to "GeMS (Geologic Map Schema)--A standard format for digital publication of geologic maps," available at https://ngmdb.usgs.gov/Info/standards/GeMS/. Metadata records associated with each element within the geodatabase contain more detailed descriptions of their purposes, constituent entities, and attributes.</supplinf>
+    </descript>
+    <timeperd>
+      <timeinfo>
+        <rngdates>
+          <begdate>20160101</begdate>
+          <enddate>20220125</enddate>
+        </rngdates>
+      </timeinfo>
+      <current>publication date</current>
+    </timeperd>
+    <status>
+      <progress>Complete</progress>
+      <update>None planned</update>
+    </status>
+    <spdom>
+      <bounding>
+        <westbc>-122.5457</westbc>
+        <eastbc>-122.2368</eastbc>
+        <northbc>39.0012</northbc>
+        <southbc>38.6099</southbc>
+      </bounding>
+    </spdom>
+    <keywords>
+      <theme>
+        <themekt>USGS Thesaurus</themekt>
+        <themekey>geologic map</themekey>
+        <themekey>geology</themekey>
+        <themekey>earthquake hazards</themekey>
+        <themekey>active faults</themekey>
+        <themekey>geologic cross sections</themekey>
+        <themekey>natural resources</themekey>
+        <themekey>serpentinite</themekey>
+        <themekey>microseismicity</themekey>
+      </theme>
+      <theme>
+        <themekt>USGS Metadata Identifier</themekt>
+        <themekey>USGS:02202203-3759-4352-91b1-714c5eeb6dba</themekey>
+      </theme>
+      <place>
+        <placekt>Common geographic areas</placekt>
+        <placekey>California</placekey>
+        <placekey>Cache Creek</placekey>
+        <placekey>Lake Berryessa</placekey>
+        <placekey>Knoxville</placekey>
+        <placekey>Clear Lake  San Francisco Bay region</placekey>
+      </place>
+    </keywords>
+    <accconst>None.</accconst>
+    <useconst>Uses of this digital geologic map should not violate the spatial resolution of the data. Although the digital form of the data removes the constraint imposed by the scale of a paper map, the detail and accuracy inherent in map scale are also present in the digital data. Many of the source data were created and edited at a scale of 1:24,000; other parts of the map were created and edited at larger and smaller scales. Visualization at larger scales will not yield greater real detail. Where elements of this database are used in combination with other data of higher resolution, the resolution of the combined output will be limited by the lower resolution of these data. See metadata (particularly LocationConfidenceMeters) attached to individual features for estimates of the spatial resolution of individual map elements. Please acknowledge the U.S. Geological Survey as the source of these data.</useconst>
+    <ptcontac>
+      <cntinfo>
+        <cntperp>
+          <cntper>Benjamin L. Melosh</cntper>
+          <cntorg>U.S. Geological Survey</cntorg>
+        </cntperp>
+        <cntpos>Research Geologist</cntpos>
+        <cntaddr>
+          <addrtype>physical</addrtype>
+          <address>350 N Akron Rd.</address>
+          <city>Moffett Field</city>
+          <state>CA</state>
+          <postal>94035</postal>
+          <country>USA</country>
+        </cntaddr>
+        <cntvoice>650-439-2361</cntvoice>
+        <cntemail>bmelosh@usgs.gov</cntemail>
+      </cntinfo>
+    </ptcontac>
+  </idinfo>
+  <dataqual>
+    <attracc>
+      <attraccr>NA</attraccr>
+    </attracc>
+    <logic>NA</logic>
+    <complete>NA</complete>
+    <lineage>
+      <procstep>
+        <procdesc>NA</procdesc>
+        <procdate>2024</procdate>
+      </procstep>
+    </lineage>
+  </dataqual>
+  <spref>
+    <horizsys>
+      <geograph>
+        <latres>0.000001</latres>
+        <longres>0.000001</longres>
+        <geogunit>Decimal degrees</geogunit>
+      </geograph>
+      <geodetic>
+        <horizdn>North American Datum of 1983 (NAD 83)</horizdn>
+        <ellips>Geodetic Reference System 1980</ellips>
+        <semiaxis>6378137.000000</semiaxis>
+        <denflat>298.257222</denflat>
+      </geodetic>
+    </horizsys>
+  </spref>
+  <distinfo>
+    <distrib>
+      <cntinfo>
+        <cntorgp>
+          <cntorg>U.S. Geological Survey</cntorg>
+          <cntper>NGMDB</cntper>
+        </cntorgp>
+        <cntaddr>
+          <addrtype>mailing</addrtype>
+          <address>MS 908</address>
+          <city>Reston</city>
+          <state>VA</state>
+          <postal>20192</postal>
+          <country>USA</country>
+        </cntaddr>
+        <cntvoice>N/A</cntvoice>
+        <cntemail>ngmdb@usgs.gov</cntemail>
+      </cntinfo>
+    </distrib>
+    <distliab>Unless otherwise stated, all data, metadata and related materials are considered to satisfy the quality standards relative to the purpose for which the data were collected. Although these data and associated metadata have been reviewed for accuracy and completeness and approved for release by the U.S. Geological Survey (USGS), no warranty expressed or implied is made regarding the display or utility of the data for other purposes, nor on all computer systems, nor shall the act of distribution constitute any such warranty.</distliab>
+    <stdorder>
+      <digform>
+        <digtinfo>
+          <formname>Digital Data</formname>
+        </digtinfo>
+        <digtopt>
+          <onlinopt>
+            <computer>
+              <networka>
+                <networkr>NGMDB</networkr>
+              </networka>
+            </computer>
+          </onlinopt>
+        </digtopt>
+      </digform>
+      <fees>None.</fees>
+    </stdorder>
+  </distinfo>
+  <metainfo>
+    <metd>20250108</metd>
+    <metc>
+      <cntinfo>
+        <cntperp>
+          <cntper>Benjamin L. Melosh</cntper>
+          <cntorg>U.S. Geological Survey</cntorg>
+        </cntperp>
+        <cntaddr>
+          <addrtype>mailing</addrtype>
+          <address>350 N Akron Rd.</address>
+          <city>Moffett Field</city>
+          <state>CA</state>
+          <postal>94035</postal>
+        </cntaddr>
+        <cntvoice>650-439-2361</cntvoice>
+        <cntemail>bmelosh@usgs.gov</cntemail>
+      </cntinfo>
+    </metc>
+    <metstdn>FGDC Content Standard for Digital Geospatial Metadata</metstdn>
+    <metstdv>FGDC-STD-001-1998</metstdv>
+  </metainfo>
+</metadata>

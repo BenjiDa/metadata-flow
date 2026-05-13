@@ -1,0 +1,154 @@
+citation:
+  title: "Example geologic map database for a northern California study area"
+  originators:
+    - "Jane Doe"
+    - "Alex Smith"
+  publication_date: "2026"
+  publication_status:
+    progress: "Complete"
+    update: "None planned"
+  geoform: "vector digital data"
+  publication_info:
+    place: "Reston, Virginia"
+    publisher: "U.S. Geological Survey"
+  series:
+    name: "Open-File Report"
+    issue: "2026-1000"
+  online_links:
+    - "https://doi.org/10.0000/example"
+
+description:
+  abstract: "This example geologic map database documents bedrock, surficial deposits, structures, and supporting tabular information for a hypothetical northern California study area."
+  purpose: "The dataset supports geologic interpretation, map publication, and a reproducible metadata workflow."
+  supplemental_information: "The database follows common GeMS publication patterns and this metadata is intended as an example input for metamapper."
+
+time_period:
+  begin_date: "20200101"
+  end_date: "20251231"
+  current: "publication date"
+
+spatial_domain:
+  bounding_coordinates:
+    west: -122.54
+    east: -122.21
+    north: 39.01
+    south: 38.60
+
+keywords:
+  theme_keywords:
+    - thesaurus: "USGS Thesaurus"
+      keywords:
+        - "geology"
+        - "geologic map"
+        - "faults"
+        - "geospatial datasets"
+    - thesaurus: "ISO 19115 Topic Category"
+      keywords:
+        - "geoscientificInformation"
+  place_keywords:
+    thesaurus: "Common geographic areas"
+    keywords:
+      - "California"
+      - "Northern Coast Ranges"
+  general_keywords:
+    - "GeMS"
+    - "metadata"
+
+constraints:
+  access_constraints: "None."
+  use_limitations: "Use of these data should not exceed the resolution implied by the scale and source materials."
+
+point_of_contact:
+  person: "Jane Doe"
+  organization: "U.S. Geological Survey"
+  position: "Research Geologist"
+  address_type: "physical"
+  address: "350 N Akron Rd."
+  city: "Moffett Field"
+  state: "CA"
+  postal: "94035"
+  country: "USA"
+  phone: "650-000-0000"
+  email: "jdoe@usgs.gov"
+
+data_quality:
+  attribute_accuracy: "Attributes were reviewed for consistency with the intended schema and source materials."
+  logical_consistency: "Topology, attribution, and identifier consistency were checked during compilation."
+  completeness: "The dataset represents mapped surface features within the project extent at publication time."
+  lineage:
+    process_steps:
+      - description: "Compiled original geologic mapping and source tables."
+        date: "2024"
+      - description: "Normalized attributes and prepared publication geodatabase content."
+        date: "2025"
+
+spatial_reference:
+  type: "geographic"
+  geographic:
+    latitude_resolution: "0.000001"
+    longitude_resolution: "0.000001"
+    unit: "Decimal degrees"
+  geodetic:
+    datum: "North American Datum of 1983 (NAD 83)"
+    ellipsoid: "Geodetic Reference System 1980"
+    semi_major_axis: "6378137.000000"
+    denominator_of_flattening: "298.257222"
+
+spatial_data_organization:
+  direct_spatial_reference_method: "Vector"
+
+entity_attribute_information:
+  entities:
+    - name: "DescriptionOfMapUnits"
+      description: "Non-spatial table describing map units and related attributes."
+      definition_source: "GeMS"
+      attributes:
+        - label: "MapUnit"
+          definition: "Short identifier for the map unit."
+          definition_source: "GeMS"
+          enumerated_domain:
+            - value: "Qal"
+              definition: "Alluvium"
+              definition_source: "Producer defined"
+            - value: "KJf"
+              definition: "Sandstone and shale"
+              definition_source: "Producer defined"
+        - label: "Name"
+          definition: "Plain-language name of the map unit."
+          definition_source: "GeMS"
+          unrepresentable_domain: "Free text."
+
+distribution:
+  distributor:
+    organization: "U.S. Geological Survey"
+    person: "NGMDB"
+    address_type: "mailing"
+    address: "MS 908"
+    city: "Reston"
+    state: "VA"
+    postal: "20192"
+    country: "USA"
+    phone: "N/A"
+    email: "ngmdb@usgs.gov"
+  liability: "No warranty expressed or implied is made regarding the display or utility of the data for other purposes."
+  online_resource: "https://www.usgs.gov/"
+  fees: "None."
+
+metadata:
+  date: "20260512"
+  contact:
+    person: "Jane Doe"
+    organization: "U.S. Geological Survey"
+    address_type: "mailing"
+    address: "350 N Akron Rd."
+    city: "Moffett Field"
+    state: "CA"
+    postal: "94035"
+    phone: "650-000-0000"
+    email: "jdoe@usgs.gov"
+  standard_name: "FGDC Content Standard for Digital Geospatial Metadata"
+  standard_version: "FGDC-STD-001-1998"
+
+validation:
+  external_command:
+  report_path:
