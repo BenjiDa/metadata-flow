@@ -1,0 +1,130 @@
+from pathlib import Path
+
+import pytest
+
+from metamapper.config import MissingRequiredFieldsError
+from metamapper.inspection_backends import InspectionError
+from metamapper.inspection_types import DatasetInspection, ExtentInfo, FieldInfo, LayerInfo, RasterInfo, SpatialReferenceInfo
+from metamapper.inspector import DatasetInspector
+from metamapper.prefill import build_prefill_document, write_prefill_yaml
+from metamapper.yaml_reader import load_metadata_config, load_yaml_document
+
+
+class FakeBackend:
+    name = "fake-backend"
+
+    def is_available(self) -> bool:
+        return True
+
+    def supports(self, path: Path) -> bool:
+        return path.exists()
+
+    def list_layers(self, path: Path) -> list[str]:
+        return ["MapUnitPolys", "ContactsAndFaults"]
+
+    def inspect(self, path: Path, layer: str | None = None) -> DatasetInspection:
+        selected_layer = layer or "MapUnitPolys"
+        return DatasetInspection(
+            dataset_path=str(path.resolve()),
+            dataset_name=selected_layer,
+            backend_name=self.name,
+            data_format="OpenFileGDB",
+            file_size_bytes=2048,
+            modified_date="2026-05-13T10:00:00",
+            layer_names=["MapUnitPolys", "ContactsAndFaults"],
+            selected_layer=selected_layer,
+            layer_info=LayerInfo(
+                name=selected_layer,
+                data_kind="vector",
+                geometry_type="Polygon",
+                feature_count=42,
+                fields=[
+                    FieldInfo(name="MapUnit", field_type="string", alias="Map Unit", length=16, nullable=False),
+                    FieldInfo(name="Label", field_type="string", length=24, nullable=True),
+                ],
+                spatial_reference=SpatialReferenceInfo(
+                    name="NAD83 / UTM zone 10N",
+                    epsg=26910,
+                    wkt="PROJCS[...]",
+                ),
+                extent=ExtentInfo(west=-122.5, east=-122.2, south=38.6, north=39.0),
+            ),
+        )
+
+
+def test_dataset_inspector_uses_matching_backend(tmp_path: Path) -> None:
+    dataset_path = tmp_path / "example.gdb"
+    dataset_path.mkdir()
+    inspector = DatasetInspector(backends=[FakeBackend()])
+
+    result = inspector.inspect(dataset_path, layer="MapUnitPolys")
+
+    assert result.backend_name == "fake-backend"
+    assert result.selected_layer == "MapUnitPolys"
+    assert result.layer_info is not None
+    assert result.layer_info.feature_count == 42
+
+
+def test_dataset_inspector_raises_for_missing_dataset(tmp_path: Path) -> None:
+    inspector = DatasetInspector(backends=[FakeBackend()])
+
+    with pytest.raises(InspectionError):
+        inspector.inspect(tmp_path / "missing.gdb")
+
+
+def test_prefill_yaml_contains_auto_populated_and_todo_sections(tmp_path: Path) -> None:
+    dataset_path = tmp_path / "example.gdb"
+    dataset_path.mkdir()
+    inspection = FakeBackend().inspect(dataset_path, layer="MapUnitPolys")
+
+    document = build_prefill_document(inspection)
+    output_path = write_prefill_yaml(document, tmp_path / "prefill.yaml")
+    loaded = load_yaml_document(output_path)
+
+    assert loaded["inspection"]["backend"] == "fake-backend"
+    assert loaded["inspection"]["auto_populated"]["selected_layer"] == "MapUnitPolys"
+    assert loaded["description"]["abstract"].startswith("TODO:")
+    assert loaded["entity_attribute_information"]["entities"][0]["attributes"][0]["alias"] == "Map Unit"
+    assert loaded["spatial_domain"]["bounding_coordinates"]["west"] == -122.5
+    assert loaded["spatial_reference"]["type"] == "utm"
+    assert loaded["spatial_reference"]["utm"]["zone"] == "10"
+
+
+def test_inspect_prefill_requires_manual_completion_before_build(tmp_path: Path) -> None:
+    dataset_path = tmp_path / "example.gdb"
+    dataset_path.mkdir()
+    inspection = FakeBackend().inspect(dataset_path, layer="MapUnitPolys")
+    output_path = write_prefill_yaml(build_prefill_document(inspection), tmp_path / "prefill.yaml")
+
+    with pytest.raises(MissingRequiredFieldsError) as exc:
+        load_metadata_config(output_path)
+
+    assert "description.abstract" in str(exc.value)
+    assert "citation.originators" in str(exc.value)
+
+
+def test_prefill_document_for_raster_includes_raster_info(tmp_path: Path) -> None:
+    inspection = DatasetInspection(
+        dataset_path=str((tmp_path / "thermal.tif").resolve()),
+        dataset_name="thermal",
+        backend_name="fake-backend",
+        data_format="GTiff",
+        file_size_bytes=100,
+        modified_date="2026-05-13T11:00:00",
+        layer_names=["thermal"],
+        selected_layer="thermal",
+        layer_info=LayerInfo(
+            name="thermal",
+            data_kind="raster",
+            spatial_reference=SpatialReferenceInfo(name="WGS 84", epsg=4326, wkt="GEOGCS[...]"),
+            extent=ExtentInfo(west=-122.44, east=-122.42, south=39.03, north=39.04),
+            raster=RasterInfo(width=100, height=200, band_count=1, cell_size_x=1.0, cell_size_y=1.0, nodata_values=[-9999]),
+        ),
+    )
+
+    document = build_prefill_document(inspection)
+
+    entity = document["entity_attribute_information"]["entities"][0]
+    assert document["citation"]["geoform"] == "raster digital data"
+    assert document["spatial_data_organization"]["direct_spatial_reference_method"] == "Raster"
+    assert entity["raster"]["band_count"] == 1

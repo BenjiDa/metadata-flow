@@ -35,6 +35,16 @@ REQUIRED_YAML_FIELDS = [
     "constraints.use_limitations",
 ]
 
+PLACEHOLDER_PREFIXES = ("TODO:", "todo:")
+
+
+def _is_placeholder(value: Any) -> bool:
+    if isinstance(value, str):
+        return value.strip().startswith(PLACEHOLDER_PREFIXES)
+    if isinstance(value, list):
+        return bool(value) and all(_is_placeholder(item) for item in value)
+    return False
+
 
 @dataclass(slots=True)
 class MetadataConfig:
@@ -63,6 +73,10 @@ class MetadataConfig:
                 continue
             if isinstance(value, str) and not value.strip():
                 missing.append(path)
+                continue
+            if _is_placeholder(value):
+                missing.append(path)
+                continue
             if isinstance(value, list) and not value:
                 missing.append(path)
         if missing:

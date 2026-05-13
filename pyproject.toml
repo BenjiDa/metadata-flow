@@ -17,6 +17,7 @@ dependencies = [
 
 [project.optional-dependencies]
 dev = ["pytest"]
+inspect = ["pyogrio", "rasterio"]
 
 [project.scripts]
 metamapper = "metamapper.cli:app"
