@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 from datetime import datetime
+from copy import deepcopy
 import math
 import os
 from pathlib import Path
@@ -16,7 +17,6 @@ TODO_ABSTRACT = "TODO: USER INPUT NEEDED. REVISE THIS ABSTRACT."
 TODO_PURPOSE = "TODO: USER INPUT NEEDED. REVISE THIS PURPOSE STATEMENT."
 TODO_SUPPL = "TODO: USER INPUT NEEDED. ADD GEOLOGIC INTERPRETATION, PROCESSING NOTES, AND SUPPLEMENTAL INFORMATION."
 TODO_LINEAGE = "TODO: USER INPUT NEEDED. DESCRIBE LINEAGE AND PROCESSING STEPS."
-TODO_ATTR_DEF = "TODO: define this attribute beyond the raw field name and type"
 TODO_USE_LIMIT = "TODO: USER INPUT NEEDED. REVISE USE CONSTRAINTS AND DATA LIMITATIONS."
 TODO_PUB_DATE = "TODO: set publication or release date"
 TODO_ORIGINATOR = "TODO: add originator/author name"
@@ -26,6 +26,36 @@ TODO_PUBLISHER = "TODO: provide publisher or publishing organization"
 TODO_CONTACT = "TODO: provide metadata contact"
 TODO_DISTRIBUTION = "TODO: provide distribution liability statement"
 TODO_CURRENTNESS = "TODO: set currentness reference, for example 'publication date' or 'observed'"
+
+
+def _contact_template(person_placeholder: str = TODO_CONTACT, organization_placeholder: str = "TODO: provide organization") -> dict[str, str]:
+    return {
+        "person": person_placeholder,
+        "organization": organization_placeholder,
+        "position": "TODO: provide position or role",
+        "address_type": "mailing",
+        "address": "TODO: provide mailing address",
+        "city": "TODO: provide city",
+        "state": "TODO: provide state or province",
+        "postal": "TODO: provide postal code",
+        "country": "TODO: provide country",
+        "phone": "TODO: provide phone number",
+        "email": "TODO: provide email address",
+    }
+
+
+def _distribution_contact_template() -> dict[str, str]:
+    return _contact_template(
+        person_placeholder="TODO: provide distribution contact",
+        organization_placeholder="TODO: provide distributor organization",
+    )
+
+
+def _metadata_contact_template() -> dict[str, str]:
+    return _contact_template(
+        person_placeholder="TODO: provide metadata contact",
+        organization_placeholder="TODO: provide metadata contact organization",
+    )
 
 
 def build_prefill_document(inspection: DatasetInspection) -> dict[str, Any]:
@@ -48,17 +78,33 @@ def build_prefill_document(inspection: DatasetInspection) -> dict[str, Any]:
                 "citation.publication_date",
                 "citation.publication_status.progress",
                 "citation.publication_status.update",
+                "citation.publication_info.place",
                 "citation.publication_info.publisher",
                 "description.abstract",
                 "description.purpose",
-                "description.supplemental_information",
+                "time_period.begin_date",
+                "time_period.end_date",
+                "time_period.single_date",
                 "time_period.current",
                 "data_quality.attribute_accuracy",
                 "data_quality.logical_consistency",
                 "data_quality.completeness",
                 "data_quality.lineage.process_steps",
-                "constraints.use_limitations",
-                "point_of_contact",
+                "point_of_contact.person",
+                "point_of_contact.organization",
+                "point_of_contact.address",
+                "point_of_contact.city",
+                "point_of_contact.phone",
+                "distribution.distributor.person",
+                "distribution.distributor.organization",
+                "distribution.distributor.address",
+                "distribution.distributor.city",
+                "distribution.distributor.phone",
+                "metadata.contact.person",
+                "metadata.contact.organization",
+                "metadata.contact.address",
+                "metadata.contact.city",
+                "metadata.contact.phone",
                 "distribution.liability",
             ],
         },
@@ -108,19 +154,7 @@ def build_prefill_document(inspection: DatasetInspection) -> dict[str, Any]:
             "access_constraints": "None.",
             "use_limitations": TODO_USE_LIMIT,
         },
-        "point_of_contact": {
-            "person": TODO_CONTACT,
-            "organization": "TODO: provide organization",
-            "position": "TODO: provide position or role",
-            "address_type": "mailing",
-            "address": "TODO: provide mailing address",
-            "city": "TODO: provide city",
-            "state": "TODO: provide state or province",
-            "postal": "TODO: provide postal code",
-            "country": "TODO: provide country",
-            "phone": "TODO: provide phone number",
-            "email": "TODO: provide email address",
-        },
+        "point_of_contact": _contact_template(),
         "data_quality": {
             "attribute_accuracy": _attribute_accuracy_scaffold(inspection),
             "logical_consistency": _logical_consistency_scaffold(inspection),
@@ -140,35 +174,14 @@ def build_prefill_document(inspection: DatasetInspection) -> dict[str, Any]:
         },
         "entity_attribute_information": entity_info,
         "distribution": {
-            "distributor": {
-                "organization": "TODO: provide distributor organization",
-                "person": "TODO: provide distributor contact",
-                "address_type": "mailing",
-                "address": "TODO: provide distributor address",
-                "city": "TODO: provide city",
-                "state": "TODO: provide state or province",
-                "postal": "TODO: provide postal code",
-                "country": "TODO: provide country",
-                "phone": "TODO: provide phone number",
-                "email": "TODO: provide email address",
-            },
+            "distributor": _distribution_contact_template(),
             "liability": TODO_DISTRIBUTION,
             "online_resource": "",
             "fees": "None.",
         },
         "metadata": {
             "date": datetime.now().strftime("%Y%m%d"),
-            "contact": {
-                "person": "TODO: provide metadata contact",
-                "organization": "TODO: provide metadata contact organization",
-                "address_type": "mailing",
-                "address": "TODO: provide mailing address",
-                "city": "TODO: provide city",
-                "state": "TODO: provide state or province",
-                "postal": "TODO: provide postal code",
-                "phone": "TODO: provide phone number",
-                "email": "TODO: provide email address",
-            },
+            "contact": _metadata_contact_template(),
             "standard_name": "FGDC Content Standard for Digital Geospatial Metadata",
             "standard_version": "FGDC-STD-001-1998",
         },
@@ -197,6 +210,9 @@ def build_prefill_document(inspection: DatasetInspection) -> dict[str, Any]:
             "file_size_bytes": inspection.file_size_bytes,
             "modified_date": inspection.modified_date,
         }
+
+    doc["distribution"]["distributor"] = deepcopy(doc["point_of_contact"])
+    doc["metadata"]["contact"] = deepcopy(doc["point_of_contact"])
 
     return doc
 
@@ -362,19 +378,19 @@ def _spatial_reference_document(layer_info: LayerInfo | None) -> dict[str, Any]:
             "utm": {
                 "zone": _infer_utm_zone(spatial_reference.name if spatial_reference else None, spatial_reference.epsg if spatial_reference else None),
                 "scale_factor": "0.9996",
-                "central_meridian": "TODO: confirm central meridian",
+                "central_meridian": "",
                 "latitude_projection_origin": "0.0",
                 "false_easting": "500000.0",
                 "false_northing": "0.0",
-                "x_resolution": "TODO: confirm x resolution",
-                "y_resolution": "TODO: confirm y resolution",
+                "x_resolution": "",
+                "y_resolution": "",
                 "unit": spatial_reference.unit if spatial_reference and spatial_reference.unit else "meters",
             },
             "geodetic": {
-                "datum": spatial_reference.name if spatial_reference and spatial_reference.name else "TODO: provide geodetic datum",
-                "ellipsoid": "TODO: provide ellipsoid",
-                "semi_major_axis": "TODO: provide semi-major axis",
-                "denominator_of_flattening": "TODO: provide denominator of flattening",
+                "datum": spatial_reference.datum if spatial_reference and spatial_reference.datum else "",
+                "ellipsoid": "",
+                "semi_major_axis": "",
+                "denominator_of_flattening": "",
             },
         }
     else:
@@ -386,10 +402,10 @@ def _spatial_reference_document(layer_info: LayerInfo | None) -> dict[str, Any]:
                 "unit": spatial_reference.unit if spatial_reference and spatial_reference.unit else "Decimal degrees",
             },
             "geodetic": {
-                "datum": spatial_reference.name if spatial_reference and spatial_reference.name else "TODO: provide geodetic datum",
-                "ellipsoid": "TODO: provide ellipsoid",
-                "semi_major_axis": "TODO: provide semi-major axis",
-                "denominator_of_flattening": "TODO: provide denominator of flattening",
+                "datum": spatial_reference.datum if spatial_reference and spatial_reference.datum else "",
+                "ellipsoid": "",
+                "semi_major_axis": "",
+                "denominator_of_flattening": "",
             },
         }
 
@@ -415,8 +431,8 @@ def _entity_attribute_document(inspection: DatasetInspection) -> dict[str, Any]:
     for layer_info in layer_infos:
         entity: dict[str, Any] = {
             "name": layer_info.name,
-            "description": f"Auto-generated draft entity description for {layer_info.name}.",
-            "definition_source": "MetaMapper inspection",
+            "description": _entity_description(layer_info),
+            "definition_source": _entity_definition_source(layer_info),
             "data_kind": layer_info.data_kind,
             "geometry_type": layer_info.geometry_type,
             "feature_count": layer_info.feature_count,
@@ -426,8 +442,8 @@ def _entity_attribute_document(inspection: DatasetInspection) -> dict[str, Any]:
         for field in layer_info.fields:
             attribute: dict[str, Any] = {
                 "label": field.name,
-                "definition": TODO_ATTR_DEF,
-                "definition_source": "TODO: provide attribute definition source",
+                "definition": _attribute_definition(field),
+                "definition_source": _attribute_definition_source(layer_info, field),
                 "unrepresentable_domain": f"Raw field type: {field.field_type}",
             }
             if field.alias:
@@ -447,6 +463,34 @@ def _entity_attribute_document(inspection: DatasetInspection) -> dict[str, Any]:
         entities.append(entity)
 
     return {"entities": entities}
+
+
+def _entity_description(layer_info: LayerInfo) -> str:
+    parts = [f"Entity derived from the source dataset layer {layer_info.name}."]
+    if layer_info.data_kind:
+        parts.append(f"Data kind: {layer_info.data_kind}.")
+    if layer_info.geometry_type and layer_info.geometry_type != "None":
+        parts.append(f"Geometry type: {layer_info.geometry_type}.")
+    if layer_info.feature_count is not None:
+        parts.append(f"Approximate record count: {layer_info.feature_count}.")
+    return " ".join(parts)
+
+
+def _entity_definition_source(layer_info: LayerInfo) -> str:
+    if layer_info.spatial_reference and layer_info.spatial_reference.name:
+        return f"Source dataset schema inspection ({layer_info.spatial_reference.name})."
+    return "Source dataset schema inspection."
+
+
+def _attribute_definition(field: Any) -> str:
+    alias_text = f" ({field.alias})" if getattr(field, "alias", None) else ""
+    return f"Attribute {field.name}{alias_text} imported from the source dataset schema as type {field.field_type}."
+
+
+def _attribute_definition_source(layer_info: LayerInfo, field: Any) -> str:
+    if getattr(field, "alias", None):
+        return f"Source dataset field schema and alias for layer {layer_info.name}."
+    return f"Source dataset field schema for layer {layer_info.name}."
 
 
 def _looks_like_utm(name: str | None, epsg: int | None) -> bool:

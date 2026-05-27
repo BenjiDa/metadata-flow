@@ -20,7 +20,6 @@ def test_find_missing_required_fields_detects_todo_placeholders() -> None:
         "data_quality": {"attribute_accuracy": "Done", "logical_consistency": "Done", "completeness": "Done"},
         "spatial_reference": {"type": "geographic"},
         "metadata": {"date": "20260513"},
-        "constraints": {"use_limitations": "Done"},
     }
 
     missing = find_missing_required_fields(document)
@@ -53,6 +52,7 @@ def test_get_missing_field_prompts_returns_missing_only() -> None:
     prompts = get_missing_field_prompts(document, only_missing=True)
 
     assert any(prompt.path == "citation.originators" for prompt in prompts)
+    assert any(prompt.path == "point_of_contact.person" for prompt in prompts)
     assert all(prompt.short_form for prompt in prompts)
 
 
@@ -61,6 +61,7 @@ def test_get_missing_field_prompts_can_include_long_form() -> None:
     prompts = get_missing_field_prompts(document, only_missing=True, include_long_form=True)
 
     assert any(prompt.path == "description.abstract" for prompt in prompts)
+    assert not any(prompt.path == "constraints.use_limitations" for prompt in prompts)
     assert any(not prompt.short_form for prompt in prompts)
 
 

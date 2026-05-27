@@ -3,13 +3,12 @@ from __future__ import annotations
 from dataclasses import dataclass
 from typing import Any
 
-from metamapper.config import find_missing_required_fields, get_path, set_path
+from metamapper.config import get_path, set_path
 
 
 LONG_FORM_FIELDS = {
     "description.abstract",
     "description.purpose",
-    "constraints.use_limitations",
     "data_quality.attribute_accuracy",
     "data_quality.logical_consistency",
     "data_quality.completeness",
@@ -53,6 +52,11 @@ FIELD_PROMPTS: dict[str, FieldPrompt] = {
         prompt="Publisher",
         help_text="Examples: U.S. Geological Survey, ScienceBase.",
     ),
+    "citation.publication_info.place": FieldPrompt(
+        path="citation.publication_info.place",
+        prompt="Publication place",
+        help_text="Examples: Reston, Virginia; Sacramento, California.",
+    ),
     "description.abstract": FieldPrompt(
         path="description.abstract",
         prompt="Abstract",
@@ -72,12 +76,160 @@ FIELD_PROMPTS: dict[str, FieldPrompt] = {
         prompt="Currentness reference",
         help_text="Common values: publication date, observed, ground condition.",
     ),
-    "constraints.use_limitations": FieldPrompt(
-        path="constraints.use_limitations",
-        prompt="Use limitations",
-        help_text="State use constraints or scale/resolution cautions. Finish multiline input with '.' on its own line.",
-        multiline=True,
-        short_form=False,
+    "time_period.single_date": FieldPrompt(
+        path="time_period.single_date",
+        prompt="Single date",
+        help_text="Use for one observation or acquisition date. Example: 20260527.",
+    ),
+    "time_period.begin_date": FieldPrompt(
+        path="time_period.begin_date",
+        prompt="Begin date",
+        help_text="Use for a date range. Example: 20240101.",
+    ),
+    "time_period.end_date": FieldPrompt(
+        path="time_period.end_date",
+        prompt="End date",
+        help_text="Use for a date range. Example: 20260527.",
+    ),
+    "point_of_contact.person": FieldPrompt(
+        path="point_of_contact.person",
+        prompt="Dataset contact person",
+        help_text="Primary point of contact name for the dataset.",
+    ),
+    "point_of_contact.organization": FieldPrompt(
+        path="point_of_contact.organization",
+        prompt="Dataset contact organization",
+        help_text="Organization for the dataset point of contact.",
+    ),
+    "point_of_contact.position": FieldPrompt(
+        path="point_of_contact.position",
+        prompt="Dataset contact position",
+        help_text="Job title or role.",
+    ),
+    "point_of_contact.address": FieldPrompt(
+        path="point_of_contact.address",
+        prompt="Dataset contact address",
+        help_text="Street or mailing address.",
+    ),
+    "point_of_contact.city": FieldPrompt(
+        path="point_of_contact.city",
+        prompt="Dataset contact city",
+        help_text="City for the point of contact.",
+    ),
+    "point_of_contact.state": FieldPrompt(
+        path="point_of_contact.state",
+        prompt="Dataset contact state",
+        help_text="State or province.",
+    ),
+    "point_of_contact.postal": FieldPrompt(
+        path="point_of_contact.postal",
+        prompt="Dataset contact postal code",
+        help_text="Postal or ZIP code.",
+    ),
+    "point_of_contact.country": FieldPrompt(
+        path="point_of_contact.country",
+        prompt="Dataset contact country",
+        help_text="Country name.",
+    ),
+    "point_of_contact.phone": FieldPrompt(
+        path="point_of_contact.phone",
+        prompt="Dataset contact phone",
+        help_text="Phone number.",
+    ),
+    "point_of_contact.email": FieldPrompt(
+        path="point_of_contact.email",
+        prompt="Dataset contact email",
+        help_text="Email address.",
+    ),
+    "distribution.distributor.person": FieldPrompt(
+        path="distribution.distributor.person",
+        prompt="Distribution contact person",
+        help_text="Person to contact for distribution questions.",
+    ),
+    "distribution.distributor.organization": FieldPrompt(
+        path="distribution.distributor.organization",
+        prompt="Distribution contact organization",
+        help_text="Organization handling distribution.",
+    ),
+    "distribution.distributor.address": FieldPrompt(
+        path="distribution.distributor.address",
+        prompt="Distribution contact address",
+        help_text="Street or mailing address.",
+    ),
+    "distribution.distributor.city": FieldPrompt(
+        path="distribution.distributor.city",
+        prompt="Distribution contact city",
+        help_text="City for the distribution contact.",
+    ),
+    "distribution.distributor.state": FieldPrompt(
+        path="distribution.distributor.state",
+        prompt="Distribution contact state",
+        help_text="State or province.",
+    ),
+    "distribution.distributor.postal": FieldPrompt(
+        path="distribution.distributor.postal",
+        prompt="Distribution contact postal code",
+        help_text="Postal or ZIP code.",
+    ),
+    "distribution.distributor.country": FieldPrompt(
+        path="distribution.distributor.country",
+        prompt="Distribution contact country",
+        help_text="Country name.",
+    ),
+    "distribution.distributor.phone": FieldPrompt(
+        path="distribution.distributor.phone",
+        prompt="Distribution contact phone",
+        help_text="Phone number.",
+    ),
+    "distribution.distributor.email": FieldPrompt(
+        path="distribution.distributor.email",
+        prompt="Distribution contact email",
+        help_text="Email address.",
+    ),
+    "metadata.contact.person": FieldPrompt(
+        path="metadata.contact.person",
+        prompt="Metadata contact person",
+        help_text="Person responsible for the metadata record.",
+    ),
+    "metadata.contact.organization": FieldPrompt(
+        path="metadata.contact.organization",
+        prompt="Metadata contact organization",
+        help_text="Organization responsible for the metadata record.",
+    ),
+    "metadata.contact.address": FieldPrompt(
+        path="metadata.contact.address",
+        prompt="Metadata contact address",
+        help_text="Street or mailing address.",
+    ),
+    "metadata.contact.city": FieldPrompt(
+        path="metadata.contact.city",
+        prompt="Metadata contact city",
+        help_text="City for the metadata contact.",
+    ),
+    "metadata.contact.state": FieldPrompt(
+        path="metadata.contact.state",
+        prompt="Metadata contact state",
+        help_text="State or province.",
+    ),
+    "metadata.contact.postal": FieldPrompt(
+        path="metadata.contact.postal",
+        prompt="Metadata contact postal code",
+        help_text="Postal or ZIP code.",
+    ),
+    "metadata.contact.country": FieldPrompt(
+        path="metadata.contact.country",
+        prompt="Metadata contact country",
+        help_text="Country name.",
+    ),
+    "metadata.contact.phone": FieldPrompt(
+        path="metadata.contact.phone",
+        prompt="Metadata contact phone",
+        help_text="Phone number.",
+    ),
+    "metadata.contact.email": FieldPrompt(
+        path="metadata.contact.email",
+        prompt="Metadata contact email",
+        help_text="Email address.",
     ),
     "data_quality.attribute_accuracy": FieldPrompt(
         path="data_quality.attribute_accuracy",
@@ -112,12 +264,23 @@ def get_missing_field_prompts(
 
     prompt_paths = list(FIELD_PROMPTS)
     if only_missing:
-        missing = set(find_missing_required_fields(document))
-        prompt_paths = [path for path in prompt_paths if path in missing]
+        prompt_paths = [path for path in prompt_paths if _needs_prompt(document, path)]
     prompts = [FIELD_PROMPTS[path] for path in prompt_paths]
     if not include_long_form:
         prompts = [prompt for prompt in prompts if prompt.short_form]
     return prompts
+
+
+def _needs_prompt(document: dict[str, Any], path: str) -> bool:
+    value = get_path(document, path)
+    if value is None:
+        return True
+    if isinstance(value, str):
+        stripped = value.strip()
+        return not stripped or is_placeholder_display(stripped)
+    if isinstance(value, list):
+        return not value or all(isinstance(item, str) and is_placeholder_display(item) for item in value)
+    return False
 
 
 def parse_user_value(prompt: FieldPrompt, raw_value: str) -> Any:

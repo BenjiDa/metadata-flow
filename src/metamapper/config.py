@@ -32,7 +32,6 @@ REQUIRED_YAML_FIELDS = [
     "data_quality.completeness",
     "spatial_reference.type",
     "metadata.date",
-    "constraints.use_limitations",
 ]
 
 PLACEHOLDER_PREFIXES = ("TODO:", "todo:")

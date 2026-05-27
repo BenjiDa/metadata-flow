@@ -89,9 +89,14 @@ def test_prefill_yaml_contains_auto_populated_and_todo_sections(tmp_path: Path) 
     assert loaded["description"]["abstract"].startswith("TODO:")
     assert "USER INPUT NEEDED" in loaded["description"]["abstract"]
     assert loaded["entity_attribute_information"]["entities"][0]["attributes"][0]["alias"] == "Map Unit"
+    assert "TODO:" not in loaded["entity_attribute_information"]["entities"][0]["attributes"][0]["definition"]
+    assert "TODO:" not in loaded["entity_attribute_information"]["entities"][0]["attributes"][0]["definition_source"]
     assert loaded["spatial_domain"]["bounding_coordinates"]["west"] < -120
     assert loaded["spatial_reference"]["type"] == "utm"
     assert loaded["spatial_reference"]["utm"]["zone"] == "10"
+    assert loaded["spatial_reference"]["utm"]["central_meridian"] == ""
+    assert loaded["distribution"]["distributor"]["person"] == loaded["point_of_contact"]["person"]
+    assert loaded["metadata"]["contact"]["person"] == loaded["point_of_contact"]["person"]
 
 
 def test_inspect_prefill_requires_manual_completion_before_build(tmp_path: Path) -> None:
