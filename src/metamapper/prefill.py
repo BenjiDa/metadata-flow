@@ -13,10 +13,6 @@ import yaml
 from metamapper.inspection_types import DatasetInspection, LayerInfo
 
 
-TODO_ABSTRACT = "TODO: USER INPUT NEEDED. REVISE THIS ABSTRACT."
-TODO_PURPOSE = "TODO: USER INPUT NEEDED. REVISE THIS PURPOSE STATEMENT."
-TODO_SUPPL = "TODO: USER INPUT NEEDED. ADD GEOLOGIC INTERPRETATION, PROCESSING NOTES, AND SUPPLEMENTAL INFORMATION."
-TODO_LINEAGE = "TODO: USER INPUT NEEDED. DESCRIBE LINEAGE AND PROCESSING STEPS."
 TODO_USE_LIMIT = "TODO: USER INPUT NEEDED. REVISE USE CONSTRAINTS AND DATA LIMITATIONS."
 TODO_PUB_DATE = "TODO: set publication or release date"
 TODO_ORIGINATOR = "TODO: add originator/author name"
@@ -285,11 +281,10 @@ def _abstract_scaffold(inspection: DatasetInspection, layer_info: LayerInfo | No
     layer_text = _layer_summary(inspection)
     feature_text = _feature_summary(layer_info)
     return (
-        f"{TODO_ABSTRACT}\n"
         f"This metadata record describes the {dataset_name} dataset in {format_name} format. "
         f"{layer_text} {feature_text} {extent_text} "
-        "USER INPUT NEEDED: add the scientific context, map purpose, publication framing, "
-        "and any important geologic interpretation that cannot be derived from the dataset structure alone."
+        "The draft abstract was generated from dataset structure and inspection metadata and should be reviewed and revised by the data authors "
+        "to add project context, scientific interpretation, publication framing, and any dataset-specific caveats."
     ).strip()
 
 
@@ -297,10 +292,10 @@ def _purpose_scaffold(inspection: DatasetInspection, layer_info: LayerInfo | Non
     dataset_name = inspection.dataset_name.replace("_", " ")
     layer_text = _layer_summary(inspection)
     return (
-        f"{TODO_PURPOSE}\n"
         f"The {dataset_name} dataset appears to support geospatial analysis, visualization, and distribution of mapped data. "
-        f"{layer_text} USER INPUT NEEDED: explain why these data were created, the intended scientific or mapping use, "
-        "and any limits on how the dataset should be interpreted."
+        f"{layer_text} "
+        "This draft purpose statement should be revised by the data authors to better explain why the dataset was created, "
+        "its intended scientific or mapping use, and any interpretive or scale-related limits on reuse."
     ).strip()
 
 
@@ -308,34 +303,32 @@ def _supplemental_scaffold(inspection: DatasetInspection) -> str:
     selected = inspection.selected_layer or "the dataset as a whole"
     if _looks_like_gems_dataset(inspection):
         return (
-            f"{TODO_SUPPL}\n"
             f"{inspection.dataset_name} appears to conform to GeMS (Geologic Map Schema). MetaMapper auto-populated structural details for {selected}. "
             "Inherited GeMS entity and attribute definitions may be referenced from the GeMS standard rather than rewritten field-by-field. "
-            "USER INPUT NEEDED: add processing notes, related products, geologic interpretation, companion report references, "
-            "and any dataset-specific caveats that users should read before reuse."
+            "This draft supplemental information should be reviewed and expanded to add processing notes, related products, geologic interpretation, "
+            "companion report references, and any dataset-specific caveats that users should read before reuse."
         ).strip()
     return (
-        f"{TODO_SUPPL}\n"
         f"MetaMapper auto-populated structural details for {selected} from the source dataset. "
-        "USER INPUT NEEDED: add processing notes, related products, geologic interpretation, companion report references, "
-        "and any dataset-specific caveats that users should read before reuse."
+        "This draft supplemental information should be reviewed and expanded to add processing notes, related products, geologic interpretation, "
+        "companion report references, and any dataset-specific caveats that users should read before reuse."
     ).strip()
 
 
 def _attribute_accuracy_scaffold(inspection: DatasetInspection) -> str:
     return (
-        "TODO: USER INPUT NEEDED. REVISE THIS ATTRIBUTE ACCURACY STATEMENT.\n"
         f"MetaMapper identified {len(inspection.layer_details) or (1 if inspection.layer_info else 0)} entity or layer definitions from the dataset. "
-        "USER INPUT NEEDED: describe how attribute values were checked, whether values were interpreted from source mapping or measurements, "
+        "This draft attribute-accuracy statement assumes values were compiled from the source dataset schema and associated map content. "
+        "Data authors should revise this section to describe how attribute values were checked, whether values were interpreted from mapping or measurements, "
         "and any known attribute limitations or uncertainty."
     )
 
 
 def _logical_consistency_scaffold(inspection: DatasetInspection) -> str:
     return (
-        "TODO: USER INPUT NEEDED. REVISE THIS LOGICAL CONSISTENCY STATEMENT.\n"
         f"The inspected dataset includes {len(inspection.layer_names)} discovered layer(s) or table(s). "
-        "USER INPUT NEEDED: describe topology checks, schema consistency checks, identifier validation, "
+        "This draft logical-consistency statement assumes the dataset was assembled using a consistent schema and released after internal review. "
+        "Data authors should revise this section to describe topology checks, schema consistency checks, identifier validation, "
         "or other quality-control steps that were applied before release."
     )
 
@@ -343,19 +336,17 @@ def _logical_consistency_scaffold(inspection: DatasetInspection) -> str:
 def _completeness_scaffold(inspection: DatasetInspection) -> str:
     extent_text = _extent_summary(_preferred_layer_info(inspection))
     return (
-        "TODO: USER INPUT NEEDED. REVISE THIS COMPLETENESS STATEMENT.\n"
         f"The dataset extent currently corresponds to {extent_text.lower()} "
-        "USER INPUT NEEDED: describe what is included, what is excluded, the mapping or observation limits, "
+        "This draft completeness statement should be revised by the data authors to clarify what is included, what is excluded, the mapping or observation limits, "
         "and any known geographic or thematic omissions."
     )
 
 
 def _lineage_scaffold(inspection: DatasetInspection) -> str:
     return (
-        f"{TODO_LINEAGE}\n"
         f"MetaMapper inspected the source dataset at {inspection.dataset_path}. "
-        "USER INPUT NEEDED: replace this with a real process step describing compilation, interpretation, editing, "
-        "or publication preparation work performed by the data producer."
+        "This draft lineage note records the inspection source path and should be replaced or expanded by the data authors with real process-step text "
+        "describing compilation, interpretation, editing, and publication preparation."
     )
 
 

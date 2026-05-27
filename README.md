@@ -65,7 +65,9 @@ metamapper missing outputs/prefill.yaml
 metamapper fill outputs/prefill.yaml
 ```
 
-MetaMapper intentionally leaves user-authored fields as `TODO:` placeholders where scientific interpretation or publication context is required, such as:
+MetaMapper intentionally leaves factual fields such as dates, contacts, publishers, and distribution liability as `TODO:` placeholders when they cannot be inferred automatically.
+
+For narrative sections that benefit from a first draft, MetaMapper now writes editable draft prose based on dataset inspection, including items such as:
 
 - abstract
 - purpose
