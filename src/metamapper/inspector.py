@@ -20,7 +20,10 @@ class DatasetInspector:
         errors: list[str] = []
         for backend in self._candidate_backends(path):
             try:
-                return backend.list_layers(path)
+                layer_names = backend.list_layers(path)
+                if layer_names or not path.is_dir():
+                    return layer_names
+                errors.append(f"{backend.name}: discovered no layers")
             except Exception as exc:
                 errors.append(f"{backend.name}: {exc}")
                 continue

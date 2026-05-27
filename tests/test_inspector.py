@@ -2,9 +2,11 @@ from pathlib import Path
 
 import importlib.util
 import pytest
+import sys
+from types import SimpleNamespace
 
 from metamapper.config import MissingRequiredFieldsError
-from metamapper.inspection_backends import InspectionError, OpenSourceBackend
+from metamapper.inspection_backends import ArcPyBackend, InspectionError, OpenSourceBackend
 from metamapper.inspection_types import DatasetInspection, ExtentInfo, FieldInfo, LayerInfo, RasterInfo, SpatialReferenceInfo
 from metamapper.inspector import DatasetInspector
 from metamapper.prefill import build_prefill_document, write_prefill_yaml
@@ -162,3 +164,75 @@ def test_open_source_backend_reads_sample_geodatabase() -> None:
     map_unit_polys = next(layer for layer in result.layer_details if layer.name == "MapUnitPolys")
     assert map_unit_polys.feature_count == 1089
     assert any(field.name == "MapUnit" for field in map_unit_polys.fields)
+
+
+def test_arcpy_backend_lists_nested_feature_dataset_layers(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> None:
+    dataset_path = tmp_path / "example.gdb"
+    dataset_path.mkdir()
+
+    fake_arcpy = SimpleNamespace(
+        env=SimpleNamespace(workspace=None),
+        ListFeatureClasses=lambda feature_dataset=None: ["MapUnitPolys"] if feature_dataset == "GeologicMap" else [],
+        ListDatasets=lambda feature_type=None: ["GeologicMap"] if feature_type == "feature" else [],
+        ListTables=lambda: [],
+        ListRasters=lambda: [],
+    )
+    monkeypatch.setitem(sys.modules, "arcpy", fake_arcpy)
+
+    backend = ArcPyBackend()
+
+    assert backend.list_layers(dataset_path) == ["GeologicMap/MapUnitPolys"]
+
+
+def test_arcpy_backend_inspects_layer_inside_feature_dataset(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> None:
+    dataset_path = tmp_path / "example.gdb"
+    dataset_path.mkdir()
+
+    described_targets: list[str] = []
+
+    class FakeField:
+        def __init__(self, name: str, field_type: str) -> None:
+            self.name = name
+            self.type = field_type
+            self.aliasName = name
+            self.length = 0
+            self.isNullable = True
+
+    class FakeSpatialReference:
+        name = "NAD83 / UTM zone 10N"
+        factoryCode = 26910
+        datumName = "D_North_American_1983"
+        linearUnitName = "Meter"
+        angularUnitName = None
+
+        def exportToString(self) -> str:
+            return "PROJCS[...]"
+
+    class FakeDescribe:
+        dataType = "FeatureClass"
+        shapeType = "Polygon"
+        bandCount = None
+        extent = SimpleNamespace(XMin=1.0, XMax=2.0, YMin=3.0, YMax=4.0)
+        spatialReference = FakeSpatialReference()
+
+    def describe(target: str) -> FakeDescribe:
+        described_targets.append(target)
+        return FakeDescribe()
+
+    fake_arcpy = SimpleNamespace(
+        env=SimpleNamespace(workspace=None),
+        ListFeatureClasses=lambda feature_dataset=None: ["MapUnitPolys"] if feature_dataset == "GeologicMap" else [],
+        ListDatasets=lambda feature_type=None: ["GeologicMap"] if feature_type == "feature" else [],
+        ListTables=lambda: [],
+        ListRasters=lambda: [],
+        Describe=describe,
+        ListFields=lambda target: [FakeField("MapUnit", "String")],
+        management=SimpleNamespace(GetCount=lambda target: ["42"]),
+    )
+    monkeypatch.setitem(sys.modules, "arcpy", fake_arcpy)
+
+    backend = ArcPyBackend()
+    result = backend.inspect(dataset_path, layer="MapUnitPolys")
+
+    assert result.selected_layer == "GeologicMap/MapUnitPolys"
+    assert described_targets == [str(dataset_path / "GeologicMap/MapUnitPolys")]

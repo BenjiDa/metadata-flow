@@ -303,9 +303,15 @@ class ArcPyBackend:
         try:
             arcpy.env.workspace = str(path)
             feature_classes = arcpy.ListFeatureClasses() or []
+            feature_datasets = arcpy.ListDatasets(feature_type="feature") or []
             tables = arcpy.ListTables() or []
             rasters = arcpy.ListRasters() or []
-            return [str(name) for name in [*feature_classes, *tables, *rasters]]
+            nested_feature_classes: list[str] = []
+            for dataset in feature_datasets:
+                dataset_name = str(dataset)
+                dataset_feature_classes = arcpy.ListFeatureClasses(feature_dataset=dataset_name) or []
+                nested_feature_classes.extend(f"{dataset_name}/{feature_class}" for feature_class in dataset_feature_classes)
+            return [str(name) for name in [*feature_classes, *nested_feature_classes, *tables, *rasters]]
         finally:
             arcpy.env.workspace = previous_workspace
 
@@ -329,6 +335,10 @@ class ArcPyBackend:
                         f"Dataset contains multiple layers. Use `metamapper layers {path}` or specify --layer. "
                         f"Available layers: {', '.join(layer_names)}"
                     )
+            resolved_layer = self._resolve_layer_name(layer_names, layer)
+            if resolved_layer is None:
+                raise InspectionError(f"Layer '{layer}' was not found in dataset: {path}")
+            layer = resolved_layer
             target = str(path / layer)
         else:
             layer_names = [path.stem]
@@ -348,7 +358,8 @@ class ArcPyBackend:
             unit=getattr(spatial_ref, "linearUnitName", None) or getattr(spatial_ref, "angularUnitName", None),
         )
 
-        data_kind = "raster" if hasattr(describe, "bandCount") else "vector"
+        describe_type = str(getattr(describe, "dataType", "") or "").lower()
+        data_kind = "raster" if "raster" in describe_type else "vector"
         layer_info = LayerInfo(name=layer or path.stem, data_kind=data_kind, spatial_reference=spatial_reference, extent=extent)
         if data_kind == "vector":
             fields = []
@@ -387,6 +398,17 @@ class ArcPyBackend:
             layer_info=layer_info,
             layer_details=[layer_info],
         )
+
+    def _resolve_layer_name(self, layer_names: list[str], requested_layer: str | None) -> str | None:
+        if requested_layer is None:
+            return None
+        if requested_layer in layer_names:
+            return requested_layer
+
+        basename_matches = [layer_name for layer_name in layer_names if layer_name.split("/")[-1] == requested_layer]
+        if len(basename_matches) == 1:
+            return basename_matches[0]
+        return None
 
 
 def _coerce_spatial_reference(value: object) -> SpatialReferenceInfo | None:
