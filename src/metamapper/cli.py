@@ -13,7 +13,7 @@ from metamapper.completion import (
     parse_user_value,
     update_document_value,
 )
-from metamapper.config import MissingRequiredFieldsError, find_missing_required_fields
+from metamapper.config import find_missing_required_fields
 from metamapper.inspection_backends import InspectionError
 from metamapper.inspector import DatasetInspector
 from metamapper.prefill import build_prefill_document, write_prefill_yaml
@@ -40,17 +40,26 @@ def _render_validation_summary(result_path: Path, report_path: Path, summary_pat
     console.print(table)
 
 
+def _warn_for_incomplete_required_fields(config_path: Path) -> None:
+    document = load_yaml_document(config_path)
+    missing_fields = find_missing_required_fields(document)
+    if not missing_fields:
+        return
+
+    console.print("WARNING: Building XML with missing or placeholder required metadata fields:")
+    for field in missing_fields:
+        console.print(f"- {field}")
+    console.print("The XML was still generated. Fill these fields later and rebuild when ready.")
+
+
 @app.command()
 def build(
     config_path: Path,
     out: Path = typer.Option(Path("outputs/metadata.xml"), "--out", "-o", help="Path for generated XML."),
 ) -> None:
     """Build metadata XML from a YAML file."""
-    try:
-        config = load_metadata_config(config_path)
-    except MissingRequiredFieldsError as exc:
-        console.print(f"ERROR: {exc}")
-        raise typer.Exit(code=1) from exc
+    config = load_metadata_config(config_path, validate_required=False)
+    _warn_for_incomplete_required_fields(config_path)
     tree = build_metadata_xml(config)
     output_path = write_metadata_xml(tree, out)
     console.print(f"Metadata XML written to {output_path}")
@@ -216,11 +225,8 @@ def build_validate(
     summary_output: Path = typer.Option(Path("outputs/validation_summary.json"), help="JSON validation summary path."),
 ) -> None:
     """Build XML from YAML and validate it."""
-    try:
-        config = load_metadata_config(config_path)
-    except MissingRequiredFieldsError as exc:
-        console.print(f"ERROR: {exc}")
-        raise typer.Exit(code=1) from exc
+    config = load_metadata_config(config_path, validate_required=False)
+    _warn_for_incomplete_required_fields(config_path)
     tree = build_metadata_xml(config)
     output_path = write_metadata_xml(tree, out)
     validation_config = config.get("validation", {}) or {}

@@ -151,7 +151,9 @@ metamapper fill outputs/prefill.yaml --include-long-form
 - `--include-long-form` enables interactive prompting for those longer fields
 - pressing Enter on a prompt keeps the current value unchanged
 
-`build` remains strict and will still refuse to generate XML if required fields are blank or still contain `TODO:` placeholders.
+`build` will generate XML even if required fields are still blank or contain `TODO:` placeholders, and will print a warning listing the unfinished fields.
+
+Use `missing` when you want to check which required fields still need attention before final delivery.
 
 ## External Validation
 

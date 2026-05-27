@@ -137,3 +137,53 @@ def test_fill_command_leaves_long_form_fields_for_yaml_by_default(tmp_path: Path
     assert result.exit_code == 1
     assert "Long narrative fields will stay in the YAML for manual editing." in result.stdout
     assert "description.abstract" in result.stdout
+
+
+def test_build_command_allows_placeholder_required_fields(tmp_path: Path) -> None:
+    yaml_path = tmp_path / "prefill.yml"
+    xml_path = tmp_path / "metadata.xml"
+    yaml_path.write_text(
+        "citation:\n"
+        "  title: Example\n"
+        "  originators:\n"
+        "    - 'TODO: add originator/author name'\n"
+        "  publication_date: 'TODO: set publication or release date'\n"
+        "  publication_status:\n"
+        "    progress: 'TODO: set publication status progress'\n"
+        "    update: 'TODO: set update frequency or maintenance plan'\n"
+        "  geoform: vector digital data\n"
+        "  publication_info:\n"
+        "    publisher: 'TODO: provide publisher or publishing organization'\n"
+        "description:\n"
+        "  abstract: 'TODO: user must provide abstract'\n"
+        "  purpose: 'TODO: user must provide purpose'\n"
+        "time_period:\n"
+        "  current: 'TODO: set currentness reference'\n"
+        "spatial_domain:\n"
+        "  bounding_coordinates:\n"
+        "    west: -1\n"
+        "    east: 1\n"
+        "    north: 1\n"
+        "    south: -1\n"
+        "data_quality:\n"
+        "  attribute_accuracy: 'TODO: describe attribute accuracy'\n"
+        "  logical_consistency: 'TODO: describe logical consistency'\n"
+        "  completeness: 'TODO: describe completeness'\n"
+        "spatial_reference:\n"
+        "  type: geographic\n"
+        "  geographic:\n"
+        "    unit: Decimal degrees\n"
+        "  geodetic: {}\n"
+        "constraints:\n"
+        "  use_limitations: 'TODO: describe use constraints'\n"
+        "metadata:\n"
+        "  date: '20260527'\n",
+        encoding="utf-8",
+    )
+
+    result = runner.invoke(app, ["build", str(yaml_path), "--out", str(xml_path)])
+
+    assert result.exit_code == 0
+    assert "WARNING: Building XML with missing or placeholder required metadata fields:" in result.stdout
+    assert "Metadata XML written to" in result.stdout
+    assert xml_path.exists()
