@@ -27,6 +27,49 @@ TODO_CONTACT = "TODO: provide metadata contact"
 TODO_DISTRIBUTION = "TODO: provide distribution liability statement"
 TODO_CURRENTNESS = "TODO: set currentness reference, for example 'publication date' or 'observed'"
 
+ESRI_STANDARD_FIELD_DEFINITIONS: dict[str, str] = {
+    "OBJECTID": "Internal feature number.",
+    "FID": "Internal feature number.",
+    "Shape": "Internal geometry object.",
+    "Shape_Length": "Internal feature length.",
+    "Shape_Area": "Internal feature area.",
+    "GlobalID": "Globally unique identifier maintained by the geodatabase.",
+}
+
+GEMS_STANDARD_FIELD_DEFINITIONS: dict[str, str] = {
+    "MapUnit": "Short plain-text identifier of the map unit. Foreign key to DescriptionOfMapUnits table.",
+    "Type": "Classifier that specifies what kind of geologic feature is represented by a database element.",
+    "IdentityConfidence": "Confidence that feature is correctly identified.",
+    "ExistenceConfidence": "Confidence that feature exists.",
+    "LocationConfidenceMeters": "Estimated half-width in meters of positional uncertainty envelope; position is relative to other features in database.",
+    "OrientationConfidenceDegrees": "Estimated angular precision of combined azimuth and inclination measurements, in degrees.",
+    "PlotAtScale": "Scale denominator at which the feature should be plotted or larger.",
+    "Label": "Plain-text equivalent of the desired annotation for a feature.",
+    "Symbol": "Reference to the cartographic symbol used to denote the feature.",
+    "DataSourceID": "Source of data; foreign key to table DataSources.",
+    "LocationSourceID": "Source of location; foreign key to table DataSources.",
+    "OrientationSourceID": "Source of orientation data; foreign key to table DataSources.",
+    "Notes": "Additional information specific to a particular feature or table entry.",
+    "GeoMaterial": "Classifier of the material that composes the map unit.",
+    "GeoMaterialConfidence": "Confidence in assignment of geomaterial classification.",
+    "IsConcealed": "Flag for contacts and faults covered by overlying map unit.",
+}
+
+GEMS_ENTITY_DESCRIPTIONS: dict[str, str] = {
+    "MapUnitPolys": "Polygons that record the distribution of map units on the map horizon.",
+    "ContactsAndFaults": "Lines that represent contacts, faults, and shoreline boundaries that participate in map-unit topology.",
+    "GeologicLines": "Lines that represent linear geologic features that do not participate in map-unit topology.",
+    "MapUnitPoints": "Points that record the distribution of map units of point-like extent on the map horizon.",
+    "DescriptionOfMapUnits": "Table that stores names, ages, symbols, and descriptions of map units shown on the map.",
+    "DataSources": "Table that identifies sources referenced by geologic features and observations in the dataset.",
+    "Glossary": "Table that defines terminology used within the geodatabase.",
+    "GenericPoints": "Points that represent miscellaneous point features that do not fit other GeMS point feature classes.",
+    "GenericSamples": "Sample locations and related sample identifiers.",
+    "OrientationPoints": "Points that store planar and linear orientation measurements.",
+    "Stations": "Observation stations used to locate map observations and supporting data.",
+    "GeochronPoints": "Points that represent geochronology sample localities and ages.",
+}
+
 
 def _contact_template(person_placeholder: str = TODO_CONTACT, organization_placeholder: str = "TODO: provide organization") -> dict[str, str]:
     return {
@@ -263,6 +306,14 @@ def _purpose_scaffold(inspection: DatasetInspection, layer_info: LayerInfo | Non
 
 def _supplemental_scaffold(inspection: DatasetInspection) -> str:
     selected = inspection.selected_layer or "the dataset as a whole"
+    if _looks_like_gems_dataset(inspection):
+        return (
+            f"{TODO_SUPPL}\n"
+            f"{inspection.dataset_name} appears to conform to GeMS (Geologic Map Schema). MetaMapper auto-populated structural details for {selected}. "
+            "Inherited GeMS entity and attribute definitions may be referenced from the GeMS standard rather than rewritten field-by-field. "
+            "USER INPUT NEEDED: add processing notes, related products, geologic interpretation, companion report references, "
+            "and any dataset-specific caveats that users should read before reuse."
+        ).strip()
     return (
         f"{TODO_SUPPL}\n"
         f"MetaMapper auto-populated structural details for {selected} from the source dataset. "
@@ -427,19 +478,20 @@ def _entity_attribute_document(inspection: DatasetInspection) -> dict[str, Any]:
     if not layer_infos:
         return {"entities": []}
 
+    gems_dataset = _looks_like_gems_dataset(inspection)
     entities: list[dict[str, Any]] = []
     for layer_info in layer_infos:
-        entity: dict[str, Any] = {
-            "name": layer_info.name,
-            "description": _entity_description(layer_info),
-            "definition_source": _entity_definition_source(layer_info),
-            "data_kind": layer_info.data_kind,
-            "geometry_type": layer_info.geometry_type,
-            "feature_count": layer_info.feature_count,
-            "attributes": [],
-        }
-
+        custom_attributes: list[dict[str, Any]] = []
+        omitted_standard_fields: list[str] = []
+        omitted_esri_fields: list[str] = []
         for field in layer_info.fields:
+            standard_source = _standard_field_source(layer_info, field.name)
+            if standard_source == "GeMS":
+                omitted_standard_fields.append(field.name)
+                continue
+            if standard_source == "ESRI":
+                omitted_esri_fields.append(field.name)
+                continue
             attribute: dict[str, Any] = {
                 "label": field.name,
                 "definition": _attribute_definition(field),
@@ -452,7 +504,19 @@ def _entity_attribute_document(inspection: DatasetInspection) -> dict[str, Any]:
                 attribute["length"] = field.length
             if field.nullable is not None:
                 attribute["nullable"] = field.nullable
-            entity["attributes"].append(attribute)
+            custom_attributes.append(attribute)
+
+        entity: dict[str, Any] = {
+            "name": layer_info.name,
+            "description": _entity_description(layer_info, custom_attributes, omitted_standard_fields, omitted_esri_fields),
+            "definition_source": _entity_definition_source(layer_info),
+            "data_kind": layer_info.data_kind,
+            "geometry_type": layer_info.geometry_type,
+            "feature_count": layer_info.feature_count,
+            "attributes": custom_attributes,
+        }
+        entity["omitted_standard_fields"] = omitted_standard_fields
+        entity["omitted_esri_fields"] = omitted_esri_fields
 
         if layer_info.spatial_reference:
             entity["spatial_reference"] = layer_info.spatial_reference.to_dict()
@@ -462,21 +526,48 @@ def _entity_attribute_document(inspection: DatasetInspection) -> dict[str, Any]:
             entity["raster"] = layer_info.raster.to_dict()
         entities.append(entity)
 
-    return {"entities": entities}
+    result: dict[str, Any] = {"entities": entities}
+    if gems_dataset:
+        result["overview"] = {
+            "description": (
+                "This geodatabase appears to follow GeMS (Geologic Map Schema). "
+                "Standard GeMS entities and inherited GeMS attributes are referenced from the GeMS standard; "
+                "only non-standard custom fields are documented individually below."
+            ),
+            "citation": "GeMS (Geologic Map Schema) standard definitions and reviewed companion metadata for this dataset.",
+        }
+    return result
 
 
-def _entity_description(layer_info: LayerInfo) -> str:
-    parts = [f"Entity derived from the source dataset layer {layer_info.name}."]
+def _entity_description(
+    layer_info: LayerInfo,
+    custom_attributes: list[dict[str, Any]],
+    omitted_standard_fields: list[str],
+    omitted_esri_fields: list[str],
+) -> str:
+    parts = [_entity_base_description(layer_info)]
     if layer_info.data_kind:
         parts.append(f"Data kind: {layer_info.data_kind}.")
     if layer_info.geometry_type and layer_info.geometry_type != "None":
         parts.append(f"Geometry type: {layer_info.geometry_type}.")
     if layer_info.feature_count is not None:
         parts.append(f"Approximate record count: {layer_info.feature_count}.")
+    if omitted_standard_fields:
+        parts.append(
+            f"{len(omitted_standard_fields)} inherited GeMS field(s) are referenced from the GeMS schema rather than documented individually."
+        )
+    if omitted_esri_fields:
+        parts.append(
+            f"{len(omitted_esri_fields)} ESRI-managed system field(s) are omitted from detailed attribute documentation."
+        )
+    if custom_attributes:
+        parts.append(f"{len(custom_attributes)} custom field(s) are documented individually below.")
     return " ".join(parts)
 
 
 def _entity_definition_source(layer_info: LayerInfo) -> str:
+    if _is_gems_entity_name(layer_info.name):
+        return "GeMS"
     if layer_info.spatial_reference and layer_info.spatial_reference.name:
         return f"Source dataset schema inspection ({layer_info.spatial_reference.name})."
     return "Source dataset schema inspection."
@@ -491,6 +582,43 @@ def _attribute_definition_source(layer_info: LayerInfo, field: Any) -> str:
     if getattr(field, "alias", None):
         return f"Source dataset field schema and alias for layer {layer_info.name}."
     return f"Source dataset field schema for layer {layer_info.name}."
+
+
+def _entity_base_description(layer_info: LayerInfo) -> str:
+    short_name = layer_info.name.split("/")[-1]
+    description = GEMS_ENTITY_DESCRIPTIONS.get(short_name)
+    if description:
+        return description
+    return f"Entity derived from the source dataset layer {layer_info.name}."
+
+
+def _is_gems_entity_name(name: str) -> bool:
+    return name.split("/")[-1] in GEMS_ENTITY_DESCRIPTIONS
+
+
+def _standard_field_source(layer_info: LayerInfo, field_name: str) -> str | None:
+    if field_name in ESRI_STANDARD_FIELD_DEFINITIONS:
+        return "ESRI"
+    if field_name in GEMS_STANDARD_FIELD_DEFINITIONS:
+        return "GeMS"
+    short_name = layer_info.name.split("/")[-1]
+    if field_name == f"{short_name}_ID":
+        return "GeMS"
+    if field_name.endswith("_ID") and _is_gems_entity_name(short_name):
+        return "GeMS"
+    return None
+
+
+def _looks_like_gems_dataset(inspection: DatasetInspection) -> bool:
+    layer_infos = inspection.layer_details or ([inspection.layer_info] if inspection.layer_info else [])
+    gems_score = 0
+    for layer_info in layer_infos:
+        short_name = layer_info.name.split("/")[-1]
+        if short_name in GEMS_ENTITY_DESCRIPTIONS:
+            gems_score += 2
+        field_names = {field.name for field in layer_info.fields}
+        gems_score += sum(1 for field_name in field_names if field_name in GEMS_STANDARD_FIELD_DEFINITIONS)
+    return gems_score >= 3
 
 
 def _looks_like_utm(name: str | None, epsg: int | None) -> bool:

@@ -198,9 +198,16 @@ def build_metadata_xml(config: MetadataConfig) -> etree._ElementTree:
     _append_text(geodetic, "denflat", geodetic_data.get("denominator_of_flattening"))
 
     eainfo_data = config.get("entity_attribute_information", {})
-    if eainfo_data.get("entities"):
+    if eainfo_data.get("entities") or eainfo_data.get("overview"):
         eainfo = etree.SubElement(root, "eainfo")
+        overview_data = eainfo_data.get("overview") or {}
+        if overview_data:
+            overview = etree.SubElement(eainfo, "overview")
+            _append_text(overview, "eaover", overview_data.get("description"))
+            _append_text(overview, "eadetcit", overview_data.get("citation"))
         for entity in eainfo_data.get("entities", []):
+            if not entity.get("attributes"):
+                continue
             detailed = etree.SubElement(eainfo, "detailed")
             enttyp = etree.SubElement(detailed, "enttyp")
             _append_text(enttyp, "enttypl", entity.get("name"))

@@ -77,6 +77,12 @@ MetaMapper intentionally leaves user-authored fields as `TODO:` placeholders whe
 - contact information
 - distribution liability
 
+For GeMS-style geodatabases, MetaMapper now prefers a lighter reviewed-record pattern:
+
+- feature classes and tables are described at the entity level
+- inherited GeMS and ESRI system fields are referenced from their standards rather than documented one-by-one
+- custom non-standard fields are given individual attribute definitions in the draft YAML/XML
+
 3. Build XML:
 
 ```bash

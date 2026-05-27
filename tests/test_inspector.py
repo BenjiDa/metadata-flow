@@ -99,6 +99,43 @@ def test_prefill_yaml_contains_auto_populated_and_todo_sections(tmp_path: Path) 
     assert loaded["metadata"]["contact"]["person"] == loaded["point_of_contact"]["person"]
 
 
+def test_gems_entity_attribute_document_omits_standard_gems_fields() -> None:
+    inspection = DatasetInspection(
+        dataset_path="/tmp/example.gdb",
+        dataset_name="example",
+        backend_name="fake-backend",
+        data_format="OpenFileGDB",
+        file_size_bytes=2048,
+        modified_date="2026-05-13T10:00:00",
+        layer_names=["MapUnitPolys"],
+        selected_layer="MapUnitPolys",
+        layer_info=LayerInfo(
+            name="MapUnitPolys",
+            data_kind="vector",
+            geometry_type="Polygon",
+            feature_count=42,
+            fields=[
+                FieldInfo(name="OBJECTID", field_type="OID"),
+                FieldInfo(name="MapUnit", field_type="string"),
+                FieldInfo(name="DataSourceID", field_type="string"),
+                FieldInfo(name="ReviewerNotes", field_type="string"),
+            ],
+            spatial_reference=SpatialReferenceInfo(name="NAD83 / UTM zone 10N", epsg=26910, wkt="PROJCS[...]"),
+            extent=ExtentInfo(west=-122.5, east=-122.2, south=38.6, north=39.0),
+        ),
+        layer_details=[],
+    )
+
+    document = build_prefill_document(inspection)
+    entity = document["entity_attribute_information"]["entities"][0]
+
+    assert document["entity_attribute_information"]["overview"]["description"].startswith("This geodatabase appears to follow GeMS")
+    assert entity["definition_source"] == "GeMS"
+    assert entity["omitted_standard_fields"] == ["MapUnit", "DataSourceID"]
+    assert entity["omitted_esri_fields"] == ["OBJECTID"]
+    assert [attribute["label"] for attribute in entity["attributes"]] == ["ReviewerNotes"]
+
+
 def test_inspect_prefill_requires_manual_completion_before_build(tmp_path: Path) -> None:
     dataset_path = tmp_path / "example.gdb"
     dataset_path.mkdir()
