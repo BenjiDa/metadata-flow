@@ -12,11 +12,22 @@ The first version in this repo is intentionally simple and inspectable:
 
 ## Install
 
+Recommended for most users, including File Geodatabase inspection:
+
+```bash
+conda env create -f environment.yml
+conda activate metamapper
+```
+
+This environment installs `metamapper` with the optional inspection dependencies used for GIS datasets such as `.gdb`, shapefiles, and rasters.
+
+Minimal editable install:
+
 ```bash
 pip install -e .
 ```
 
-Optional open-source inspection backend:
+Editable install with open-source inspection backend:
 
 ```bash
 pip install -e ".[inspect]"
@@ -37,6 +48,12 @@ For multi-layer datasets such as File Geodatabases:
 ```bash
 metamapper layers path/to/geodatabase.gdb
 metamapper inspect path/to/geodatabase.gdb --layer MapUnitPolys --out outputs/prefill.yaml
+```
+
+To generate one combined YAML draft for the entire geodatabase:
+
+```bash
+metamapper inspect path/to/geodatabase.gdb --all-layers --out outputs/prefill_all.yaml
 ```
 
 2. Review and edit the generated YAML manually.

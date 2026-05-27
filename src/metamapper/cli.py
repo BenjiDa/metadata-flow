@@ -80,11 +80,16 @@ def layers(dataset_path: Path) -> None:
 def inspect(
     dataset_path: Path,
     layer: str | None = typer.Option(None, help="Layer name for multi-layer datasets such as File Geodatabases."),
+    all_layers: bool = typer.Option(False, "--all-layers", help="Inspect all discovered layers in a multi-layer dataset."),
     out: Path = typer.Option(Path("outputs/prefill.yaml"), "--out", "-o", help="Path for generated YAML prefill."),
 ) -> None:
     """Inspect a dataset and generate an editable metadata YAML draft."""
+    if all_layers and layer is not None:
+        console.print("ERROR: Use either --layer or --all-layers, not both.")
+        raise typer.Exit(code=1)
+
     try:
-        inspection = inspector.inspect(dataset_path, layer=layer)
+        inspection = inspector.inspect(dataset_path, layer=layer, all_layers=all_layers)
     except InspectionError as exc:
         console.print(f"ERROR: {exc}")
         raise typer.Exit(code=1) from exc

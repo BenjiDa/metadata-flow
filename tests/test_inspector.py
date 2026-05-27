@@ -236,3 +236,98 @@ def test_arcpy_backend_inspects_layer_inside_feature_dataset(tmp_path: Path, mon
 
     assert result.selected_layer == "GeologicMap/MapUnitPolys"
     assert described_targets == [str(dataset_path / "GeologicMap/MapUnitPolys")]
+
+
+def test_arcpy_backend_inspects_all_layers_inside_feature_dataset(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> None:
+    dataset_path = tmp_path / "example.gdb"
+    dataset_path.mkdir()
+
+    class FakeField:
+        def __init__(self, name: str, field_type: str) -> None:
+            self.name = name
+            self.type = field_type
+            self.aliasName = name
+            self.length = 0
+            self.isNullable = True
+
+    class FakeSpatialReference:
+        name = "NAD83 / UTM zone 10N"
+        factoryCode = 26910
+        datumName = "D_North_American_1983"
+        linearUnitName = "Meter"
+        angularUnitName = None
+
+        def exportToString(self) -> str:
+            return "PROJCS[...]"
+
+    class FakeDescribe:
+        dataType = "FeatureClass"
+        shapeType = "Polygon"
+        bandCount = None
+        extent = SimpleNamespace(XMin=1.0, XMax=2.0, YMin=3.0, YMax=4.0)
+        spatialReference = FakeSpatialReference()
+
+    fake_arcpy = SimpleNamespace(
+        env=SimpleNamespace(workspace=None),
+        ListFeatureClasses=lambda feature_dataset=None: ["MapUnitPolys", "ContactsAndFaults"] if feature_dataset == "GeologicMap" else [],
+        ListDatasets=lambda feature_type=None: ["GeologicMap"] if feature_type == "feature" else [],
+        ListTables=lambda: [],
+        ListRasters=lambda: [],
+        Describe=lambda target: FakeDescribe(),
+        ListFields=lambda target: [FakeField("MapUnit", "String")],
+        management=SimpleNamespace(GetCount=lambda target: ["42"]),
+    )
+    monkeypatch.setitem(sys.modules, "arcpy", fake_arcpy)
+
+    backend = ArcPyBackend()
+    result = backend.inspect(dataset_path, all_layers=True)
+
+    assert result.dataset_name == "example"
+    assert result.selected_layer is None
+    assert result.layer_info is None
+    assert result.layer_names == ["GeologicMap/MapUnitPolys", "GeologicMap/ContactsAndFaults"]
+    assert [layer.name for layer in result.layer_details] == ["GeologicMap/MapUnitPolys", "GeologicMap/ContactsAndFaults"]
+
+
+def test_prefill_document_for_all_layers_uses_all_entities(tmp_path: Path) -> None:
+    dataset_path = tmp_path / "example.gdb"
+    dataset_path.mkdir()
+    inspection = DatasetInspection(
+        dataset_path=str(dataset_path.resolve()),
+        dataset_name="example",
+        backend_name="fake-backend",
+        data_format="OpenFileGDB",
+        file_size_bytes=2048,
+        modified_date="2026-05-13T10:00:00",
+        layer_names=["MapUnitPolys", "ContactsAndFaults"],
+        selected_layer=None,
+        layer_info=None,
+        layer_details=[
+            LayerInfo(
+                name="MapUnitPolys",
+                data_kind="vector",
+                geometry_type="Polygon",
+                feature_count=42,
+                fields=[FieldInfo(name="MapUnit", field_type="string")],
+                spatial_reference=SpatialReferenceInfo(name="NAD83 / UTM zone 10N", epsg=26910, wkt="PROJCS[...]"),
+                extent=ExtentInfo(west=-122.5, east=-122.2, south=38.6, north=39.0),
+            ),
+            LayerInfo(
+                name="ContactsAndFaults",
+                data_kind="vector",
+                geometry_type="Line",
+                feature_count=88,
+                fields=[FieldInfo(name="Type", field_type="string")],
+                spatial_reference=SpatialReferenceInfo(name="NAD83 / UTM zone 10N", epsg=26910, wkt="PROJCS[...]"),
+                extent=ExtentInfo(west=-122.4, east=-122.1, south=38.5, north=39.1),
+            ),
+        ],
+    )
+
+    document = build_prefill_document(inspection)
+
+    assert document["dataset"]["selected_layer"] is None
+    assert document["citation"]["title"] == "example"
+    assert len(document["entity_attribute_information"]["entities"]) == 2
+    assert document["entity_attribute_information"]["entities"][0]["name"] == "MapUnitPolys"
+    assert document["entity_attribute_information"]["entities"][1]["name"] == "ContactsAndFaults"

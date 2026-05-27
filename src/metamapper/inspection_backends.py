@@ -27,7 +27,7 @@ class InspectionBackend(Protocol):
     def list_layers(self, path: Path) -> list[str]:
         """Return available layer names for the dataset path."""
 
-    def inspect(self, path: Path, layer: str | None = None) -> DatasetInspection:
+    def inspect(self, path: Path, layer: str | None = None, all_layers: bool = False) -> DatasetInspection:
         """Inspect the dataset path and return structured metadata."""
 
 
@@ -76,7 +76,7 @@ class BasicFileBackend:
             return []
         return [path.name]
 
-    def inspect(self, path: Path, layer: str | None = None) -> DatasetInspection:
+    def inspect(self, path: Path, layer: str | None = None, all_layers: bool = False) -> DatasetInspection:
         if not path.exists():
             raise InspectionError(f"Dataset path does not exist: {path}")
         warning = (
@@ -132,7 +132,7 @@ class OpenSourceBackend:
             return [str(row[0]) for row in layers]
         return []
 
-    def inspect(self, path: Path, layer: str | None = None) -> DatasetInspection:
+    def inspect(self, path: Path, layer: str | None = None, all_layers: bool = False) -> DatasetInspection:
         if not path.exists():
             raise InspectionError(f"Dataset path does not exist: {path}")
 
@@ -140,10 +140,10 @@ class OpenSourceBackend:
         if suffix in RASTER_SUFFIXES:
             return self._inspect_raster(path)
         if suffix in VECTOR_SUFFIXES or suffix == ".gdb":
-            return self._inspect_vector(path, layer=layer)
+            return self._inspect_vector(path, layer=layer, all_layers=all_layers)
         raise InspectionError(f"Open-source backend does not support dataset type: {path}")
 
-    def _inspect_vector(self, path: Path, layer: str | None = None) -> DatasetInspection:
+    def _inspect_vector(self, path: Path, layer: str | None = None, all_layers: bool = False) -> DatasetInspection:
         try:
             import pyogrio
         except ImportError as exc:
@@ -151,7 +151,9 @@ class OpenSourceBackend:
 
         layer_names = [str(row[0]) for row in pyogrio.list_layers(path)]
         selected_layer = layer
-        if selected_layer is None:
+        if all_layers:
+            selected_layer = None
+        elif selected_layer is None:
             if len(layer_names) == 1:
                 selected_layer = layer_names[0]
 
@@ -315,7 +317,7 @@ class ArcPyBackend:
         finally:
             arcpy.env.workspace = previous_workspace
 
-    def inspect(self, path: Path, layer: str | None = None) -> DatasetInspection:
+    def inspect(self, path: Path, layer: str | None = None, all_layers: bool = False) -> DatasetInspection:
         try:
             import arcpy
         except ImportError as exc:
@@ -327,6 +329,20 @@ class ArcPyBackend:
         target = str(path if layer is None else path / layer if path.suffix.lower() == ".gdb" else path)
         if path.suffix.lower() == ".gdb":
             layer_names = self.list_layers(path)
+            if all_layers:
+                layer_details = [self._inspect_layer_target(arcpy, path / layer_name, layer_name) for layer_name in layer_names]
+                return DatasetInspection(
+                    dataset_path=str(path.resolve()),
+                    dataset_name=path.stem,
+                    backend_name=self.name,
+                    data_format="FileGDB",
+                    file_size_bytes=_file_size(path),
+                    modified_date=_modified_date(path),
+                    layer_names=layer_names,
+                    selected_layer=None,
+                    layer_info=None,
+                    layer_details=layer_details,
+                )
             if layer is None:
                 if len(layer_names) == 1:
                     layer = layer_names[0]
@@ -343,7 +359,23 @@ class ArcPyBackend:
         else:
             layer_names = [path.stem]
 
-        describe = arcpy.Describe(target)
+        layer_info = self._inspect_layer_target(arcpy, Path(target), layer or path.stem)
+
+        return DatasetInspection(
+            dataset_path=str(path.resolve()),
+            dataset_name=_dataset_name(path, layer),
+            backend_name=self.name,
+            data_format=str(getattr(describe, "dataType", path.suffix.lower().lstrip("."))),
+            file_size_bytes=_file_size(path),
+            modified_date=_modified_date(path),
+            layer_names=layer_names,
+            selected_layer=layer,
+            layer_info=layer_info,
+            layer_details=[layer_info],
+        )
+
+    def _inspect_layer_target(self, arcpy: object, target: Path, layer_name: str) -> LayerInfo:
+        describe = arcpy.Describe(str(target))
         extent = None
         if getattr(describe, "extent", None):
             ext = describe.extent
@@ -360,10 +392,10 @@ class ArcPyBackend:
 
         describe_type = str(getattr(describe, "dataType", "") or "").lower()
         data_kind = "raster" if "raster" in describe_type else "vector"
-        layer_info = LayerInfo(name=layer or path.stem, data_kind=data_kind, spatial_reference=spatial_reference, extent=extent)
+        layer_info = LayerInfo(name=layer_name, data_kind=data_kind, spatial_reference=spatial_reference, extent=extent)
         if data_kind == "vector":
             fields = []
-            for field in arcpy.ListFields(target):
+            for field in arcpy.ListFields(str(target)):
                 fields.append(
                     FieldInfo(
                         name=str(field.name),
@@ -374,7 +406,7 @@ class ArcPyBackend:
                     )
                 )
             layer_info.geometry_type = str(getattr(describe, "shapeType", "Unknown"))
-            layer_info.feature_count = int(arcpy.management.GetCount(target)[0])
+            layer_info.feature_count = int(arcpy.management.GetCount(str(target))[0])
             layer_info.fields = fields
         else:
             layer_info.raster = RasterInfo(
@@ -385,19 +417,7 @@ class ArcPyBackend:
                 cell_size_y=float(getattr(describe, "meanCellHeight", 0.0)) or None,
                 nodata_values=[],
             )
-
-        return DatasetInspection(
-            dataset_path=str(path.resolve()),
-            dataset_name=_dataset_name(path, layer),
-            backend_name=self.name,
-            data_format=str(getattr(describe, "dataType", path.suffix.lower().lstrip("."))),
-            file_size_bytes=_file_size(path),
-            modified_date=_modified_date(path),
-            layer_names=layer_names,
-            selected_layer=layer,
-            layer_info=layer_info,
-            layer_details=[layer_info],
-        )
+        return layer_info
 
     def _resolve_layer_name(self, layer_names: list[str], requested_layer: str | None) -> str | None:
         if requested_layer is None:

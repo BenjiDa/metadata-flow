@@ -29,12 +29,12 @@ class DatasetInspector:
                 continue
         raise InspectionError(self._format_backend_error(path, errors))
 
-    def inspect(self, dataset_path: str | Path, layer: str | None = None) -> DatasetInspection:
+    def inspect(self, dataset_path: str | Path, layer: str | None = None, all_layers: bool = False) -> DatasetInspection:
         path = Path(dataset_path)
         errors: list[str] = []
         for backend in self._candidate_backends(path):
             try:
-                return backend.inspect(path, layer=layer)
+                return backend.inspect(path, layer=layer, all_layers=all_layers)
             except Exception as exc:
                 errors.append(f"{backend.name}: {exc}")
                 continue
