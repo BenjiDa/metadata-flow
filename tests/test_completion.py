@@ -1,6 +1,6 @@
 from pathlib import Path
 
-from metamapper.completion import current_display_value, get_missing_field_prompts, parse_user_value, update_document_value
+from metamapper.completion import current_display_value, get_missing_field_prompts, parse_user_value, propagate_shared_contacts, update_document_value
 from metamapper.config import find_missing_required_fields, set_path
 from metamapper.yaml_reader import load_yaml_document, write_yaml_document
 
@@ -53,6 +53,7 @@ def test_get_missing_field_prompts_returns_missing_only() -> None:
 
     assert any(prompt.path == "citation.originators" for prompt in prompts)
     assert any(prompt.path == "point_of_contact.person" for prompt in prompts)
+    assert not any(prompt.path == "distribution.distributor.person" for prompt in prompts)
     assert all(prompt.short_form for prompt in prompts)
 
 
@@ -75,3 +76,40 @@ def test_parse_user_value_for_list_mode() -> None:
 
     assert parsed == ["Jane Doe", "Alex Smith"]
     assert current_display_value({"citation": {"originators": parsed}}, "citation.originators") == "Jane Doe, Alex Smith"
+
+
+def test_propagate_shared_contacts_copies_dataset_contact_to_distribution_and_metadata() -> None:
+    document = {
+        "point_of_contact": {
+            "person": "Jane Doe",
+            "organization": "U.S. Geological Survey",
+            "address": "1 Main St",
+            "city": "Reston",
+            "phone": "555-111-2222",
+        },
+        "distribution": {
+            "distributor": {
+                "person": "TODO: provide distribution contact",
+                "organization": "",
+                "address": "",
+                "city": "",
+                "phone": "",
+            }
+        },
+        "metadata": {
+            "contact": {
+                "person": "TODO: provide metadata contact",
+                "organization": "",
+                "address": "",
+                "city": "",
+                "phone": "",
+            }
+        },
+    }
+
+    propagate_shared_contacts(document)
+
+    assert document["distribution"]["distributor"]["person"] == "Jane Doe"
+    assert document["distribution"]["distributor"]["organization"] == "U.S. Geological Survey"
+    assert document["metadata"]["contact"]["person"] == "Jane Doe"
+    assert document["metadata"]["contact"]["phone"] == "555-111-2222"

@@ -52,11 +52,6 @@ FIELD_PROMPTS: dict[str, FieldPrompt] = {
         prompt="Publisher",
         help_text="Examples: U.S. Geological Survey, ScienceBase.",
     ),
-    "citation.publication_info.place": FieldPrompt(
-        path="citation.publication_info.place",
-        prompt="Publication place",
-        help_text="Examples: Reston, Virginia; Sacramento, California.",
-    ),
     "description.abstract": FieldPrompt(
         path="description.abstract",
         prompt="Abstract",
@@ -141,96 +136,6 @@ FIELD_PROMPTS: dict[str, FieldPrompt] = {
         prompt="Dataset contact email",
         help_text="Email address.",
     ),
-    "distribution.distributor.person": FieldPrompt(
-        path="distribution.distributor.person",
-        prompt="Distribution contact person",
-        help_text="Person to contact for distribution questions.",
-    ),
-    "distribution.distributor.organization": FieldPrompt(
-        path="distribution.distributor.organization",
-        prompt="Distribution contact organization",
-        help_text="Organization handling distribution.",
-    ),
-    "distribution.distributor.address": FieldPrompt(
-        path="distribution.distributor.address",
-        prompt="Distribution contact address",
-        help_text="Street or mailing address.",
-    ),
-    "distribution.distributor.city": FieldPrompt(
-        path="distribution.distributor.city",
-        prompt="Distribution contact city",
-        help_text="City for the distribution contact.",
-    ),
-    "distribution.distributor.state": FieldPrompt(
-        path="distribution.distributor.state",
-        prompt="Distribution contact state",
-        help_text="State or province.",
-    ),
-    "distribution.distributor.postal": FieldPrompt(
-        path="distribution.distributor.postal",
-        prompt="Distribution contact postal code",
-        help_text="Postal or ZIP code.",
-    ),
-    "distribution.distributor.country": FieldPrompt(
-        path="distribution.distributor.country",
-        prompt="Distribution contact country",
-        help_text="Country name.",
-    ),
-    "distribution.distributor.phone": FieldPrompt(
-        path="distribution.distributor.phone",
-        prompt="Distribution contact phone",
-        help_text="Phone number.",
-    ),
-    "distribution.distributor.email": FieldPrompt(
-        path="distribution.distributor.email",
-        prompt="Distribution contact email",
-        help_text="Email address.",
-    ),
-    "metadata.contact.person": FieldPrompt(
-        path="metadata.contact.person",
-        prompt="Metadata contact person",
-        help_text="Person responsible for the metadata record.",
-    ),
-    "metadata.contact.organization": FieldPrompt(
-        path="metadata.contact.organization",
-        prompt="Metadata contact organization",
-        help_text="Organization responsible for the metadata record.",
-    ),
-    "metadata.contact.address": FieldPrompt(
-        path="metadata.contact.address",
-        prompt="Metadata contact address",
-        help_text="Street or mailing address.",
-    ),
-    "metadata.contact.city": FieldPrompt(
-        path="metadata.contact.city",
-        prompt="Metadata contact city",
-        help_text="City for the metadata contact.",
-    ),
-    "metadata.contact.state": FieldPrompt(
-        path="metadata.contact.state",
-        prompt="Metadata contact state",
-        help_text="State or province.",
-    ),
-    "metadata.contact.postal": FieldPrompt(
-        path="metadata.contact.postal",
-        prompt="Metadata contact postal code",
-        help_text="Postal or ZIP code.",
-    ),
-    "metadata.contact.country": FieldPrompt(
-        path="metadata.contact.country",
-        prompt="Metadata contact country",
-        help_text="Country name.",
-    ),
-    "metadata.contact.phone": FieldPrompt(
-        path="metadata.contact.phone",
-        prompt="Metadata contact phone",
-        help_text="Phone number.",
-    ),
-    "metadata.contact.email": FieldPrompt(
-        path="metadata.contact.email",
-        prompt="Metadata contact email",
-        help_text="Email address.",
-    ),
     "data_quality.attribute_accuracy": FieldPrompt(
         path="data_quality.attribute_accuracy",
         prompt="Attribute accuracy",
@@ -298,6 +203,36 @@ def update_document_value(document: dict[str, Any], path: str, value: Any) -> No
     set_path(document, path, value)
 
 
+def propagate_shared_contacts(document: dict[str, Any]) -> None:
+    """Copy dataset contact details into distribution and metadata contacts when those are blank."""
+
+    source_paths = (
+        "person",
+        "organization",
+        "position",
+        "address_type",
+        "address",
+        "city",
+        "state",
+        "postal",
+        "country",
+        "phone",
+        "email",
+    )
+    point_of_contact = get_path(document, "point_of_contact", {})
+    if not isinstance(point_of_contact, dict):
+        return
+
+    for target_root in ("distribution.distributor", "metadata.contact"):
+        for field_name in source_paths:
+            source_value = point_of_contact.get(field_name)
+            if _is_copyable_contact_value(source_value):
+                target_path = f"{target_root}.{field_name}"
+                target_value = get_path(document, target_path)
+                if _is_blank_or_placeholder(target_value):
+                    set_path(document, target_path, source_value)
+
+
 def current_display_value(document: dict[str, Any], path: str) -> str:
     """Render the current field value for CLI display."""
 
@@ -314,3 +249,23 @@ def is_placeholder_display(value: str) -> bool:
 
     stripped = value.strip()
     return stripped.startswith("TODO:") or stripped.startswith("todo:")
+
+
+def _is_blank_or_placeholder(value: Any) -> bool:
+    if value is None:
+        return True
+    if isinstance(value, str):
+        stripped = value.strip()
+        return not stripped or is_placeholder_display(stripped)
+    if isinstance(value, list):
+        return not value or all(_is_blank_or_placeholder(item) for item in value)
+    return False
+
+
+def _is_copyable_contact_value(value: Any) -> bool:
+    if isinstance(value, str):
+        stripped = value.strip()
+        return bool(stripped) and not is_placeholder_display(stripped)
+    if isinstance(value, list):
+        return any(_is_copyable_contact_value(item) for item in value)
+    return value is not None

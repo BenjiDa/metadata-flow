@@ -213,6 +213,85 @@ def test_fill_command_leaves_long_form_fields_for_yaml_by_default(tmp_path: Path
     assert "description.abstract" in result.stdout
 
 
+def test_fill_command_propagates_dataset_contact_to_distribution_and_metadata(tmp_path: Path) -> None:
+    yaml_path = tmp_path / "prefill.yml"
+    yaml_path.write_text(
+        "citation:\n"
+        "  title: Example\n"
+        "  originators:\n"
+        "    - Jane Doe\n"
+        "  publication_date: '20260513'\n"
+        "  publication_status:\n"
+        "    progress: Complete\n"
+        "    update: None planned\n"
+        "  publication_info:\n"
+        "    publisher: U.S. Geological Survey\n"
+        "description:\n"
+        "  abstract: Example abstract\n"
+        "  purpose: Example purpose\n"
+        "time_period:\n"
+        "  begin_date: 20200101\n"
+        "  end_date: 20260513\n"
+        "  current: publication date\n"
+        "spatial_domain:\n"
+        "  bounding_coordinates:\n"
+        "    west: -1\n"
+        "    east: 1\n"
+        "    north: 1\n"
+        "    south: -1\n"
+        "data_quality:\n"
+        "  attribute_accuracy: Done\n"
+        "  logical_consistency: Done\n"
+        "  completeness: Done\n"
+        "spatial_reference:\n"
+        "  type: geographic\n"
+        "point_of_contact:\n"
+        "  person: 'TODO: provide metadata contact'\n"
+        "  organization: 'TODO: provide organization'\n"
+        "  position: 'TODO: provide position or role'\n"
+        "  address: 'TODO: provide mailing address'\n"
+        "  city: 'TODO: provide city'\n"
+        "  state: 'TODO: provide state or province'\n"
+        "  postal: 'TODO: provide postal code'\n"
+        "  country: 'TODO: provide country'\n"
+        "  phone: 'TODO: provide phone number'\n"
+        "  email: 'TODO: provide email address'\n"
+        "distribution:\n"
+        "  distributor:\n"
+        "    person: 'TODO: provide distribution contact'\n"
+        "    organization: 'TODO: provide distributor organization'\n"
+        "metadata:\n"
+        "  date: '20260513'\n"
+        "  contact:\n"
+        "    person: 'TODO: provide metadata contact'\n"
+        "    organization: 'TODO: provide metadata contact organization'\n",
+        encoding="utf-8",
+    )
+
+    result = runner.invoke(
+        app,
+        ["fill", str(yaml_path)],
+        input=(
+            "Jane Doe\n"
+            "U.S. Geological Survey\n"
+            "Geologist\n"
+            "1 Main St\n"
+            "Reston\n"
+            "VA\n"
+            "20192\n"
+            "USA\n"
+            "555-111-2222\n"
+            "jane@example.com\n"
+        ),
+    )
+
+    assert result.exit_code == 0
+    updated = yaml_path.read_text(encoding="utf-8")
+    assert "person: Jane Doe" in updated
+    assert "organization: U.S. Geological Survey" in updated
+    assert "jane@example.com" in updated
+
+
 def test_build_command_allows_placeholder_required_fields(tmp_path: Path) -> None:
     yaml_path = tmp_path / "prefill.yml"
     xml_path = tmp_path / "metadata.xml"

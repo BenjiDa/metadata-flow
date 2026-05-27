@@ -11,6 +11,7 @@ from metamapper.completion import (
     get_missing_field_prompts,
     is_placeholder_display,
     parse_user_value,
+    propagate_shared_contacts,
     update_document_value,
 )
 from metamapper.config import find_missing_required_fields
@@ -141,6 +142,7 @@ def fill(
 ) -> None:
     """Interactively fill required metadata fields in a YAML document."""
     document = load_yaml_document(yaml_path)
+    propagate_shared_contacts(document)
     prompts = get_missing_field_prompts(
         document,
         only_missing=only_missing,
@@ -179,6 +181,7 @@ def fill(
         )
         if response.strip():
             update_document_value(document, prompt.path, parse_user_value(prompt, response))
+            propagate_shared_contacts(document)
 
     output_path = write_yaml_document(out or yaml_path, document)
     remaining = find_missing_required_fields(document)
