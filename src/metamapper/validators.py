@@ -191,7 +191,11 @@ def run_internal_validation(xml_path: str | Path) -> ValidationResult:
             )
         )
 
-    for xpath in REQUIRED_XML_PATHS:
+    required_paths = list(REQUIRED_XML_PATHS)
+    if tree.xpath('/metadata/spref/horizsys/local'):
+        required_paths.remove('/metadata/spref/horizsys/geodetic/horizdn')
+        required_paths += ['/metadata/spref/horizsys/local/localdes', '/metadata/spref/horizsys/local/localgeo']
+    for xpath in required_paths:
         nodes = tree.xpath(xpath)
         if not nodes:
             missing_required_fields.append(xpath)

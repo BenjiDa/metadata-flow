@@ -168,6 +168,11 @@ def get_missing_field_prompts(
     """Return the completion prompts relevant for a metadata document."""
 
     prompt_paths = list(FIELD_PROMPTS)
+    # Single dates and ranges are alternatives, not simultaneous requirements.
+    if get_path(document, "time_period.single_date") is not None:
+        prompt_paths = [path for path in prompt_paths if path not in {"time_period.begin_date", "time_period.end_date"}]
+    elif any(get_path(document, f"time_period.{key}") is not None for key in ("begin_date", "end_date")):
+        prompt_paths.remove("time_period.single_date")
     if only_missing:
         prompt_paths = [path for path in prompt_paths if _needs_prompt(document, path)]
     prompts = [FIELD_PROMPTS[path] for path in prompt_paths]

@@ -25,7 +25,7 @@ class FakeBackend:
     def list_layers(self, path: Path) -> list[str]:
         return ["MapUnitPolys", "ContactsAndFaults"]
 
-    def inspect(self, path: Path, layer: str | None = None) -> DatasetInspection:
+    def inspect(self, path: Path, layer: str | None = None, all_layers: bool = False) -> DatasetInspection:
         selected_layer = layer or "MapUnitPolys"
         return DatasetInspection(
             dataset_path=str(path.resolve()),
@@ -44,6 +44,7 @@ class FakeBackend:
                 fields=[
                     FieldInfo(name="MapUnit", field_type="string", alias="Map Unit", length=16, nullable=False),
                     FieldInfo(name="Label", field_type="string", length=24, nullable=True),
+                    FieldInfo(name="ReviewerNotes", field_type="string", alias="Reviewer Notes"),
                 ],
                 spatial_reference=SpatialReferenceInfo(
                     name="NAD83 / UTM zone 10N",
@@ -86,9 +87,10 @@ def test_prefill_yaml_contains_auto_populated_and_todo_sections(tmp_path: Path) 
 
     assert loaded["inspection"]["backend"] == "fake-backend"
     assert loaded["inspection"]["auto_populated"]["selected_layer"] == "MapUnitPolys"
-    assert loaded["description"]["abstract"].startswith("This metadata record describes")
-    assert "should be reviewed and revised by the data authors" in loaded["description"]["abstract"]
-    assert loaded["entity_attribute_information"]["entities"][0]["attributes"][0]["alias"] == "Map Unit"
+    assert "geologic history" in loaded["description"]["abstract"]
+    assert "earthquake and landslide hazards" in loaded["description"]["abstract"]
+    assert "mineral and energy resources" in loaded["description"]["abstract"]
+    assert loaded["entity_attribute_information"]["entities"][0]["attributes"][0]["alias"] == "Reviewer Notes"
     assert "TODO:" not in loaded["entity_attribute_information"]["entities"][0]["attributes"][0]["definition"]
     assert "TODO:" not in loaded["entity_attribute_information"]["entities"][0]["attributes"][0]["definition_source"]
     assert loaded["spatial_domain"]["bounding_coordinates"]["west"] < -120
@@ -145,7 +147,6 @@ def test_inspect_prefill_requires_manual_completion_before_build(tmp_path: Path)
     with pytest.raises(MissingRequiredFieldsError) as exc:
         load_metadata_config(output_path)
 
-    assert "description.abstract" in str(exc.value)
     assert "citation.originators" in str(exc.value)
 
 

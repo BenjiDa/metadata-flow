@@ -11,6 +11,7 @@ from typing import Any
 import yaml
 
 from metamapper.inspection_types import DatasetInspection, LayerInfo
+from metamapper.spatial_audit import layer_role
 
 
 TODO_USE_LIMIT = "TODO: USER INPUT NEEDED. REVISE USE CONSTRAINTS AND DATA LIMITATIONS."
@@ -102,7 +103,14 @@ def build_prefill_document(inspection: DatasetInspection) -> dict[str, Any]:
 
     layer_info = _preferred_layer_info(inspection)
     coordinates = _bounding_coordinates(layer_info)
-    spatial_reference = _spatial_reference_document(layer_info)
+    # The aggregate bounding box is geographic, but the data retain their
+    # native CRS. Describe the primary map layer's CRS separately.
+    reference_layer = inspection.layer_info or next(
+        (layer for layer in inspection.layer_details if layer.name.split('/')[-1] == 'MapUnitPolys'),
+        next((layer for layer in inspection.layer_details if layer.spatial_reference
+              and layer_role(layer.name) == 'map data'), layer_info),
+    )
+    spatial_reference = _spatial_reference_document(reference_layer)
     entity_info = _entity_attribute_document(inspection)
     direct_method = "Raster" if layer_info and layer_info.data_kind == "raster" else "Vector"
     geoform = _infer_geoform(inspection, layer_info)
@@ -276,6 +284,22 @@ def _infer_geoform(inspection: DatasetInspection, layer_info: LayerInfo | None) 
 
 def _abstract_scaffold(inspection: DatasetInspection, layer_info: LayerInfo | None) -> str:
     dataset_name = inspection.dataset_name.replace("_", " ")
+    if _looks_like_gems_dataset(inspection):
+        return (
+            f"The {dataset_name} geologic map database provides a spatial framework for understanding "
+            "the distribution, composition, age, and structural relations of mapped rocks and surficial deposits. "
+            "Geologic maps connect observations of Earth materials and structures with interpretations of "
+            "deposition, volcanism, deformation, and landscape evolution, allowing users to investigate "
+            "how the geologic history of an area influences present-day conditions. "
+            "This framework can inform investigations of earthquake and landslide hazards, mineral and "
+            "energy resources, groundwater systems, and land use and infrastructure planning. "
+            "These applications require interpretation at an appropriate mapping scale and, for local "
+            "decisions, supporting observations and site-specific investigation. "
+            "The database organizes mapped features and their supporting descriptions and sources using "
+            "the Geologic Map Schema (GeMS). "
+            "Project-specific mapping objectives, geographic context, methods, and scale must be confirmed "
+            "from the accompanying report before publication."
+        )
     format_name = inspection.data_format
     extent_text = _extent_summary(layer_info)
     layer_text = _layer_summary(inspection)
@@ -290,6 +314,15 @@ def _abstract_scaffold(inspection: DatasetInspection, layer_info: LayerInfo | No
 
 def _purpose_scaffold(inspection: DatasetInspection, layer_info: LayerInfo | None) -> str:
     dataset_name = inspection.dataset_name.replace("_", " ")
+    if _looks_like_gems_dataset(inspection):
+        return (
+            f"To make the geologic framework represented by {dataset_name} available for scientific "
+            "interpretation, GIS analysis, and map preparation. The mapped relations provide a basis "
+            "for reconstructing geologic history and for investigating geologic controls on natural "
+            "hazards, mineral and energy resources, groundwater, and land use. These are potential "
+            "applications of geologic mapping; this statement does not establish that a specific "
+            "hazard or resource assessment was performed."
+        )
     layer_text = _layer_summary(inspection)
     return (
         f"The {dataset_name} dataset appears to support geospatial analysis, visualization, and distribution of mapped data. "
@@ -391,7 +424,7 @@ def _feature_summary(layer_info: LayerInfo | None) -> str:
 
 
 def _bounding_coordinates(layer_info: LayerInfo | None) -> dict[str, float | str | None]:
-    if not layer_info or not layer_info.extent:
+    if not layer_info or not layer_info.extent or layer_info.feature_count == 0 or layer_role(layer_info.name) in {"cross-section diagram", "correlation diagram"}:
         return {
             "west": "TODO: provide west bounding coordinate",
             "east": "TODO: provide east bounding coordinate",
@@ -402,15 +435,16 @@ def _bounding_coordinates(layer_info: LayerInfo | None) -> dict[str, float | str
     transformed = _transform_extent_to_geographic(layer_info)
     if transformed is not None:
         return transformed
-    return {
-        "west": layer_info.extent.west,
-        "east": layer_info.extent.east,
-        "north": layer_info.extent.north,
-        "south": layer_info.extent.south,
-    }
+    return {key: "TODO: geographic bounds unavailable; confirm source CRS and transform"
+            for key in ("west", "east", "north", "south")}
 
 
 def _spatial_reference_document(layer_info: LayerInfo | None) -> dict[str, Any]:
+    if layer_info and layer_role(layer_info.name) in {"cross-section diagram", "correlation diagram"}:
+        return {"type": "local", "local": {
+            "description": "Diagram coordinates; not Earth locations. Native CRS is preserved in inspection details.",
+            "georeference": "Geographic context must be obtained from the parent map; no diagram-to-map transformation is inferred.",
+        }}
     spatial_reference = layer_info.spatial_reference if layer_info else None
     is_utm = _looks_like_utm(spatial_reference.name if spatial_reference else None, spatial_reference.epsg if spatial_reference else None)
     data: dict[str, Any]
@@ -676,15 +710,24 @@ def _preferred_layer_info(inspection: DatasetInspection) -> LayerInfo | None:
     if not inspection.layer_details:
         return None
 
-    layers_with_extent = [layer for layer in inspection.layer_details if layer.extent is not None]
+    layers_with_extent = [layer for layer in inspection.layer_details
+                          if layer.extent is not None and layer.feature_count != 0
+                          and layer_role(layer.name) not in {"cross-section diagram", "correlation diagram", "topology diagnostics"}]
     if not layers_with_extent:
-        return inspection.layer_details[0]
+        return None
 
     first = layers_with_extent[0]
-    west = min(layer.extent.west for layer in layers_with_extent if layer.extent is not None)
-    east = max(layer.extent.east for layer in layers_with_extent if layer.extent is not None)
-    south = min(layer.extent.south for layer in layers_with_extent if layer.extent is not None)
-    north = max(layer.extent.north for layer in layers_with_extent if layer.extent is not None)
+    # Transform each layer independently before combining bounds. Raw meters,
+    # degrees, and diagram coordinates cannot be unioned in one source CRS.
+    transformed = [_transform_extent_to_geographic(layer) for layer in layers_with_extent]
+    geographic = [bounds for bounds in transformed if bounds is not None]
+    if not geographic:
+        return None
+    west = min(bounds['west'] for bounds in geographic)
+    east = max(bounds['east'] for bounds in geographic)
+    south = min(bounds['south'] for bounds in geographic)
+    north = max(bounds['north'] for bounds in geographic)
+    from metamapper.inspection_types import SpatialReferenceInfo
 
     return LayerInfo(
         name=inspection.dataset_name,
@@ -692,7 +735,7 @@ def _preferred_layer_info(inspection: DatasetInspection) -> LayerInfo | None:
         geometry_type=first.geometry_type,
         feature_count=sum(layer.feature_count or 0 for layer in layers_with_extent),
         fields=[],
-        spatial_reference=first.spatial_reference,
+        spatial_reference=SpatialReferenceInfo(name="WGS 84", epsg=4326, datum="WGS_1984", unit="Decimal degrees"),
         extent=type(first.extent)(west=west, east=east, south=south, north=north) if first.extent else None,
         raster=first.raster,
     )
@@ -716,8 +759,7 @@ def _transform_bounds_with_fallback(
             allow_ballpark=True,
             only_best=False,
         )
-        west_ll, south_ll = transformer.transform(west, south)
-        east_ll, north_ll = transformer.transform(east, north)
+        west_ll, south_ll, east_ll, north_ll = transformer.transform_bounds(west, south, east, north, densify_pts=21)
         values = [west_ll, south_ll, east_ll, north_ll]
         if all(math.isfinite(value) for value in values):
             return west_ll, south_ll, east_ll, north_ll

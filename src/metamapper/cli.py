@@ -28,6 +28,22 @@ console = Console()
 inspector = DatasetInspector()
 
 
+@app.command("audit-bounds")
+def audit_boundary(
+    dataset_path: Path,
+    west: float = typer.Option(...),
+    south: float = typer.Option(...),
+    east: float = typer.Option(...),
+    north: float = typer.Option(...),
+    out: Path = typer.Option(Path("outputs/boundary_audit")),
+    tolerance_m: float = typer.Option(25.0, min=0),
+) -> None:
+    """Report features outside a NAD83 geographic boundary without editing data."""
+    from metamapper.spatial_audit import audit_bounds
+    summary = audit_bounds(dataset_path, (west, south, east, north), out, tolerance_m)
+    console.print(f"Boundary audit written to {out}; {summary['outside_feature_count']} outside features.")
+
+
 def _render_validation_summary(result_path: Path, report_path: Path, summary_path: Path, passed: bool, error_count: int, warning_count: int) -> None:
     table = Table(title="Validation Summary")
     table.add_column("Output")

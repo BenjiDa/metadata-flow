@@ -163,6 +163,43 @@ metamapper fill outputs/prefill.yaml --include-long-form
 
 Use `missing` when you want to check which required fields still need attention before final delivery.
 
+## Geographic boundary audits
+
+Audit a geodatabase without changing its geometry or attributes. Supply the
+intended west, south, east, and north boundary in NAD83 longitude/latitude:
+
+```bash
+metamapper audit-bounds examples/sample_data/Healdsburg_map_gems_1.gdb \
+  --west -123 --south 38.5 --east -122 --north 39 \
+  --out outputs/healdsburg/audit
+```
+
+The output includes original OBJECTIDs, outside-feature CSV records, GeoJSON
+markers at offending vertices, and invalid or missing geometry records. The
+25-meter default tolerance classifies severity; all strictly outside features
+are reported. GeMS cross sections and correlation diagrams are drawing data
+and are excluded from geographic checks. Supporting geophysics, annotation,
+and topology diagnostics are identified separately. Confirm the intended
+boundary datum and neatline before changing edge features.
+
+All-layer metadata now transforms each layer's bounds independently before
+combining them, excluding empty layers and diagrams. It retains the primary
+map layer's native CRS in the spatial-reference section. This avoids combining
+meters, degrees, and drawing coordinates as if they shared one CRS.
+
+The Healdsburg metadata package can be rebuilt with the inspection dependencies:
+
+```bash
+PYTHONPATH=src python scripts/build_healdsburg_metadata.py --refresh-audit
+```
+
+The scientific narrative and compiler-supplied methods are maintained in
+`configs/healdsburg_metadata.yml`. Outputs contain a standalone record,
+one XML/YAML pair per feature class and table, a field dictionary, record-level
+feature provenance and confidence, and the boundary and attribute audits.
+Unconfirmed publication facts are identified explicitly. Validation reports
+distinguish internal structure checks from external FGDC schema validation.
+
 ## External Validation
 
 `metamapper` can run an external validation command if one is provided in the YAML under `validation.external_command`, or via the CLI option on `validate`.

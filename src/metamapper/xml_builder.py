@@ -189,22 +189,23 @@ def build_metadata_xml(config: MetadataConfig) -> etree._ElementTree:
         _append_text(coordrep, "absres", utm_data.get("x_resolution"))
         _append_text(coordrep, "ordres", utm_data.get("y_resolution"))
         _append_text(planci, "plandu", utm_data.get("unit", "meters"))
+    elif reference_type == "local":
+        local = etree.SubElement(horizsys, "local")
+        _append_text(local, "localdes", spatial_reference.get("local", {}).get("description"))
+        _append_text(local, "localgeo", spatial_reference.get("local", {}).get("georeference"))
 
-    geodetic = etree.SubElement(horizsys, "geodetic")
     geodetic_data = spatial_reference.get("geodetic", {})
-    _append_text(geodetic, "horizdn", geodetic_data.get("datum"))
-    _append_text(geodetic, "ellips", geodetic_data.get("ellipsoid"))
-    _append_text(geodetic, "semiaxis", geodetic_data.get("semi_major_axis"))
-    _append_text(geodetic, "denflat", geodetic_data.get("denominator_of_flattening"))
+    if reference_type != "local":
+        geodetic = etree.SubElement(horizsys, "geodetic")
+        _append_text(geodetic, "horizdn", geodetic_data.get("datum"))
+        _append_text(geodetic, "ellips", geodetic_data.get("ellipsoid"))
+        _append_text(geodetic, "semiaxis", geodetic_data.get("semi_major_axis"))
+        _append_text(geodetic, "denflat", geodetic_data.get("denominator_of_flattening"))
 
     eainfo_data = config.get("entity_attribute_information", {})
     if eainfo_data.get("entities") or eainfo_data.get("overview"):
         eainfo = etree.SubElement(root, "eainfo")
         overview_data = eainfo_data.get("overview") or {}
-        if overview_data:
-            overview = etree.SubElement(eainfo, "overview")
-            _append_text(overview, "eaover", overview_data.get("description"))
-            _append_text(overview, "eadetcit", overview_data.get("citation"))
         for entity in eainfo_data.get("entities", []):
             if not entity.get("attributes"):
                 continue
@@ -220,8 +221,8 @@ def build_metadata_xml(config: MetadataConfig) -> etree._ElementTree:
                 _append_text(attr, "attrdefs", attribute.get("definition_source"))
                 enumerated_domain = attribute.get("enumerated_domain") or []
                 if enumerated_domain:
+                    attrdomv = etree.SubElement(attr, "attrdomv")
                     for domain_value in enumerated_domain:
-                        attrdomv = etree.SubElement(attr, "attrdomv")
                         edom = etree.SubElement(attrdomv, "edom")
                         _append_text(edom, "edomv", domain_value.get("value"))
                         _append_text(edom, "edomvd", domain_value.get("definition"))
@@ -229,6 +230,10 @@ def build_metadata_xml(config: MetadataConfig) -> etree._ElementTree:
                 else:
                     attrdomv = etree.SubElement(attr, "attrdomv")
                     _append_text(attrdomv, "udom", attribute.get("unrepresentable_domain", "Unrepresentable domain"))
+        if overview_data:
+            overview = etree.SubElement(eainfo, "overview")
+            _append_text(overview, "eaover", overview_data.get("description"))
+            _append_text(overview, "eadetcit", overview_data.get("citation"))
 
     distribution = config.get("distribution") or {}
     if distribution:
@@ -240,7 +245,7 @@ def build_metadata_xml(config: MetadataConfig) -> etree._ElementTree:
         stdorder = etree.SubElement(distinfo, "stdorder")
         digform = etree.SubElement(stdorder, "digform")
         digtinfo = etree.SubElement(digform, "digtinfo")
-        _append_text(digtinfo, "formname", "Digital Data")
+        _append_text(digtinfo, "formname", distribution.get("format_name", "Digital Data"))
         if distribution.get("online_resource"):
             digtopt = etree.SubElement(digform, "digtopt")
             onlinopt = etree.SubElement(digtopt, "onlinopt")

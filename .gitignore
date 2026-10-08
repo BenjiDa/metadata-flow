@@ -17,6 +17,7 @@ dist/
 
 # Local outputs
 outputs/
+examples/sample_data/Healdsburg_map_gems*.gdb/
 
 # Editor / OS noise
 .DS_Store

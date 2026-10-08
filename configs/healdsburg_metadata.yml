@@ -1,0 +1,112 @@
+citation:
+  title: Geologic map database and structure section of the Healdsburg 30-by-60-minute quadrangle, northern California
+  originators:
+    - "Database compilation associated with Benjamin L. Melosh; complete map authorship and order have not been supplied."
+  publication_date: Unpublished material
+  publication_status:
+    progress: In work
+    update: As needed
+  geoform: vector digital data
+  publication_info:
+    place: Not assigned; unpublished working database
+    publisher: Not assigned; unpublished working database
+  online_links: []
+  other_citation: Working title for the supplied database, not a verified publication citation. No release DOI or publication series has been assigned in this record.
+description:
+  abstract: >-
+    This geologic map database provides a framework for understanding the geologic history,
+    natural hazards, and resources of the Healdsburg 30-by-60-minute quadrangle in the northern
+    California Coast Ranges. The distribution and structural relations of rocks and surficial
+    deposits record the assembly and deformation of older crustal units, subsequent sedimentation
+    and volcanism, and the development of the modern landscape. Mapped units include the
+    Franciscan Complex, Great Valley sedimentary rocks and Coast Range ophiolitic rocks,
+    younger sedimentary strata, Sonoma and Clear Lake volcanic rocks, and Quaternary deposits.
+    Contacts, faults, fold axes, structural orientation observations, and an interpreted cross
+    section connect this stratigraphic framework with the geometry of deformation at and below
+    the surface. These relationships provide a geologic basis for investigating earthquake and
+    landslide hazards, evaluating mineral and energy resource potential, understanding geologic
+    controls on groundwater, and informing land use and infrastructure planning. The map supplies
+    foundational geologic information for those applications; quantitative hazard forecasts,
+    resource estimates, and site-specific engineering conclusions require additional analyses.
+    The database integrates multiple sources of mapping and organizes mapped features,
+    map-unit descriptions, terminology, and source citations using the Geologic Map Schema (GeMS).
+  purpose: >-
+    To provide an integrated geologic framework for reconstructing the stratigraphic and tectonic
+    evolution of the Healdsburg quadrangle and for investigating how Earth materials and geologic
+    structures influence hazards, groundwater, and mineral and energy resources. The digital
+    organization supports comparison of mapping sources, GIS analysis of mapped relations,
+    visualization of surface and subsurface interpretations, and preparation of geologic maps.
+    Applications must respect the scale and uncertainty of the contributing mapping.
+time_period:
+  begin_date: '2022'
+  end_date: '2026'
+  current: Fieldwork and compilation conducted during 2022–2026, as reported by the database compiler; the compilation also incorporates older published mapping.
+data_quality:
+  lineage:
+    process_steps:
+      - description: >-
+          During 2022–2026, compiled geologic mapping primarily from the previous sources
+          listed in the DataSources table and incorporated some new original mapping and
+          field observations. Used 1-meter lidar data to assist mapping of landslides and
+          young faults. Used aerial photographs to assist geologic mapping and identify
+          outcrop locations for field investigation. Organized the compilation and supporting
+          descriptions, terminology, and citations in a GeMS-style file geodatabase.
+          This description is based on the compiler's account; specific lidar acquisitions,
+          aerial photograph dates, and source datasets were not supplied.
+        date: '2026'
+      - description: >-
+          The database compiler reports that topology checks were completed during map
+          preparation. The supplied workspace retains topology diagnostic and dirty-area
+          tables. Their presence does not establish whether each stored diagnostic is
+          current, resolved, or an accepted exception. The independent geometry and boundary
+          audit accompanying this metadata records the condition of the supplied snapshot.
+        date: '2026'
+spatial_domain:
+  bounding_coordinates: {west: -123.0, east: -122.0, south: 38.5, north: 39.0}
+constraints:
+  access_constraints: Unpublished working database supplied for metadata preparation; public access and release authorization have not been established.
+  use_limitations: >-
+    Use as an interpretive geologic framework with the accompanying source citations and
+    uncertainty attributes. The compilation combines mapping at different scales; the final
+    intended publication scale has not been supplied. Enlargement or additional decimal places
+    do not increase geologic accuracy. Mapped boundaries and subsurface relations are interpretations
+    and may be revised with new observations. This database does not replace site-specific
+    geotechnical, groundwater, hazard, or mineral resource investigations. Boundary overruns,
+    invalid polygons, missing geometries, and attribute limitations identified in the accompanying
+    audit must be considered before analysis or release. Do not interpret diagram coordinates as
+    geographic locations or treat negative uncertainty values as measured accuracy.
+point_of_contact:
+  person: Benjamin L. Melosh
+  organization: U.S. Geological Survey, Geology, Minerals, Energy, and Geophysics Science Center
+  position: Research Geologist
+  address_type: mailing and physical
+  address: [P.O. Box 158, 350 N Akron Rd]
+  city: Moffett Field
+  state: CA
+  postal: '94035'
+  country: United States
+  phone: 650-439-2361
+  email: bmelosh@usgs.gov
+distribution:
+  liability: >-
+    This metadata package documents the supplied working database and does not constitute
+    an official data release or a warranty of fitness for a particular use. No publisher-approved
+    distribution liability statement was supplied. Users should evaluate the documented
+    uncertainties and audit findings before relying on the data. Official distribution terms
+    must accompany any subsequent authorized release.
+  fees: Not applicable; no public distribution service established
+metadata:
+  date: '20261007'
+  standard_name: FGDC Content Standard for Digital Geospatial Metadata
+  standard_version: FGDC-STD-001-1998
+review_questions:
+  - Confirm map title, all authors and their order, publisher, release status and any DOI.
+  - Confirm final map scale and completed scientific review; specific lidar and aerial photography source identifiers would improve reproducibility.
+  - Provide gradient units and processing methods for the supporting geophysical layers if available.
+  - Confirm the intended quadrangle datum and boundary polygon before clipping the small edge overruns.
+evidence_sources:
+  - https://www.usgs.gov/staff-profiles/ben-melosh
+  - https://www.usgs.gov/mission-areas/energy-and-minerals/science/geologic-mapping-and-foundational-science
+  - https://ngmdb.usgs.gov/nationalgeology/
+  - https://pubs.usgs.gov/tm/11b10/tm11b10.pdf
+  - https://prd-tnm.s3.amazonaws.com/StagedProducts/Maps/HistoricalTopo/PDF/CA/100000/CA_Healdsburg_299093_1972_100000_geo.pdf

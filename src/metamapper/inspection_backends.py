@@ -246,7 +246,7 @@ class OpenSourceBackend:
         crs_info = _coerce_spatial_reference(info.get("crs"))
         extent = None
         bounds = info.get("total_bounds")
-        if bounds is not None and len(bounds) == 4:
+        if bounds is not None and len(bounds) == 4 and info.get("features") != 0 and info.get("crs"):
             extent = ExtentInfo(
                 west=float(bounds[0]),
                 south=float(bounds[1]),
@@ -365,7 +365,7 @@ class ArcPyBackend:
             dataset_path=str(path.resolve()),
             dataset_name=_dataset_name(path, layer),
             backend_name=self.name,
-            data_format=str(getattr(describe, "dataType", path.suffix.lower().lstrip("."))),
+            data_format="FileGDB" if path.suffix.lower() == ".gdb" else path.suffix.lower().lstrip("."),
             file_size_bytes=_file_size(path),
             modified_date=_modified_date(path),
             layer_names=layer_names,
@@ -470,7 +470,15 @@ def _coerce_spatial_reference(value: object) -> SpatialReferenceInfo | None:
             if match:
                 epsg = int(match.group(1))
 
-    return SpatialReferenceInfo(name=name, epsg=epsg, wkt=wkt)
+    datum = unit = None
+    try:
+        from pyproj import CRS
+        crs = CRS.from_user_input(wkt or value)
+        datum = crs.datum.name if crs.datum else None
+        unit = crs.axis_info[0].unit_name if crs.axis_info else None
+    except Exception:
+        pass
+    return SpatialReferenceInfo(name=name, epsg=epsg, wkt=wkt, datum=datum, unit=unit)
 
 
 def _as_list(value: object) -> list[object]:
